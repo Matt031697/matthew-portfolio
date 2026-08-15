@@ -1,0 +1,65 @@
+---
+const navItems = [
+	{ label: 'Projects', href: '/projects' },
+	{ label: 'Resume', href: '/resume' },
+	{ label: 'About Me', href: '/about' },
+	{ label: 'Contact', href: '/contact' },
+];
+---
+
+<header class="site-header">
+	<div class="container site-header__inner">
+		<a class="site-header__brand" href="/">Matthew</a>
+
+		<nav class="site-nav" aria-label="Primary">
+			<ul class="site-nav__list">
+				{
+					navItems.map((item) => (
+						<li>
+							<a href={item.href}>{item.label}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.site-header__inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-sm);
+		padding-block: var(--space-sm);
+	}
+
+	.site-header__brand {
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.site-nav__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.site-nav a {
+		display: inline-block;
+		padding: var(--space-xs);
+		text-decoration: none;
+	}
+
+	.site-nav a:hover {
+		text-decoration: underline;
+	}
+</style>

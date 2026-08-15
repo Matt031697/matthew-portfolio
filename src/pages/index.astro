@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+	<Header />
+
+	<main id="main">
+		<div class="container">
+			<section class="hero" aria-labelledby="hero-heading">
+				<p class="hero__eyebrow">Hi, I'm Matthew.</p>
+				<h1 id="hero-heading" class="hero__headline">
+					Frontend Developer &amp; Designer.
+				</h1>
+				<p class="hero__subheading">
+					I build thoughtful ecommerce experiences where design, accessibility, and scalable frontend development come together.
+				</p>
+			</section>
+		</div>
+	</main>
+
+	<Footer />
+</BaseLayout>
+
+<style>
+	.hero {
+		padding-block: var(--space-xl);
+	}
+
+	.hero__eyebrow {
+		margin: 0 0 var(--space-sm);
+		color: var(--color-text-muted);
+		font-size: 1rem;
+	}
+
+	.hero__headline {
+		margin: 0 0 var(--space-md);
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		line-height: 1.2;
+		max-width: 40ch;
+	}
+
+	.hero__subheading {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 1.125rem;
+		max-width: 50ch;
+	}
+</style>
