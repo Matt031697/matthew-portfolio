@@ -16,7 +16,7 @@ export const navItems = [
 ] as const;
 
 export const projectAccents = {
-	home: '#3c45d4',
+	home: '#3A588D',
 	shopify: '#136916',
 	bondfire: '#c64b14',
 	astro: '#2156a5',

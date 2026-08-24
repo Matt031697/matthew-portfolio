@@ -5,33 +5,32 @@ import Header from '../../components/Header.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projectAccents } from '../../lib/site.ts';
 import { slugify } from '../../lib/strings.ts';
-import prospectusPage1 from '../../assets/projects/design/Page 1 Prospectus.png';
-import prospectusPage2 from '../../assets/projects/design/Page 2 Prospectus.png';
-import petTradeShowBooth from '../../assets/projects/design/Pet Trade Show Booth Design.png';
-import facebookBanner from '../../assets/projects/design/Facebook Banner.png';
-import facebookBanner2 from '../../assets/projects/design/Facebook Banner 2.png';
-import dougieCarousel1 from '../../assets/projects/design/DougieDeluxe Carousel 1.png';
-import dougieCarousel2 from '../../assets/projects/design/DougieDeluxe Carousel 2.png';
-import dougieCarousel3 from '../../assets/projects/design/DougieDeluxe Carousel 3.png';
-import dougieLogo from '../../assets/projects/design/DougieDeluxe Primary logo.png';
-import werkCarousel1 from '../../assets/projects/design/Werkthestudio Carousel 1.png';
-import werkCarousel2 from '../../assets/projects/design/Werkthestudio Carousel 2.png';
-import werkCarousel3 from '../../assets/projects/design/Werkthestudio Carousel 3.png';
-import werkLogo from '../../assets/projects/design/Werkthestudio primary logo.jpg';
-import kobeBryant from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro (1).png';
-import magicJohnson from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro (2).png';
-import nightCampsite from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro (3).png';
-import jumpShot from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro.png';
-import photoGallery1 from '../../assets/projects/design/Photo Gallery 1.png';
-import photoGallery2 from '../../assets/projects/design/Photo Gallery 2.png';
-import photoGallery3 from '../../assets/projects/design/Photo Gallery 3.png';
-import photoGallery4 from '../../assets/projects/design/Photo Gallery 4.png';
-import photoGallery5 from '../../assets/projects/design/Photo Gallery 5.png';
-import photoGallery6 from '../../assets/projects/design/Photo Gallery 6.png';
-import photoGallery7 from '../../assets/projects/design/Photo Gallery 7.png';
-import photoGallery8 from '../../assets/projects/design/Photo Gallery 8.png';
+import prospectusPage1 from '../../assets/projects/design/prospectus-page-1.png';
+import prospectusPage2 from '../../assets/projects/design/prospectus-page-2.png';
+import petTradeShowBooth from '../../assets/projects/design/pet-trade-show-booth.png';
+import facebookBanner from '../../assets/projects/design/facebook-banner.png';
+import facebookBanner2 from '../../assets/projects/design/facebook-banner-2.png';
+import dougieCarousel1 from '../../assets/projects/design/dougiedeluxe-carousel-1.png';
+import dougieCarousel2 from '../../assets/projects/design/dougiedeluxe-carousel-2.png';
+import dougieCarousel3 from '../../assets/projects/design/dougiedeluxe-carousel-3.png';
+import dougieLogo from '../../assets/projects/design/dougiedeluxe-primary-logo.png';
+import werkCarousel1 from '../../assets/projects/design/werkthestudio-carousel-1.png';
+import werkCarousel2 from '../../assets/projects/design/werkthestudio-carousel-2.png';
+import werkCarousel3 from '../../assets/projects/design/werkthestudio-carousel-3.png';
+import werkLogo from '../../assets/projects/design/werkthestudio-primary-logo.jpg';
+import kobeBryant from '../../assets/projects/design/illustration-kobe-bryant.png';
+import magicJohnson from '../../assets/projects/design/illustration-magic-johnson.png';
+import jumpShot from '../../assets/projects/design/illustration-jerry-west.png';
+import photoGallery1 from '../../assets/projects/design/photo-gallery-1.png';
+import photoGallery2 from '../../assets/projects/design/photo-gallery-2.png';
+import photoGallery3 from '../../assets/projects/design/photo-gallery-3.png';
+import photoGallery4 from '../../assets/projects/design/photo-gallery-4.png';
+import photoGallery5 from '../../assets/projects/design/photo-gallery-5.png';
+import photoGallery6 from '../../assets/projects/design/photo-gallery-6.png';
+import photoGallery7 from '../../assets/projects/design/photo-gallery-7.png';
+import photoGallery8 from '../../assets/projects/design/photo-gallery-8.png';
 
-const pageTitle = 'Graphic, Print & Photography — Matthew';
+const pageTitle = 'Graphic, Print & Photography, Matthew';
 const description =
 	'Graphic design, print, and photography. Work made for a page, a room, a feed, and a frame.';
 
@@ -165,11 +164,6 @@ const funPieces = [
 		image: magicJohnson,
 		alt: 'Stylized illustration of smiling Lakers basketball player Magic Johnson in purple-and-gold No. 32 uniform, dribbling a ball against a warm abstract background.',
 	},
-	{
-		label: 'Campsite under the stars',
-		image: nightCampsite,
-		alt: 'Illustrated nighttime campsite with an orange tent, glowing campfire, dark pine trees, and a giant turquoise swirling moon over snowy mountains.',
-	},
 ] as const;
 
 const closingBadges = [
@@ -200,65 +194,11 @@ const closingBadges = [
 						<li class="badge">Visual Identity</li>
 						<li class="badge">Photography</li>
 					</ul>
+					<a class="btn hero__cta" href="/projects/bondfire-design-company">
+						View Shared Case Study
+					</a>
 				</section>
 			</div>
-
-			<section class="section-block" aria-labelledby="case-study-context-heading">
-				<div class="container">
-					<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
-					<div class="content-grid">
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="case-study-who">
-								<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
-								<div class="content-copy">
-									<p>
-										People and businesses who needed design they could hold, walk past, or
-										photograph. Work meant to live in print, in a room, or through a lens.
-									</p>
-								</div>
-							</section>
-
-							<section class="content-block" aria-labelledby="case-study-work">
-								<h2 id="case-study-work" class="text-accent section-label">What did I make</h2>
-								<div class="content-copy">
-									<p>
-										Physical design and photography. Composition, hierarchy, and print
-										design for materials that have to hold up on paper, in a space, and
-										in a frame.
-									</p>
-								</div>
-							</section>
-
-							<section class="content-block" aria-labelledby="case-study-why">
-								<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
-								<div class="content-copy">
-									<p>
-										This is the design side of my practice. Type, color, crop, and light
-										have to be right when someone can hold the piece or stand in front of
-										it.
-									</p>
-								</div>
-							</section>
-						</div>
-
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="case-study-challenge">
-								<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
-								<div class="content-copy">
-									<p>
-										Physical work has no preview button. Scale, paper, ink, and light
-										change what the design can do, and photography has to make a true
-										frame in conditions you only get once.
-									</p>
-									<p>
-										The work still has to feel considered after it leaves the file.
-									</p>
-								</div>
-							</section>
-						</div>
-					</div>
-				</div>
-			</section>
 		</div>
 
 		<div class="section-group">
@@ -316,6 +256,21 @@ const closingBadges = [
 							</figcaption>
 						</figure>
 					</div>
+
+					<div class="heading-block">
+						<h2 id="case-study-context-heading">The work</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								Graphic design, print, and photography for people and businesses who needed
+								work they could hold, walk past, or photograph. Composition, hierarchy, type,
+								color, crop, and light. Each format has its own constraints.
+							</p>
+							<p>
+								Physical work has no preview button. Scale, paper, ink, and light change what
+								the design can do before anything goes to print or install.
+							</p>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -325,8 +280,8 @@ const closingBadges = [
 						<p class="text-accent section-label">Social</p>
 						<h2 id="social-heading">Built for the feed</h2>
 						<p class="section-intro">
-							Facebook campaign banners, and client identities designed for Instagram.
-							Primary logo and a three-slide Instagram carousel.
+							Facebook campaign banners for New Media Retailer, plus client identities built
+							for Instagram, with a primary logo and a three-slide carousel for each.
 						</p>
 					</div>
 
@@ -443,7 +398,7 @@ const closingBadges = [
 						<p class="section-intro">Illustrations and experiments outside client work.</p>
 					</div>
 
-					<div class="gallery-grid gallery-grid--4">
+					<div class="gallery-grid gallery-grid--4" role="group" aria-label="Personal illustrations">
 						{
 							funPieces.map((piece) => (
 								<figure
@@ -451,7 +406,7 @@ const closingBadges = [
 									aria-labelledby={`piece-just-for-fun-${slugify(piece.label)}`}
 								>
 									<Image
-										class="gallery-item__media gallery-item__media--square"
+										class="gallery-item__media gallery-item__media--square gallery-item__media--illustration"
 										src={piece.image}
 										alt={piece.alt}
 										widths={[400, 800]}
@@ -469,16 +424,17 @@ const closingBadges = [
 					</div>
 				</div>
 			</section>
+		</div>
 
+		<div class="section-group">
 			<section class="section-block" aria-labelledby="case-study-closing-heading">
 				<div class="container">
 					<div class="heading-block">
-						<h2 id="case-study-closing-heading">What this means</h2>
+						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								I make graphic, print, and photography work for the format in front of
-								me. A page, a room, a feed, or a frame. The piece still has to feel
-								considered after it leaves the file.
+								Work shaped for the format it ships in, whether a page, a room, a feed, or a
+								frame, with the same attention to hierarchy, crop, and detail throughout.
 							</p>
 						</div>
 					</div>

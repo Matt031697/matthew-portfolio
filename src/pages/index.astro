@@ -7,16 +7,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { careerHighlights, projectAccents } from '../lib/site.ts';
 ---
 
-<BaseLayout accentColor={projectAccents.home}>
+<BaseLayout
+	accentColor={projectAccents.home}
+	title="Matthew, Designer & Front-end Developer"
+	description="Designer and front-end developer. Brands, campaigns, and Shopify storefronts for retailers and local businesses."
+>
 	<Header />
 
 	<main id="main">
 		<div class="container">
-			<section class="hero" aria-labelledby="hero-heading">
+			<section class="hero hero--home" aria-labelledby="hero-heading">
 				<p class="text-accent section-label hero__eyebrow">Hi, I'm Matthew</p>
-				<h1 id="hero-heading">Frontend Developer &amp; Designer.</h1>
+				<h1 id="hero-heading">Designer &amp; Front-end Developer.</h1>
 				<p class="hero__subheading">
-					I design and build digital experiences for retailers and local businesses, where visual design, accessibility, and front-end development meet.
+					I design brands, campaigns, and storefronts for retailers and local
+					businesses, then build them to hold up in production.
 				</p>
 				<ul class="badge-list hero__badges">
 					<li class="badge">{careerHighlights.experience}</li>
@@ -34,3 +39,9 @@ import { careerHighlights, projectAccents } from '../lib/site.ts';
 
 	<Footer />
 </BaseLayout>
+
+<style>
+	.hero--home {
+		padding-block-end: 0;
+	}
+</style>

@@ -3,24 +3,24 @@ import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { projectAccents } from '../../lib/site.ts';
-import wcagReference from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (14).png';
-import waveAudit from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (16).png';
-import lighthouseAccessibility from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (17).png';
-import skipToContent from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (18).png';
-import manualTesting from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (19).png';
-import visibleFocus from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (21).png';
-import dialogMenu from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (22).png';
-import accessibleNames from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (23).png';
+import { careerHighlights, projectAccents } from '../../lib/site.ts';
+import wcagReference from '../../assets/projects/accessibility/wcag-reference.png';
+import waveAudit from '../../assets/projects/accessibility/wave-audit.png';
+import lighthouseAccessibility from '../../assets/projects/accessibility/lighthouse-accessibility.png';
+import skipToContent from '../../assets/projects/accessibility/skip-to-content.png';
+import manualTesting from '../../assets/projects/accessibility/manual-testing.png';
+import visibleFocus from '../../assets/projects/accessibility/visible-focus.png';
+import dialogMenu from '../../assets/projects/accessibility/dialog-menu.png';
+import accessibleNames from '../../assets/projects/accessibility/accessible-names.png';
 
-const pageTitle = 'Shopify Accessibility Audits — Matthew';
+const pageTitle = 'Shopify Accessibility Audits, Matthew';
 const description =
 	'Auditing every Shopify storefront for accessibility errors and contrast failures before it goes live, and shipping shared theme fixes when the barrier is a pattern.';
 
 const auditProcess = [
 	{
 		label: 'Scan',
-		copy: 'WAVE and Lighthouse on the live storefront, before launch — errors and contrast, not a performance score.',
+		copy: 'WAVE and Lighthouse on the live storefront, before launch. Errors and contrast, not a performance score.',
 	},
 	{
 		label: 'Investigate',
@@ -94,7 +94,7 @@ const themeEvidence = [
 		label: 'Accessible names',
 		image: accessibleNames,
 		alt: 'Northington Windows website screenshot showing “Windows & doors that work as hard as you do” beside a modern house; accessibility inspector open.',
-		copy: 'Icon-only controls expose a real name — Facebook, Close menu, Next — not an empty button.',
+		copy: 'Icon-only controls expose a real name, like Facebook, Close menu, or Next, not an empty button.',
 	},
 ];
 
@@ -131,24 +131,6 @@ const shippedGroups = [
 	},
 ];
 
-const scaleItems = [
-	{
-		id: 'scale-every-storefront',
-		label: 'Every storefront, before launch',
-		copy: 'Each client site is audited for errors and contrast before it goes live. Content, theme defaults, and apps all get checked.',
-	},
-	{
-		id: 'scale-fix-the-pattern',
-		label: 'Fix the pattern, not only the page',
-		copy: 'If a menu, drawer, or unlabeled control fails on one storefront, it usually fails in the shared component. That is where I put the fix.',
-	},
-	{
-		id: 'scale-theme-versus-apps',
-		label: 'Theme code versus apps',
-		copy: 'I separate what the theme can own from what an app injects, then document the rest so the team knows what still sits outside the theme.',
-	},
-];
-
 const closingBadges = [
 	'WCAG 2.1',
 	'WAVE',
@@ -178,69 +160,13 @@ const closingBadges = [
 						<li class="badge">WCAG 2.1</li>
 						<li class="badge">WAVE</li>
 						<li class="badge">Lighthouse</li>
-						<li class="badge">Manual Testing</li>
+						<li class="badge">{careerHighlights.storefronts}</li>
 					</ul>
+					<a class="btn hero__cta" href="/projects/shopify-theme-architecture">
+						View Shared Case Study
+					</a>
 				</section>
 			</div>
-
-			<section class="section-block" aria-labelledby="case-study-context-heading">
-				<div class="container">
-					<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
-					<div class="content-grid">
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="case-study-who">
-								<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
-								<div class="content-copy">
-									<p>
-										Client Shopify storefronts and the shared theme they run on. Merchants whose
-										customers include people who don’t use a mouse — not only shoppers on a
-										full-size screen.
-									</p>
-								</div>
-							</section>
-
-							<section class="content-block" aria-labelledby="case-study-work">
-								<h2 id="case-study-work" class="text-accent section-label">What did I work on</h2>
-								<div class="content-copy">
-									<p>
-										Pre-launch audits against WCAG 2.1, then frontend fixes. Storefront-level
-										when the issue is local. Theme-level when the same barrier would otherwise
-										show up on the next client.
-									</p>
-								</div>
-							</section>
-
-							<section class="content-block" aria-labelledby="case-study-why">
-								<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
-								<div class="content-copy">
-									<p>
-										An audit that never reaches production is just a report. I treat this as a
-										launch gate: find what blocks people, fix it, then ship.
-									</p>
-								</div>
-							</section>
-						</div>
-
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="case-study-challenge">
-								<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
-								<div class="content-copy">
-									<p>
-										Shopify storefronts mix custom theme code, reusable components, third-party
-										apps, and merchant content. A sale badge or a product form can fail even
-										when the page looks finished.
-									</p>
-									<p>
-										Each site still needs its own audit. The hard part is knowing what this
-										storefront can own versus what belongs in the shared architecture — and
-										fixing it there once.
-									</p>
-								</div>
-							</section>
-						</div>
-					</div>
-				</div>
-			</section>
 		</div>
 
 		<div class="section-group">
@@ -251,7 +177,7 @@ const closingBadges = [
 						<h2 id="audit-process-heading">Before a storefront goes live</h2>
 						<p class="section-intro">
 							WAVE and Lighthouse surface errors and contrast failures. I confirm what is real,
-							trace it, fix it, and retest — before launch, not after.
+							trace it, fix it, and retest before launch, not after.
 						</p>
 					</div>
 
@@ -320,12 +246,28 @@ const closingBadges = [
 			<section class="section-block" aria-labelledby="shipped-heading">
 				<div class="container">
 					<div class="heading-block">
+						<h2 id="case-study-context-heading">The work</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								Every client Shopify storefront gets a pre-launch audit against WCAG 2.1, then
+								frontend fixes at the store level or in the
+								<a href="/projects/shopify-theme-architecture">shared theme</a>
+								when the same barrier would show up on the next site.
+							</p>
+							<p>
+								Storefronts mix theme code, reusable components, third-party apps, and merchant
+								content. I treat audits as a launch gate: find what blocks people, fix it, then ship.
+							</p>
+						</div>
+					</div>
+
+					<div class="heading-block">
 						<p class="text-accent section-label">When it belongs in the theme</p>
 						<h2 id="shipped-heading">A shared-theme accessibility pass</h2>
 						<p class="section-intro">
 							Some barriers are not one-offs. A menu, drawer, or unlabeled control that fails
 							on one client will fail on every storefront that shares the component. This pass
-							shipped those fixes in the theme — without changing how the storefront looks to a
+							shipped those fixes in the theme, without changing how the storefront looks to a
 							typical shopper.
 						</p>
 					</div>
@@ -364,70 +306,46 @@ const closingBadges = [
 						}
 					</div>
 
-					<div class="heading-block">
-						<p id="shipped-changelog-heading" class="text-accent section-label">Snapshot of what has shipped</p>
-						<h3 class="subsection-title">Coverage across the theme</h3>
-					</div>
+					<div class="coverage-block" aria-labelledby="shipped-changelog-heading">
+						<div class="heading-block">
+							<p id="shipped-changelog-heading" class="text-accent section-label">Snapshot of what has shipped</p>
+							<h3 class="subsection-title">Coverage across the theme</h3>
+						</div>
 
-					<div class="shipped-grid">
-						{
-							shippedGroups.map((group) => (
-								<section class="shipped-card" aria-labelledby={group.id}>
-									<h4 id={group.id} class="text-accent section-label">
-										{group.label}
-									</h4>
-									<ul>
-										{group.items.map((item) => (
-											<li>{item}</li>
-										))}
-									</ul>
-								</section>
-							))
-						}
+						<div class="shipped-grid">
+							{
+								shippedGroups.map((group) => (
+									<section class="shipped-card" aria-labelledby={group.id}>
+										<h4 id={group.id} class="text-accent section-label">
+											{group.label}
+										</h4>
+										<ul>
+											{group.items.map((item) => (
+												<li>{item}</li>
+											))}
+										</ul>
+									</section>
+								))
+							}
+						</div>
 					</div>
 				</div>
 			</section>
 		</div>
 
 		<div class="section-group">
-			<section class="section-block" aria-labelledby="scale-heading">
-				<div class="container">
-					<div class="heading-block">
-						<p class="text-accent section-label">Why this scales</p>
-						<h2 id="scale-heading">Audits on every site. Fixes that travel.</h2>
-						<p class="section-intro">
-							Every storefront still gets its own audit. Because I also maintain the shared
-							theme, a component-level fix does not have to be patched client by client.
-						</p>
-					</div>
-
-					<div class="content-list content-list--grid">
-						{
-							scaleItems.map((item) => (
-								<section class="content-block" aria-labelledby={item.id}>
-									<h3 id={item.id} class="text-accent section-label">
-										{item.label}
-									</h3>
-									<p>{item.copy}</p>
-								</section>
-							))
-						}
-					</div>
-				</div>
-			</section>
-
 			<section class="section-block" aria-labelledby="case-study-closing-heading">
 				<div class="container">
 					<div class="heading-block">
-						<h2 id="case-study-closing-heading">What this means</h2>
+						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								I audit every storefront before it goes live, then ship the pattern in the
-								theme when the barrier is shared. WCAG 2.1 is the bar. WAVE, Lighthouse, and
-								manual testing find the gaps. Front-end development and design is how they get fixed.
+								Every storefront audited before launch. When the barrier is shared, the fix
+								ships in the theme, not a report that sits in a folder.
 							</p>
 						</div>
 					</div>
+
 					<ul class="badge-list hero__badges">
 						{closingBadges.map((badge) => <li class="badge">{badge}</li>)}
 					</ul>

@@ -1,34 +1,56 @@
 ---
+import { Image } from 'astro:assets';
+import shopifyThumb from '../assets/projects/case-study-thumbnails/shopify-theme.png';
+import bondfireThumb from '../assets/projects/case-study-thumbnails/bondfire-design-company.png';
+import aiThumb from '../assets/projects/case-study-thumbnails/ai-assisted-websites.png';
+import auditsThumb from '../assets/projects/case-study-thumbnails/shopify-accessibility-audits.png';
+import graphicThumb from '../assets/projects/case-study-thumbnails/graphic-print-photography.png';
+
 const faqItems = [
 	{
 		title: 'Shopify theme development',
 		tags: 'Shopify + Liquid + JavaScript + Front-end architecture',
 		body: 'I maintain and evolve a shared Shopify architecture supporting hundreds of storefronts. From reusable components and theme enhancements to scalable UI patterns, I build frontend experiences that balance usability, accessibility, performance, and maintainability.',
 		href: '/projects/shopify-theme-architecture',
+		image: shopifyThumb,
+		imageAlt:
+			'Responsive pet grooming website shown on desktop monitor and smartphone, featuring dog photos, blue navigation, and a clean, professional design.',
 	},
 	{
 		title: 'Bondfire Design Company',
 		tags: 'Brand strategy + Visual identity + UX/UI + Web design',
 		body: 'I built Bondfire Design Company from the ground up, developing its visual identity, brand system, and digital experience. From the logo and visual language to the website itself, every piece was designed to create a cohesive expression of how I approach design and development.',
 		href: '/projects/bondfire-design-company',
+		image: bondfireThumb,
+		imageAlt:
+			'Open silver laptop displaying a modern business website with a dark hero banner, professional photo, and clean white content sections.',
 	},
 	{
 		title: 'AI-assisted websites',
 		tags: 'Cursor + AI-assisted development + Accessibility',
 		body: 'I use AI-assisted development to rapidly design and build lightweight, production-ready MightyLocal companion sites. AI accelerates implementation, while I remain responsible for architecture, design, accessibility, performance, and final quality.',
 		href: '/projects/ai-assisted-websites',
+		image: aiThumb,
+		imageAlt:
+			'Angled silver laptop on a light background displays a web article about pet brands, with a dog photo and red call-to-action button.',
 	},
 	{
 		title: 'Shopify accessibility audits',
 		tags: 'WCAG 2.1 + WAVE + Lighthouse + Manual testing',
 		body: 'I audit every Shopify storefront for accessibility errors and contrast failures before it goes live, then turn findings into frontend improvements. When a barrier lives in a shared component, I fix it in the theme so the next site inherits the work.',
 		href: '/projects/shopify-accessibility-audits',
+		image: auditsThumb,
+		imageAlt:
+			'Floating smartphones and tablet screens show online shopping pages, product photos, and forms against a calm teal background, suggesting digital commerce.',
 	},
 	{
 		title: 'Graphic, print & photography',
 		tags: 'Adobe Creative Suite + Print design + Photography',
 		body: 'A collection of graphic design, print, and photography created across client work and personal projects. I focus on composition, hierarchy, and print design so the work holds up on a page, in a room, in a feed, and in a frame.',
 		href: '/projects/graphic-print-photography',
+		image: graphicThumb,
+		imageAlt:
+			'Illustration of “Websites that Attract More Local Customers,” featuring a pet shop, shoppers with a dog, and local search marketing panels.',
 	},
 ];
 
@@ -60,15 +82,34 @@ const careerSteps = [
 
 <section id="projects" class="philosophy section-block" aria-label="Projects and resume">
 	<div class="container">
+		<nav class="project-strip" aria-label="Selected work previews">
+			{
+				faqItems.map((item) => (
+					<a class="project-strip__link" href={item.href}>
+						<span class="project-strip__frame">
+							<Image
+								class="project-strip__media"
+								src={item.image}
+								alt={item.imageAlt ?? ''}
+								widths={[160, 240, 320, 480]}
+								sizes="(min-width: 48rem) 18vw, 42vw"
+							/>
+							<span class="project-strip__overlay" aria-hidden="true">View Case Study</span>
+						</span>
+						<span class="project-strip__label">{item.title}</span>
+					</a>
+				))
+			}
+		</nav>
+
 		<div class="content-grid">
 			<section class="content-grid__column" aria-labelledby="philosophy-heading">
 				<div class="heading-block">
-					<p class="text-accent section-label">Designing with purpose</p>
-					<h2 id="philosophy-heading">Good front-end development is design made real.</h2>
+					<p class="text-accent section-label">What I do</p>
+					<h2 id="philosophy-heading">Brands, campaigns, and storefronts.</h2>
 					<p class="philosophy__intro">
-						I approach front-end development as an extension of design, translating
-						visual hierarchy, interaction, and accessibility into code that performs in
-						production.
+						Design, marketing, and front-end work for real businesses, from identity
+						and print to Shopify architecture that has to perform in production.
 					</p>
 				</div>
 
@@ -112,14 +153,15 @@ const careerSteps = [
 					<div class="content-copy">
 						<p>
 							I bring a designer's eye and a developer's discipline to every project.
-							That dual perspective helps me bridge design and engineering teams,
-							translate mockups into production-ready interfaces, and build Shopify
-							experiences that hold up under real-world use.
+							That dual perspective helps me bridge design, marketing, and engineering,
+							translating ideas into production-ready interfaces and work that holds
+							up under real-world use.
 						</p>
 						<p>
-							Whether I'm evolving a shared theme architecture, auditing storefront
-							accessibility, or shaping a brand from the ground up, I focus on work
-							that is thoughtful, maintainable, and built to scale.
+							Whether I'm evolving a shared theme architecture, building campaign
+							collateral, auditing storefront accessibility, or shaping a brand from
+							the ground up, I focus on work that is thoughtful, maintainable, and
+							built to scale.
 						</p>
 					</div>
 				</div>
@@ -155,8 +197,112 @@ const careerSteps = [
 </section>
 
 <style>
+	.philosophy.section-block {
+		padding-block-start: 0;
+	}
+
 	.philosophy {
 		padding-block-end: var(--space-lg);
+	}
+
+	.project-strip {
+		display: flex;
+		gap: var(--space-sm);
+		margin-block: var(--space-xl);
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x proximity;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.project-strip::-webkit-scrollbar {
+		display: none;
+	}
+
+	.project-strip__link {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+		flex: 0 0 calc((100% - (2 * var(--space-sm))) / 2.15);
+		min-width: 0;
+		text-decoration: none;
+		color: inherit;
+		scroll-snap-align: start;
+	}
+
+	.project-strip__link:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+		border-radius: var(--radius-md);
+	}
+
+	.project-strip__frame {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		border-radius: var(--radius-md);
+	}
+
+	.project-strip__media {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		object-position: center;
+		background-color: var(--color-surface-muted);
+	}
+
+	.project-strip__overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-sm);
+		background-color: color-mix(in srgb, var(--color-text) 55%, transparent);
+		color: var(--color-background);
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-body);
+		text-align: center;
+		opacity: 0;
+		transition: opacity 450ms ease-in-out;
+	}
+
+	.project-strip__link:hover .project-strip__overlay,
+	.project-strip__link:focus-visible .project-strip__overlay {
+		opacity: 1;
+	}
+
+	.project-strip__label {
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-body);
+		line-height: 1.35;
+		text-wrap: balance;
+		color: var(--color-text);
+		transition: color var(--transition-nav);
+	}
+
+	@media (hover: hover) {
+		.project-strip__link:hover .project-strip__label {
+			color: var(--color-project);
+		}
+	}
+
+	@media (min-width: 48rem) {
+		.project-strip {
+			display: grid;
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			overflow: visible;
+			scroll-snap-type: none;
+		}
+
+		.project-strip__link {
+			flex: initial;
+		}
 	}
 
 	/* Accordion */
@@ -171,6 +317,12 @@ const careerSteps = [
 		border-radius: var(--radius-md);
 		border: 1px solid color-mix(in srgb, var(--color-text) 24%, white);
 		background-color: var(--color-background);
+	}
+
+	.accordion__summary:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+		border-radius: var(--radius-md);
 	}
 
 	.accordion__summary {

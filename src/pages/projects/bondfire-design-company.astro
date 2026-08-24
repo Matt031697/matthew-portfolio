@@ -5,67 +5,55 @@ import Header from '../../components/Header.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projectAccents } from '../../lib/site.ts';
 import { slugify } from '../../lib/strings.ts';
-import clientProject from '../../assets/projects/bondfire/2 Column Case Study Media 1920x1080px Astro (10).png';
-import foundationMosaicLeft from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro.png';
-import foundationMosaicRight from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (1).png';
-import foundationMosaicBanner from '../../assets/projects/bondfire/2 Column Case Study Media 1920x1080px Astro (11).png';
-import iconPattern from '../../assets/projects/bondfire/2 Column Case Study Media 1920x1080px Astro (12).png';
-import logoLockup from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (2).png';
-import logoWordmark from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (3).png';
-import logoMark from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (4).png';
-import swatchPrimary from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (5).png';
-import swatchSecondary from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (6).png';
-import swatchFoundation from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (7).png';
-import swatchNeutral from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (8).png';
-import swatchLight from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (9).png';
-import swatchAccent from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (10).png';
-import iconBear from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (11).png';
-import iconMountains from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (12).png';
-import iconSparkles from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (13).png';
-import iconPine from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (14).png';
-import iconMonitor from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (15).png';
-import iconCamera from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (16).png';
-import iconMarshmallow from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (17).png';
-import iconTent from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (18).png';
-import applicationDesktopMobile from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (19).png';
-import applicationTote from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (20).png';
-import applicationLaptop from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (21).png';
-import applicationPhones from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (22).png';
-import applicationWindow from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (23).png';
-import applicationLanyard from '../../assets/projects/bondfire/2 Column Case Study Mosaic Media 800x800px Astro (24).png';
+import clientProject from '../../assets/projects/bondfire/client-project-orchard.png';
+import foundationMosaicLeft from '../../assets/projects/bondfire/foundation-mosaic-left.png';
+import foundationMosaicRight from '../../assets/projects/bondfire/foundation-mosaic-right.png';
+import foundationMosaicBanner from '../../assets/projects/bondfire/foundation-mosaic-banner.png';
+import iconPattern from '../../assets/projects/bondfire/icon-pattern.png';
+import logoLockup from '../../assets/projects/bondfire/logo-lockup.png';
+import logoWordmark from '../../assets/projects/bondfire/logo-wordmark.png';
+import logoMark from '../../assets/projects/bondfire/logo-mark.png';
+import swatchPrimary from '../../assets/projects/bondfire/swatch-primary.png';
+import swatchSecondary from '../../assets/projects/bondfire/swatch-secondary.png';
+import swatchFoundation from '../../assets/projects/bondfire/swatch-foundation.png';
+import swatchNeutral from '../../assets/projects/bondfire/swatch-neutral.png';
+import swatchLight from '../../assets/projects/bondfire/swatch-light.png';
+import swatchAccent from '../../assets/projects/bondfire/swatch-accent.png';
+import iconBear from '../../assets/projects/bondfire/icon-bear.png';
+import iconMountains from '../../assets/projects/bondfire/icon-mountains.png';
+import iconSparkles from '../../assets/projects/bondfire/icon-sparkles.png';
+import iconPine from '../../assets/projects/bondfire/icon-pine.png';
+import iconMonitor from '../../assets/projects/bondfire/icon-monitor.png';
+import iconCamera from '../../assets/projects/bondfire/icon-camera.png';
+import iconMarshmallow from '../../assets/projects/bondfire/icon-marshmallow.png';
+import iconTent from '../../assets/projects/bondfire/icon-tent.png';
+import applicationDesktopMobile from '../../assets/projects/bondfire/application-desktop-mobile.png';
+import applicationTote from '../../assets/projects/bondfire/application-tote.png';
+import applicationLaptop from '../../assets/projects/bondfire/application-laptop.png';
+import applicationPhones from '../../assets/projects/bondfire/application-phones.png';
+import applicationWindow from '../../assets/projects/bondfire/application-window.png';
+import applicationLanyard from '../../assets/projects/bondfire/application-lanyard.png';
 
-const pageTitle = 'Bondfire Design Company — Matthew';
+const pageTitle = 'Bondfire Design Company, Matthew';
 const description =
-	'Case study: building Bondfire Design Company from the ground up — brand identity, digital experience, and a website built to support a real freelance design and development business.';
+	'Case study: building Bondfire Design Company from the ground up, with brand identity, digital experience, and a website built to support a real freelance design and development business.';
 
 const processSteps = [
 	{
-		label: 'Discovery + Strategy',
-		copy: "Defined Bondfire's purpose, audience, values, and positioning, with a focus on balancing professional credibility with an approachable, outdoors-inspired personality.",
+		label: 'Discovery + positioning',
+		copy: "Defined Bondfire's audience, values, and positioning, with professional credibility and an approachable, outdoors-inspired personality.",
 	},
 	{
-		label: 'Brand Direction',
-		copy: 'Explored how the Bondfire name, campfire conversations, and Upstate New York roots could translate into a visual identity that felt warm, creative, and approachable without becoming overly rustic.',
+		label: 'Identity system',
+		copy: 'Logo, typography, color palette, and iconography into a flexible system for digital and print.',
 	},
 	{
-		label: 'Identity Development',
-		copy: 'Developed the logo system, typography, color palette, iconography, and supporting visual elements into a flexible identity system designed to work across digital and physical applications.',
+		label: 'Website design + development',
+		copy: 'Responsive layouts, content structure, and front-end build in Webflow, with the brand system carried into a working site.',
 	},
 	{
-		label: 'Content + Structure',
-		copy: 'Planned the website structure, developed the content, and organized information around the services, process, work, and information prospective clients needed to make an informed decision.',
-	},
-	{
-		label: 'Design + Development',
-		copy: 'Translated the visual identity into responsive web layouts and built the frontend experience using HTML, CSS, and Webflow, carrying the brand system from visual concept into a functional digital experience.',
-	},
-	{
-		label: 'Testing + Refinement',
-		copy: 'Refined the design and implementation through responsive testing, accessibility checks, and real-world feedback, making adjustments as the experience was used and evaluated.',
-	},
-	{
-		label: 'Launch + Support',
-		copy: 'Took the website from final testing through launch and continued evolving the experience as the business grew and new needs emerged.',
+		label: 'Launch + iteration',
+		copy: 'Responsive testing, accessibility checks, and ongoing refinement as the business took on real client work.',
 	},
 ];
 
@@ -191,8 +179,8 @@ const resultBadges = [
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
 					<h1 id="case-study-heading">Bondfire Design Company</h1>
 					<p class="hero__subheading">
-						Building a brand from the ground up and creating the digital experience to bring it
-						to life.
+						My freelance design and development business, brand identity, website, and
+						marketing system built from scratch to support real client work.
 					</p>
 					<ul class="badge-list hero__badges">
 						<li class="badge">Built to Be Credible</li>
@@ -210,85 +198,39 @@ const resultBadges = [
 					</a>
 				</section>
 			</div>
-
-			<section class="section-block" aria-labelledby="case-study-context-heading">
-				<div class="container">
-					<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
-					<div class="content-grid">
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="case-study-who">
-								<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
-								<div class="content-copy">
-									<p>
-										Bondfire Design Company is my freelance design and development business,
-										built to provide thoughtful, high-quality digital experiences for businesses
-										of all sizes.
-									</p>
-								</div>
-							</section>
-
-							<section class="content-block" aria-labelledby="case-study-work">
-								<h2 id="case-study-work" class="text-accent section-label">What did I build</h2>
-								<div class="content-copy">
-									<p>
-										I designed and developed the complete brand identity and website from the
-										ground up, including the visual identity, responsive layouts, photography
-										direction, and supporting marketing assets.
-									</p>
-								</div>
-							</section>
-
-							<section class="content-block" aria-labelledby="case-study-why">
-								<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
-								<div class="content-copy">
-									<p>
-										This project is more than a portfolio piece. Bondfire needed a brand and
-										digital presence that could support a real business, attract clients, and
-										reflect the same quality of work I aim to deliver for them.
-									</p>
-								</div>
-							</section>
-						</div>
-
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="case-study-challenge">
-								<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
-								<div class="content-copy">
-									<p>
-										Bondfire needed a visual identity and digital presence that could establish
-										credibility without losing the personality behind the business.
-									</p>
-									<p>
-										The brand needed to feel professional enough for client work, approachable
-										enough to reflect how I build relationships, and flexible enough to work
-										across digital and print applications.
-									</p>
-									<p>
-										The challenge was creating a system that could bring those qualities
-										together without feeling overly corporate or overly personal.
-									</p>
-								</div>
-							</section>
-						</div>
-					</div>
-				</div>
-			</section>
 		</div>
 
 		<div class="section-group">
-			<section class="section-block" aria-labelledby="brand-structure-heading">
+			<section class="section-block" aria-labelledby="foundation-heading">
 				<div class="container">
-					<div class="heading-block">
-						<h2 id="brand-structure-heading">From idea to identity</h2>
-						<p class="section-intro">
-							Because Bondfire was my own business, the design process wasn't a traditional client
-							handoff. I was simultaneously defining the business, developing its positioning,
-							designing the identity, and testing those decisions through real client interactions.
-						</p>
-					</div>
-
-					<div class="content-grid">
+					<div class="content-grid content-grid--center">
 						<div class="content-grid__column">
+							<div class="heading-block">
+								<h2 id="foundation-heading">The brand</h2>
+								<p class="section-intro">
+									Warmth and connection around a fire, rooted in Upstate New York. Professional
+									enough for client work, approachable enough to reflect how I build relationships.
+								</p>
+							</div>
+
+							<ul class="foundation-values" aria-label="Brand values">
+								{
+									foundationValues.map((value) => (
+										<li>
+											<h3 class="section-label">{value}</h3>
+										</li>
+									))
+								}
+							</ul>
+
+							<div class="heading-block">
+								<h2 id="process-heading">How it came together</h2>
+								<p class="section-intro">
+									Defining the business and the brand at the same time, tested through real client
+									work, not just a brand board.
+								</p>
+							</div>
+
 							{
 								processSteps.map((step) => (
 									<section class="content-block" aria-labelledby={slugify(step.label)}>
@@ -299,88 +241,6 @@ const resultBadges = [
 									</section>
 								))
 							}
-						</div>
-
-						<div class="content-grid__column">
-							<section class="content-block" aria-labelledby="built-for-real-clients">
-								<h3 id="built-for-real-clients" class="heading-prominent">Built for Real Clients</h3>
-								<p>
-									Bondfire wasn't created as a portfolio exercise. It became a functioning
-									freelance business with real clients, projects, and ongoing relationships.
-								</p>
-							</section>
-
-							<figure class="testimonial" aria-labelledby="testimonial-attribution">
-								<blockquote>
-									<p>
-										&ldquo;Bondfire Design created an impressive, upscale and updated web-design for
-										our orchard. Process was quick and easy and reasonably priced. Nice group to
-										work with. Five stars for sure!&rdquo;
-									</p>
-								</blockquote>
-								<figcaption id="testimonial-attribution" class="section-label">
-									<cite>Wilfred Bruneau | Middlefield Orchard Owner</cite>
-								</figcaption>
-							</figure>
-
-							<figure class="testimonial-media">
-								<Image
-									class="testimonial-media__image"
-									src={clientProject}
-									alt="Close-up of a colorful pile of red, pink, and yellow apples, filling the frame with fresh fruit and a warm, abundant harvest-market feel."
-									widths={[640, 960, 1280, 1920]}
-									sizes="(min-width: 64rem) 46vw, 92vw"
-								/>
-							</figure>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section class="section-block" aria-labelledby="foundation-heading">
-				<div class="container">
-					<div class="content-grid">
-						<div class="content-grid__column">
-							<div class="heading-block">
-								<h2 id="foundation-heading">The Foundation</h2>
-
-								<div class="subsection-intro">
-									<h3 class="subsection-title">Bondfire Design Company</h3>
-
-									<div class="content-copy">
-										<p>
-											Before designing the visual identity, I established the principles Bondfire
-											needed to communicate. The brand needed to feel professional and capable
-											without losing the warmth, personality, and sense of connection that inspired
-											its name.
-										</p>
-										<p>
-											These values became the foundation for the brand, shaping how I approached
-											the visual identity, website, content, and overall client experience. The
-											goal was to create a system that felt approachable and personal while still
-											communicating the quality and professionalism expected from a modern design
-											company.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<ul class="foundation-values" aria-label="Brand values">
-								{
-									foundationValues.map((value) => (
-										<li>
-											<h4 class="section-label">{value}</h4>
-										</li>
-									))
-								}
-							</ul>
-
-							<p>
-								The name and visual direction were inspired by the conversations and connections
-								formed around a fire, while the visual language draws from the outdoor
-								environment of Upstate New York. This gave the brand a foundation that felt
-								personal and approachable without sacrificing professionalism.
-							</p>
 						</div>
 
 						<div class="content-grid__column">
@@ -445,16 +305,9 @@ const resultBadges = [
 										<h3 class="subsection-title">Logos</h3>
 										<div class="content-copy">
 											<p>
-												The name Bondfire became the foundation of the visual identity. I wanted
-												the mark to communicate gathering, connection, and storytelling without
-												relying on a literal campfire illustration.
-											</p>
-											<p>
-												The flame became the central visual element because it connects directly
-												to the name while remaining simple enough to function as an independent
-												mark. The rounded form keeps the identity approachable, while the
-												simplified construction allows the mark to remain recognizable across
-												everything from a website header to smaller printed applications.
+												The flame connects to the name while staying simple enough to work as a
+												header mark, app icon, or print lockup. Approachable in form, recognizable
+												at every size.
 											</p>
 										</div>
 									</div>
@@ -486,16 +339,8 @@ const resultBadges = [
 									<h3 class="subsection-title">Typography</h3>
 									<div class="content-copy">
 										<p>
-											The typography needed to feel confident and professional without becoming
-											corporate or overly technical. Montserrat provided the flexibility to create
-											that balance, with its geometric forms giving the brand a modern foundation
-											while remaining approachable.
-										</p>
-										<p>
-											Bold styles establish hierarchy and personality across headings, while the
-											classic style provides a more restrained counterpoint for supporting
-											content. Together, they create a system that feels consistent without
-											becoming visually rigid.
+											Montserrat balances modern geometry with approachability. Bold for headings,
+											classic for supporting content, consistent without feeling rigid.
 										</p>
 									</div>
 								</div>
@@ -555,16 +400,9 @@ const resultBadges = [
 									<h3 class="subsection-title">Color</h3>
 									<div class="content-copy">
 										<p>
-											The color palette was designed to balance warmth with professionalism. The
-											primary orange creates energy and recognition while connecting naturally to
-											the idea of fire, while the deep brown provides a warmer foundation than a
-											traditional black or corporate navy.
-										</p>
-										<p>
-											Charcoal and off-white give the system room to breathe and provide neutral
-											surfaces for digital applications. Together, the palette creates a visual
-											language that feels grounded and approachable without sacrificing the polish
-											expected from a professional design company.
+											Primary orange for energy and recognition, deep brown instead of corporate
+											navy, charcoal and off-white for digital surfaces, grounded and approachable
+											without losing polish.
 										</p>
 									</div>
 								</div>
@@ -612,16 +450,9 @@ const resultBadges = [
 									<h3 class="subsection-title">Iconography</h3>
 									<div class="content-copy">
 										<p>
-											Rounded icons combine familiar outdoor imagery with digital tools to bridge
-											Bondfire's Upstate New York roots and modern creative services. Familiar
-											outdoor symbols such as mountains, pine trees, tents, and campfires are
-											paired with cameras and laptops to represent both sides of the Bondfire
-											experience.
-										</p>
-										<p>
-											The simplified, rounded style keeps the icons visually consistent with the
-											rest of the identity while allowing them to work across digital interfaces,
-											marketing materials, and supporting brand applications.
+											Rounded icons pair outdoor imagery with digital tools, including mountains, tents,
+											and campfires alongside cameras and laptops, consistent across interfaces
+											and marketing materials.
 										</p>
 									</div>
 								</div>
@@ -662,26 +493,11 @@ const resultBadges = [
 			<section class="section-block" aria-labelledby="identity-in-work-heading">
 				<div class="container">
 					<div class="heading-block">
-						<h2 id="identity-in-work-heading">Putting the Identity to Work</h2>
-						<div class="content-copy content-copy--narrow">
-							<p>
-								The simplified mark was used where space was limited, while the full wordmark
-								carried the brand across larger applications. The orange accent became a
-								recognizable visual anchor across the website, photography, and physical materials.
-							</p>
-							<p>
-								A successful identity needed to work beyond a brand board. I tested the system
-								across digital interfaces, physical materials, photography, and real-world
-								environments to make sure the visual language remained recognizable and flexible.
-							</p>
-							<p>
-								The logo system adapts to different sizes and applications, while the color palette,
-								typography, iconography, and supporting graphics provide consistent visual cues
-								across each touchpoint. Rather than creating individual designs for each
-								application, I built a system that could continue to produce cohesive work as the
-								business grows.
-							</p>
-						</div>
+						<h2 id="identity-in-work-heading">In application</h2>
+						<p class="section-intro">
+							Digital, print, and physical. The system tested across website, merch, signage,
+							and client-facing materials.
+						</p>
 					</div>
 
 					<div class="gallery-banner" role="group" aria-label="Brand application examples">
@@ -700,10 +516,51 @@ const resultBadges = [
 				</div>
 			</section>
 
-			<section class="section-block" aria-labelledby="result-heading">
+			<section class="section-block" aria-labelledby="real-clients-heading">
+				<div class="container">
+					<div class="content-grid content-grid--center">
+						<div class="content-grid__column">
+							<div class="heading-block">
+								<h2 id="real-clients-heading">Built for real clients</h2>
+								<p class="section-intro">
+									Not a portfolio exercise. A functioning freelance business with ongoing
+									projects and relationships.
+								</p>
+							</div>
+
+							<figure class="testimonial" aria-labelledby="testimonial-attribution">
+								<blockquote>
+									<p>
+										&ldquo;Bondfire Design created an impressive, upscale and updated web-design for
+										our orchard. Process was quick and easy and reasonably priced. Nice group to
+										work with. Five stars for sure!&rdquo;
+									</p>
+								</blockquote>
+								<figcaption id="testimonial-attribution" class="section-label">
+									<cite>Wilfred Bruneau | Middlefield Orchard Owner</cite>
+								</figcaption>
+							</figure>
+						</div>
+
+						<div class="content-grid__column">
+							<figure class="testimonial-media">
+								<Image
+									class="testimonial-media__image"
+									src={clientProject}
+									alt="Person in a blue-and-white striped shirt picks red apples in an orchard, holding a wicker basket filled with fresh fruit in a peaceful harvest scene."
+									widths={[640, 960, 1280, 1920]}
+									sizes="(min-width: 64rem) 46vw, 92vw"
+								/>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="case-study-closing-heading">
 				<div class="container">
 					<div class="heading-block">
-						<h2 id="result-heading">The Result</h2>
+						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
 								The result was a flexible brand and digital system that could grow with the business
