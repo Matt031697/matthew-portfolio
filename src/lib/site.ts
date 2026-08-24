@@ -1,7 +1,7 @@
 export const siteEmail = 'matthewmj.ward@gmail.com';
 export const siteLinkedIn = 'https://www.linkedin.com/in/matthew-ward-307b08268/';
 export const siteLocation = 'Mount Upton, NY';
-export const siteAvailability = 'Open to relocation';
+/*export const siteAvailability = 'Open to relocation';*/
 
 export const careerHighlights = {
 	experience: '6+ Years Experience',
