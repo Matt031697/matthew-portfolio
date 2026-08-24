@@ -1,0 +1,440 @@
+---
+import { Image } from 'astro:assets';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projectAccents } from '../../lib/site.ts';
+import wcagReference from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (14).png';
+import waveAudit from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (16).png';
+import lighthouseAccessibility from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (17).png';
+import skipToContent from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (18).png';
+import manualTesting from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (19).png';
+import visibleFocus from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (21).png';
+import dialogMenu from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (22).png';
+import accessibleNames from '../../assets/projects/accessibility/2 Column Case Study Media 1920x1080px Astro (23).png';
+
+const pageTitle = 'Shopify Accessibility Audits — Matthew';
+const description =
+	'Auditing every Shopify storefront for accessibility errors and contrast failures before it goes live, and shipping shared theme fixes when the barrier is a pattern.';
+
+const auditProcess = [
+	{
+		label: 'Scan',
+		copy: 'WAVE and Lighthouse on the live storefront, before launch — errors and contrast, not a performance score.',
+	},
+	{
+		label: 'Investigate',
+		copy: 'Theme, shared component, merchant content, or a third-party app. That decides whether the fix is local or architectural.',
+	},
+	{
+		label: 'Test by hand',
+		copy: 'Confirm it on real product, collection, and cart pages. The report is a starting point.',
+	},
+	{
+		label: 'Fix and recheck',
+		copy: 'Patch this storefront, or the shared theme if the same barrier would show up on the next client.',
+	},
+];
+
+const auditTools = [
+	{
+		id: 'tool-wcag',
+		label: 'WCAG 2.1',
+		image: wcagReference,
+		alt: 'Screenshot of WCAG 2.1 guidance showing Principle 1 and Guideline 1.1, with blue sections on text alternatives, non-text content, and time-based media.',
+		copy: 'The bar for what ships. I use it to separate real barriers from nice-to-haves.',
+	},
+	{
+		id: 'tool-wave',
+		label: 'WAVE',
+		image: waveAudit,
+		alt: 'WAVE accessibility report displays a home-building website with the headline “Windows & doors that work as hard as you do” beside a welcoming house photo.',
+		copy: 'First pass for errors and contrast on the live storefront.',
+	},
+	{
+		id: 'tool-lighthouse',
+		label: 'Lighthouse',
+		image: lighthouseAccessibility,
+		alt: 'Accessibility checklist infographic with a green score of 100, presenting website and HTML accessibility guidelines in two columns with green bullets.',
+		copy: 'Second accessibility pass. I read the findings, not the performance pane.',
+	},
+	{
+		id: 'tool-manual-testing',
+		label: 'Manual testing',
+		image: manualTesting,
+		alt: 'Northington Windows & Doors homepage featuring a welcoming two-story home, product tagline, navigation, location finder, and service statistics.',
+		copy: 'Heading order, contrast, names, and keyboard on the real pages.',
+	},
+];
+
+const themeEvidence = [
+	{
+		id: 'evidence-skip',
+		label: 'Skip to content',
+		image: skipToContent,
+		alt: 'Northington Windows & Doors homepage with a visible Skip to content control in the top left, navigation, and a suburban home beside the headline.',
+		copy: 'Keyboard users can jump the header. The link stays hidden until it is focused.',
+	},
+	{
+		id: 'evidence-focus',
+		label: 'Visible focus',
+		image: visibleFocus,
+		alt: 'Northington Windows & Doors webpage featuring a welcoming two-story home, headline about durable affordable products, and location search button.',
+		copy: 'Buttons, links, and controls show a clear outline from the keyboard.',
+	},
+	{
+		id: 'evidence-dialog',
+		label: 'Dialogs',
+		image: dialogMenu,
+		alt: 'Mobile Northington website screenshot with navigation menu open, showing links for windows, doors, locations, resources, contact, and location search.',
+		copy: 'The mobile menu traps focus, closes on Escape, and returns focus to the control that opened it.',
+	},
+	{
+		id: 'evidence-names',
+		label: 'Accessible names',
+		image: accessibleNames,
+		alt: 'Northington Windows website screenshot showing “Windows & doors that work as hard as you do” beside a modern house; accessibility inspector open.',
+		copy: 'Icon-only controls expose a real name — Facebook, Close menu, Next — not an empty button.',
+	},
+];
+
+const shippedGroups = [
+	{
+		id: 'shipped-site-wide',
+		label: 'Site-wide',
+		items: ['Skip to content', 'Visible focus', 'Reduced motion', 'Named social links', 'Pagination'],
+	},
+	{
+		id: 'shipped-header',
+		label: 'Header and menu',
+		items: ['Mobile menu as a dialog', 'Labeled close control', 'Announced search suggestions', 'Labeled contact icons'],
+	},
+	{
+		id: 'shipped-catalog',
+		label: 'Catalog',
+		items: ['Filter open/closed state', 'Filter drawer as a dialog', 'Screen-reader-friendly prices', 'Missing-image text', 'Labeled sort'],
+	},
+	{
+		id: 'shipped-product',
+		label: 'Product',
+		items: ['Lightbox as a dialog', 'Zoom ignored by assistive tech', 'Labeled carousel controls'],
+	},
+	{
+		id: 'shipped-cart',
+		label: 'Cart and rental',
+		items: ['Labeled flyouts', 'Keyboard rental options', 'Labeled remove actions'],
+	},
+	{
+		id: 'shipped-content-forms',
+		label: 'Content and forms',
+		items: ['Native FAQ accordion', 'Captioned data tables', 'Real form labels'],
+	},
+];
+
+const scaleItems = [
+	{
+		id: 'scale-every-storefront',
+		label: 'Every storefront, before launch',
+		copy: 'Each client site is audited for errors and contrast before it goes live. Content, theme defaults, and apps all get checked.',
+	},
+	{
+		id: 'scale-fix-the-pattern',
+		label: 'Fix the pattern, not only the page',
+		copy: 'If a menu, drawer, or unlabeled control fails on one storefront, it usually fails in the shared component. That is where I put the fix.',
+	},
+	{
+		id: 'scale-theme-versus-apps',
+		label: 'Theme code versus apps',
+		copy: 'I separate what the theme can own from what an app injects, then document the rest so the team knows what still sits outside the theme.',
+	},
+];
+
+const closingBadges = [
+	'WCAG 2.1',
+	'WAVE',
+	'Lighthouse',
+	'Contrast',
+	'Manual Testing',
+	'Keyboard',
+	'Shopify',
+	'Shared theme',
+];
+---
+
+<BaseLayout title={pageTitle} {description} accentColor={projectAccents.audits}>
+	<Header backToProjects />
+
+	<main id="main">
+		<div class="section-group section-group--intro">
+			<div class="container">
+				<section class="hero hero--project" aria-labelledby="case-study-heading">
+					<h1 id="case-study-heading">Shopify Accessibility Audits</h1>
+					<p class="hero__subheading">
+						I audit every Shopify storefront for accessibility errors and contrast before it
+						goes live, then turn findings into frontend changes. When a barrier lives in a
+						shared component, I fix it in the theme so the next site inherits the work.
+					</p>
+					<ul class="badge-list hero__badges">
+						<li class="badge">WCAG 2.1</li>
+						<li class="badge">WAVE</li>
+						<li class="badge">Lighthouse</li>
+						<li class="badge">Manual Testing</li>
+					</ul>
+				</section>
+			</div>
+
+			<section class="section-block" aria-labelledby="case-study-context-heading">
+				<div class="container">
+					<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
+					<div class="content-grid">
+						<div class="content-grid__column">
+							<section class="content-block" aria-labelledby="case-study-who">
+								<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
+								<div class="content-copy">
+									<p>
+										Client Shopify storefronts and the shared theme they run on. Merchants whose
+										customers include people who don’t use a mouse — not only shoppers on a
+										full-size screen.
+									</p>
+								</div>
+							</section>
+
+							<section class="content-block" aria-labelledby="case-study-work">
+								<h2 id="case-study-work" class="text-accent section-label">What did I work on</h2>
+								<div class="content-copy">
+									<p>
+										Pre-launch audits against WCAG 2.1, then frontend fixes. Storefront-level
+										when the issue is local. Theme-level when the same barrier would otherwise
+										show up on the next client.
+									</p>
+								</div>
+							</section>
+
+							<section class="content-block" aria-labelledby="case-study-why">
+								<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
+								<div class="content-copy">
+									<p>
+										An audit that never reaches production is just a report. I treat this as a
+										launch gate: find what blocks people, fix it, then ship.
+									</p>
+								</div>
+							</section>
+						</div>
+
+						<div class="content-grid__column">
+							<section class="content-block" aria-labelledby="case-study-challenge">
+								<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
+								<div class="content-copy">
+									<p>
+										Shopify storefronts mix custom theme code, reusable components, third-party
+										apps, and merchant content. A sale badge or a product form can fail even
+										when the page looks finished.
+									</p>
+									<p>
+										Each site still needs its own audit. The hard part is knowing what this
+										storefront can own versus what belongs in the shared architecture — and
+										fixing it there once.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="audit-process-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">The process</p>
+						<h2 id="audit-process-heading">Before a storefront goes live</h2>
+						<p class="section-intro">
+							WAVE and Lighthouse surface errors and contrast failures. I confirm what is real,
+							trace it, fix it, and retest — before launch, not after.
+						</p>
+					</div>
+
+					<ol class="pipeline content-list--grid" aria-label="Audit process">
+						{
+							auditProcess.map((step) => (
+								<li class="pipeline__item">
+									<h3 class="text-accent pipeline__label">{step.label}</h3>
+									<p>{step.copy}</p>
+								</li>
+							))
+						}
+					</ol>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="audit-tools-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">What I use</p>
+						<h2 id="audit-tools-heading">The scan, then the storefront</h2>
+						<p class="section-intro">
+							Northington Windows &amp; Doors is a recent example. The tools find issues. I
+							decide what ships.
+						</p>
+					</div>
+
+					<div class="showcase-grid showcase-grid--2">
+						{
+							auditTools.map((tool) => (
+								<article
+									class="showcase-item showcase-item--feature"
+									aria-labelledby={tool.id}
+								>
+									{
+										tool.image ? (
+											<Image
+												class="showcase-item__media"
+												src={tool.image}
+												alt={tool.alt ?? tool.label}
+												widths={[640, 960, 1280, 1920]}
+												sizes="(min-width: 48rem) 46vw, 92vw"
+											/>
+										) : (
+											<div class="media-placeholder" aria-hidden="true" />
+										)
+									}
+									<div class="heading-block">
+										<h3
+											id={tool.id}
+											class="text-accent section-label showcase-item__label"
+										>
+											{tool.label}
+										</h3>
+										<p class="showcase-item__copy">{tool.copy}</p>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="shipped-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">When it belongs in the theme</p>
+						<h2 id="shipped-heading">A shared-theme accessibility pass</h2>
+						<p class="section-intro">
+							Some barriers are not one-offs. A menu, drawer, or unlabeled control that fails
+							on one client will fail on every storefront that shares the component. This pass
+							shipped those fixes in the theme — without changing how the storefront looks to a
+							typical shopper.
+						</p>
+					</div>
+
+					<div class="showcase-grid showcase-grid--2">
+						{
+							themeEvidence.map((shot) => (
+								<article
+									class="showcase-item showcase-item--feature"
+									aria-labelledby={shot.id}
+								>
+									{
+										shot.image ? (
+											<Image
+												class="showcase-item__media"
+												src={shot.image}
+												alt={shot.alt ?? shot.label}
+												widths={[640, 960, 1280, 1920]}
+												sizes="(min-width: 48rem) 46vw, 92vw"
+											/>
+										) : (
+											<div class="media-placeholder" aria-hidden="true" />
+										)
+									}
+									<div class="heading-block">
+										<h3
+											id={shot.id}
+											class="text-accent section-label showcase-item__label"
+										>
+											{shot.label}
+										</h3>
+										<p class="showcase-item__copy">{shot.copy}</p>
+									</div>
+								</article>
+							))
+						}
+					</div>
+
+					<div class="heading-block">
+						<p id="shipped-changelog-heading" class="text-accent section-label">Snapshot of what has shipped</p>
+						<h3 class="subsection-title">Coverage across the theme</h3>
+					</div>
+
+					<div class="shipped-grid">
+						{
+							shippedGroups.map((group) => (
+								<section class="shipped-card" aria-labelledby={group.id}>
+									<h4 id={group.id} class="text-accent section-label">
+										{group.label}
+									</h4>
+									<ul>
+										{group.items.map((item) => (
+											<li>{item}</li>
+										))}
+									</ul>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="scale-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Why this scales</p>
+						<h2 id="scale-heading">Audits on every site. Fixes that travel.</h2>
+						<p class="section-intro">
+							Every storefront still gets its own audit. Because I also maintain the shared
+							theme, a component-level fix does not have to be patched client by client.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid">
+						{
+							scaleItems.map((item) => (
+								<section class="content-block" aria-labelledby={item.id}>
+									<h3 id={item.id} class="text-accent section-label">
+										{item.label}
+									</h3>
+									<p>{item.copy}</p>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="case-study-closing-heading">
+				<div class="container">
+					<div class="heading-block">
+						<h2 id="case-study-closing-heading">What this means</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								I audit every storefront before it goes live, then ship the pattern in the
+								theme when the barrier is shared. WCAG 2.1 is the bar. WAVE, Lighthouse, and
+								manual testing find the gaps. Front-end development and design is how they get fixed.
+							</p>
+						</div>
+					</div>
+					<ul class="badge-list hero__badges">
+						{closingBadges.map((badge) => <li class="badge">{badge}</li>)}
+					</ul>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<Footer />
+</BaseLayout>

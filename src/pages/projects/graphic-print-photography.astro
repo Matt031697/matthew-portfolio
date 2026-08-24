@@ -1,0 +1,494 @@
+---
+import { Image } from 'astro:assets';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projectAccents } from '../../lib/site.ts';
+import { slugify } from '../../lib/strings.ts';
+import prospectusPage1 from '../../assets/projects/design/Page 1 Prospectus.png';
+import prospectusPage2 from '../../assets/projects/design/Page 2 Prospectus.png';
+import petTradeShowBooth from '../../assets/projects/design/Pet Trade Show Booth Design.png';
+import facebookBanner from '../../assets/projects/design/Facebook Banner.png';
+import facebookBanner2 from '../../assets/projects/design/Facebook Banner 2.png';
+import dougieCarousel1 from '../../assets/projects/design/DougieDeluxe Carousel 1.png';
+import dougieCarousel2 from '../../assets/projects/design/DougieDeluxe Carousel 2.png';
+import dougieCarousel3 from '../../assets/projects/design/DougieDeluxe Carousel 3.png';
+import dougieLogo from '../../assets/projects/design/DougieDeluxe Primary logo.png';
+import werkCarousel1 from '../../assets/projects/design/Werkthestudio Carousel 1.png';
+import werkCarousel2 from '../../assets/projects/design/Werkthestudio Carousel 2.png';
+import werkCarousel3 from '../../assets/projects/design/Werkthestudio Carousel 3.png';
+import werkLogo from '../../assets/projects/design/Werkthestudio primary logo.jpg';
+import kobeBryant from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro (1).png';
+import magicJohnson from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro (2).png';
+import nightCampsite from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro (3).png';
+import jumpShot from '../../assets/projects/design/Case Study Media Gallery 800x800px Astro.png';
+import photoGallery1 from '../../assets/projects/design/Photo Gallery 1.png';
+import photoGallery2 from '../../assets/projects/design/Photo Gallery 2.png';
+import photoGallery3 from '../../assets/projects/design/Photo Gallery 3.png';
+import photoGallery4 from '../../assets/projects/design/Photo Gallery 4.png';
+import photoGallery5 from '../../assets/projects/design/Photo Gallery 5.png';
+import photoGallery6 from '../../assets/projects/design/Photo Gallery 6.png';
+import photoGallery7 from '../../assets/projects/design/Photo Gallery 7.png';
+import photoGallery8 from '../../assets/projects/design/Photo Gallery 8.png';
+
+const pageTitle = 'Graphic, Print & Photography — Matthew';
+const description =
+	'Graphic design, print, and photography. Work made for a page, a room, a feed, and a frame.';
+
+const facebookBanners = [
+	{
+		label: 'Facebook Banner',
+		image: facebookBanner,
+		alt: 'Black banner with website screenshots and text: “Websites that attract more local customers,” promoting independent retailers competing online.',
+	},
+	{
+		label: 'Facebook Banner 2',
+		image: facebookBanner2,
+		alt: 'Black banner with white text: “Websites that attract more local customers,” and a mission to help independent retailers compete online.',
+	},
+] as const;
+
+const prospectusPages = [
+	{
+		label: 'Page 1 Prospectus',
+		image: prospectusPage1,
+		alt: 'Promotional flyer for New Media Retailer advertising website services: express ordering, ecommerce, lead generation, local SEO, and store traffic.',
+	},
+	{
+		label: 'Page 2 Prospectus',
+		image: prospectusPage2,
+		alt: 'Promotional flyer for New Media Retailer advertising website, Facebook, email, local SEO, Google Business Profile, and PPC services.',
+	},
+] as const;
+
+const identityCarousels = [
+	{
+		name: 'DougieDeluxe',
+		tools: 'Primary logo + Instagram carousel',
+		logo: {
+			image: dougieLogo,
+			alt: 'Black-and-white logo of a bearded man wearing headphones and rectangular glasses inside concentric circles, with bold “DOUGIE DELUXE” text below.',
+		},
+		slides: [
+			{
+				label: 'Slide 1',
+				image: dougieCarousel1,
+				alt: 'Black-and-white DougieDeluxe logo of a bearded man in glasses and headphones inside a circular frame, with a 3D wordmark and repeating D pattern.',
+			},
+			{
+				label: 'Slide 2',
+				image: dougieCarousel2,
+				alt: 'DougieDeluxe brand board with an Instagram profile on a phone, 3D wordmark, repeating D pattern, and three game screenshots along the bottom.',
+			},
+			{
+				label: 'Slide 3',
+				image: dougieCarousel3,
+				alt: 'DougieDeluxe brand collage with the illustrated portrait logo, 3D wordmark, repeating D pattern, and three Instagram-sized game screenshots.',
+			},
+		],
+	},
+	{
+		name: 'Werkthestudio',
+		tools: 'Primary logo + Instagram carousel',
+		logo: {
+			image: werkLogo,
+			alt: 'Black-and-white logo reading “werk. the studio,” with bold lowercase lettering and a clean, modern typographic style on a white background.',
+		},
+		slides: [
+			{
+				label: 'Slide 1',
+				image: werkCarousel1,
+				alt: 'Black-and-white werk. the studio wordmark on a white field, framed by dots, concentric arcs, and an angular corner mark.',
+			},
+			{
+				label: 'Slide 2',
+				image: werkCarousel2,
+				alt: 'Person wearing a werk. the studio t-shirt, with a tilted W logo card, concentric arc pattern, and carousel dots along the bottom.',
+			},
+			{
+				label: 'Slide 3',
+				image: werkCarousel3,
+				alt: 'Illuminated outdoor lightbox sign reading werk. the studio, with vertical side type and a curved line pattern in a black footer bar.',
+			},
+		],
+	},
+] as const;
+
+const photographyFrames = [
+	{
+		image: photoGallery1,
+		alt: 'Barber cape with a Legacies Barber Co. logo on a worn leather chair, with a haircut underway in the soft background.',
+	},
+	{
+		image: photoGallery2,
+		alt: 'Close portrait of an older woman laughing, wearing a red knit hat, floral scarf, and red jacket against warm indoor lights.',
+	},
+	{
+		image: photoGallery3,
+		alt: 'Bearded man in a white shirt and cap sitting in profile at a microphone against a weathered wood wall.',
+	},
+	{
+		image: photoGallery4,
+		alt: 'Two men on a golf green, one watching from the foreground in red while the other lines up a putt in blue.',
+	},
+	{
+		image: photoGallery5,
+		alt: 'Portrait of a young girl with blonde hair and colorful face paint, looking slightly off camera at a festive event.',
+	},
+	{
+		image: photoGallery6,
+		alt: 'Man in a red polo and gray cap smiling while hugging someone on a sunny golf course.',
+	},
+	{
+		image: photoGallery7,
+		alt: 'Close view of a Legacies Barber Co. cape and cracked leather headrest inside a barbershop.',
+	},
+	{
+		image: photoGallery8,
+		alt: 'Close-up of a barber’s hands cutting damp hair with shears, a comb held between the fingers.',
+	},
+] as const;
+
+const funPieces = [
+	{
+		label: 'Kobe Bryant',
+		image: kobeBryant,
+		alt: 'Illustration of Lakers player Kobe Bryant, number 8, airborne with a basketball, mouth open in excitement on a purple-and-gold court.',
+	},
+	{
+		label: 'Jerry West',
+		image: jumpShot,
+		alt: 'Illustration of a focused Jerry West in a blue Los Angeles jersey, number 44, raising the ball overhead to shoot against a cool blue sky.',
+	},
+	{
+		label: 'Magic Johnson',
+		image: magicJohnson,
+		alt: 'Stylized illustration of smiling Lakers basketball player Magic Johnson in purple-and-gold No. 32 uniform, dribbling a ball against a warm abstract background.',
+	},
+	{
+		label: 'Campsite under the stars',
+		image: nightCampsite,
+		alt: 'Illustrated nighttime campsite with an orange tent, glowing campfire, dark pine trees, and a giant turquoise swirling moon over snowy mountains.',
+	},
+] as const;
+
+const closingBadges = [
+	'Print Design',
+	'Visual Identity',
+	'Social Design',
+	'Photography',
+	'Adobe Creative Suite',
+];
+
+---
+
+<BaseLayout title={pageTitle} {description} accentColor={projectAccents.print}>
+	<Header backToProjects />
+
+	<main id="main">
+		<div class="section-group section-group--intro">
+			<div class="container">
+				<section class="hero hero--project" aria-labelledby="case-study-heading">
+					<h1 id="case-study-heading">Graphic, Print &amp; Photography</h1>
+					<p class="hero__subheading">
+						Work made for a page, a room, a feed, and a frame. Each piece is designed to
+						hold up in its own format.
+					</p>
+					<ul class="badge-list hero__badges">
+						<li class="badge">Adobe Creative Suite</li>
+						<li class="badge">Print Design</li>
+						<li class="badge">Visual Identity</li>
+						<li class="badge">Photography</li>
+					</ul>
+				</section>
+			</div>
+
+			<section class="section-block" aria-labelledby="case-study-context-heading">
+				<div class="container">
+					<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
+					<div class="content-grid">
+						<div class="content-grid__column">
+							<section class="content-block" aria-labelledby="case-study-who">
+								<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
+								<div class="content-copy">
+									<p>
+										People and businesses who needed design they could hold, walk past, or
+										photograph. Work meant to live in print, in a room, or through a lens.
+									</p>
+								</div>
+							</section>
+
+							<section class="content-block" aria-labelledby="case-study-work">
+								<h2 id="case-study-work" class="text-accent section-label">What did I make</h2>
+								<div class="content-copy">
+									<p>
+										Physical design and photography. Composition, hierarchy, and print
+										design for materials that have to hold up on paper, in a space, and
+										in a frame.
+									</p>
+								</div>
+							</section>
+
+							<section class="content-block" aria-labelledby="case-study-why">
+								<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
+								<div class="content-copy">
+									<p>
+										This is the design side of my practice. Type, color, crop, and light
+										have to be right when someone can hold the piece or stand in front of
+										it.
+									</p>
+								</div>
+							</section>
+						</div>
+
+						<div class="content-grid__column">
+							<section class="content-block" aria-labelledby="case-study-challenge">
+								<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
+								<div class="content-copy">
+									<p>
+										Physical work has no preview button. Scale, paper, ink, and light
+										change what the design can do, and photography has to make a true
+										frame in conditions you only get once.
+									</p>
+									<p>
+										The work still has to feel considered after it leaves the file.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="print-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Print and environmental</p>
+						<h2 id="print-heading">Made for a page, and for a room</h2>
+						<p class="section-intro">
+							A two-page prospectus for a tradeshow magazine, and a booth that has to read
+							from across an aisle. Hierarchy and print design have to hold up on paper
+							and in the room.
+						</p>
+					</div>
+
+					<div class="print-row" role="group" aria-label="Print and environmental work">
+						<figure class="print-spread" aria-labelledby="piece-magazine-spread">
+							<div class="print-spread__pages">
+								{
+									prospectusPages.map((page) => (
+										<Image
+											class="gallery-item__media gallery-item__media--page"
+											src={page.image}
+											alt={page.alt}
+											widths={[320, 480, 720]}
+											sizes="(min-width: 48rem) 22vw, 92vw"
+										/>
+									))
+								}
+							</div>
+							<figcaption
+								id="piece-magazine-spread"
+								class="text-accent section-label gallery-item__label print-spread__label"
+							>
+								Magazine spread
+							</figcaption>
+						</figure>
+
+						<figure
+							class="gallery-item"
+							aria-labelledby="piece-pet-trade-show-booth-design"
+						>
+							<Image
+								class="gallery-item__media gallery-item__media--booth"
+								src={petTradeShowBooth}
+								alt="Digital billboard promotes websites that attract local customers, featuring a woman walking a dog, a pet store, and supporting mobile displays."
+								widths={[640, 960, 1280, 1600]}
+								sizes="(min-width: 48rem) 36vw, 92vw"
+							/>
+							<figcaption
+								id="piece-pet-trade-show-booth-design"
+								class="text-accent section-label gallery-item__label"
+							>
+								Pet Trade Show Booth Design
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="social-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Social</p>
+						<h2 id="social-heading">Built for the feed</h2>
+						<p class="section-intro">
+							Facebook campaign banners, and client identities designed for Instagram.
+							Primary logo and a three-slide Instagram carousel.
+						</p>
+					</div>
+
+					<figure class="banner-pair" aria-labelledby="piece-facebook-banners">
+						<div class="gallery-grid gallery-grid--2">
+							{
+								facebookBanners.map((banner) => (
+									<Image
+										class="gallery-item__media gallery-item__media--banner"
+										src={banner.image}
+										alt={banner.alt}
+										widths={[640, 851]}
+										sizes="(min-width: 48rem) 46vw, 92vw"
+									/>
+								))
+							}
+						</div>
+						<figcaption
+							id="piece-facebook-banners"
+							class="text-accent section-label gallery-item__label banner-pair__label"
+						>
+							Facebook Banners
+						</figcaption>
+					</figure>
+
+					<div class="brand-board-grid">
+						{
+							identityCarousels.map((client) => (
+								<article
+									class="brand-board"
+									aria-labelledby={`${slugify(client.name)}-heading`}
+								>
+									<div class="heading-block">
+										<h3
+											id={`${slugify(client.name)}-heading`}
+											class="text-accent section-label"
+										>
+											{client.name}
+										</h3>
+										<p class="tag-line gallery-group__tools">{client.tools}</p>
+									</div>
+
+									<Image
+										class:list={[
+											'gallery-item__media',
+											'gallery-item__media--logo-tile',
+											client.name === 'Werkthestudio' &&
+												'gallery-item__media--logo-tile-white',
+										]}
+										src={client.logo.image}
+										alt={client.logo.alt}
+										widths={[320, 480, 640]}
+										sizes="(min-width: 64rem) 14rem, 14rem"
+									/>
+
+									<div
+										class="gallery-grid gallery-grid--3"
+										role="group"
+										aria-label={`${client.name} Instagram carousel`}
+									>
+										{client.slides.map((slide) => (
+											<Image
+												class="gallery-item__media gallery-item__media--carousel"
+												src={slide.image}
+												alt={slide.alt}
+												widths={[320, 480, 720]}
+												sizes="(min-width: 64rem) 14vw, (min-width: 48rem) 30vw, 92vw"
+											/>
+										))}
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="photography-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Photography</p>
+						<h2 id="photography-heading">The gallery is the design work</h2>
+						<p class="section-intro">
+							A gallery designed for photography clients. Sequence, crop, and pacing, not
+							a folder of files.
+						</p>
+					</div>
+
+					<div
+						class="gallery-grid gallery-grid--4"
+						role="group"
+						aria-label="Photo gallery"
+					>
+						{
+							photographyFrames.map((frame) => (
+								<Image
+									class="gallery-item__media gallery-item__media--square"
+									src={frame.image}
+									alt={frame.alt}
+									widths={[400, 800]}
+									sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 46vw, 92vw"
+								/>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="just-for-fun-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Just for fun</p>
+						<h2 id="just-for-fun-heading">Personal work</h2>
+						<p class="section-intro">Illustrations and experiments outside client work.</p>
+					</div>
+
+					<div class="gallery-grid gallery-grid--4">
+						{
+							funPieces.map((piece) => (
+								<figure
+									class="gallery-item"
+									aria-labelledby={`piece-just-for-fun-${slugify(piece.label)}`}
+								>
+									<Image
+										class="gallery-item__media gallery-item__media--square"
+										src={piece.image}
+										alt={piece.alt}
+										widths={[400, 800]}
+										sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 46vw, 92vw"
+									/>
+									<figcaption
+										id={`piece-just-for-fun-${slugify(piece.label)}`}
+										class="text-accent section-label gallery-item__label"
+									>
+										{piece.label}
+									</figcaption>
+								</figure>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="case-study-closing-heading">
+				<div class="container">
+					<div class="heading-block">
+						<h2 id="case-study-closing-heading">What this means</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								I make graphic, print, and photography work for the format in front of
+								me. A page, a room, a feed, or a frame. The piece still has to feel
+								considered after it leaves the file.
+							</p>
+						</div>
+					</div>
+					<ul class="badge-list hero__badges">
+						{closingBadges.map((badge) => <li class="badge">{badge}</li>)}
+					</ul>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<Footer />
+</BaseLayout>

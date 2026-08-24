@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import aboutPortrait from '../assets/about/Portfolio About Me 640x800px Astro/Portfolio About Me 640x800px Astro.png';
+---
+
+<section id="about" class="about section-block" aria-labelledby="about-heading">
+	<div class="container">
+		<div class="about__grid">
+			<div class="about__content">
+				<div class="heading-block">
+					<p class="text-accent section-label">Beyond the browser</p>
+					<h2 id="about-heading">A designer who learned to build.</h2>
+					<p class="about__lede">
+						I care about the details that make something feel intentional — typography,
+						layout, and how a person actually moves through an interface.
+					</p>
+				</div>
+
+				<div class="about__body">
+					<p>
+						I started in visual design and digital experiences, then followed the work
+						into the code. What began as wanting to understand how my designs were built
+						became Shopify, Liquid, JavaScript, CSS, accessibility, and shared
+						front-end architecture. Today I support hundreds of storefronts, building
+						reusable components that still have to look and feel like they belong to
+						each business.
+					</p>
+					<p>
+						That path sits between designer and developer. I like seeing the whole
+						system and getting into the details — not just making something look good,
+						but making sure it works.
+					</p>
+					<p>
+						When I'm not working, I'm usually outside: camping, fishing, a campfire, or
+						keeping up with the Lakers. Getting away from a screen is how I come back
+						to the work with a clearer eye.
+					</p>
+				</div>
+			</div>
+
+			<div class="about__media">
+				<Image
+					class="about__portrait"
+					src={aboutPortrait}
+					alt="Portrait of Matthew Ward"
+					widths={[320, 448, 640]}
+					sizes="(min-width: 64rem) 28rem, min(100vw - 2.5rem, 28rem)"
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--space-xl);
+	}
+
+	@media (min-width: 64rem) {
+		.about__grid {
+			grid-template-columns: 1.35fr 1fr;
+			gap: var(--space-lg);
+			align-items: center;
+		}
+	}
+
+	.about__body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
+	.about__media {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.about__portrait {
+		width: 100%;
+		max-width: 28rem;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		border-radius: var(--radius-md);
+		background-color: var(--color-surface-muted);
+	}
+</style>

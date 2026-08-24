@@ -1,0 +1,688 @@
+---
+import { Image } from 'astro:assets';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { careerHighlights, projectAccents } from '../../lib/site.ts';
+import { slugify } from '../../lib/strings.ts';
+import responsiveByDefault from '../../assets/projects/shopify-theme/three-column-cards/3 Column Case Study Media 1280x720px Astro.png';
+import flexiblePresentation from '../../assets/projects/shopify-theme/three-column-cards/3 Column Case Study Media 1280x720px Astro (1).png';
+import businessConfiguration from '../../assets/projects/shopify-theme/three-column-cards/3 Column Case Study Media 1280x720px Astro (2).png';
+import petRetailHeader from '../../assets/projects/shopify-theme/three-column-cards/3 Column Case Study Media 1280x720px Astro (3).png';
+import rentalHeader from '../../assets/projects/shopify-theme/three-column-cards/3 Column Case Study Media 1280x720px Astro (4).png';
+import petInformationalHeader from '../../assets/projects/shopify-theme/three-column-cards/3 Column Case Study Media 1280x720px Astro (5).png';
+import catalogBefore from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro.png';
+import catalogAfter from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (1).png';
+import productDetailBefore from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (2).png';
+import productDetailAfter from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (3).png';
+import socialMediaBefore from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (4).png';
+import socialMediaAfter from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (5).png';
+import interiorPageBanner from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (6).png';
+import tileLayout from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (7).png';
+import imageBar from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (8).png';
+import ctaBanner from '../../assets/projects/shopify-theme/two-column-cards/2 Column Case Study Media 1920x1080px Astro (9).png';
+
+const pageTitle = 'Shopify Theme Architecture & Development — Matthew';
+const description =
+	'Case study: maintaining and evolving a shared Shopify theme architecture supporting 300+ storefronts across scalable front-end development, accessibility, and performance.';
+
+const themeColumns = [
+	{
+		groups: [
+			{
+				label: 'Foundation',
+				items: ['Theme structure', 'Configuration', 'Global settings'],
+			},
+		],
+	},
+	{
+		groups: [
+			{
+				label: 'Reusable UI',
+				items: ['Sections', 'Components', 'Shared patterns'],
+			},
+			{ label: 'App integrations' },
+			{ label: 'Client storefronts' },
+		],
+	},
+	{
+		groups: [
+			{
+				label: 'Front-end development',
+				items: ['Liquid', 'CSS', 'JavaScript'],
+			},
+		],
+	},
+];
+
+const headerExamples = [
+	{
+		label: 'Pet retail header',
+		image: petRetailHeader,
+		alt: 'Animalia pet store homepage with a blue welcome banner, dog mascot, and departments for furry, feathery, and scaly pets.',
+	},
+	{
+		label: 'Rental header',
+		image: rentalHeader,
+		alt: 'Website homepage for Northern Lakes True Value, showing the store entrance, “Welcome to” banner, navigation menu, search bar, and rental buttons.',
+	},
+	{
+		label: 'Pet informational header',
+		image: petInformationalHeader,
+		alt: 'Pet & Aquarium website homepage showing the Claremont Pet Center storefront, with cat-ear graphics, blue-and-orange navigation, and catalog buttons.',
+	},
+];
+
+const foundationFeatures = [
+	{
+		label: 'Responsive by default',
+		image: responsiveByDefault,
+		alt: 'Screenshot of Arey Building Supply website featuring a bright unfinished home interior, staircase, maroon navigation, search bar, and catalog button.',
+		copy: 'A shared hero structure adapts to different content, imagery, and screen sizes without requiring a separate implementation for each storefront.',
+	},
+	{
+		label: 'Flexible presentation',
+		image: flexiblePresentation,
+		alt: 'E-commerce webpage featuring project supplies, pet departments for furry, feathered and scaly animals, plus dog and cat essentials.',
+		copy: 'Shared components can adapt their layout and styling to fit different storefronts without rebuilding the underlying functionality.',
+	},
+	{
+		label: 'Business specific configuration',
+		image: businessConfiguration,
+		alt: 'Farm cattle product listing page showing livestock medicines, fly sprays, leather whitener, and grooming products with prices and brand filters.',
+		copy: 'Storefront settings can expose or hide functionality based on how each business sells and presents its products. For example, a storefront can display a price range when products have variable pricing, while another can use the same underlying component without that functionality.',
+	},
+];
+
+const uiImprovements = [
+	{
+		category: 'Catalog',
+		before: {
+			image: catalogBefore,
+			alt: 'Lawn and garden shopping page showing colorful flower pots and planters in white, blue, orange, green, and black, with prices and filters.',
+			copy: 'Unstructured product containers, unclear visual hierarchy, uneven spacings, no effects or interactive CTAs on hover.',
+		},
+		after: {
+			image: catalogAfter,
+			alt: 'Lawn and garden shopping page showing colorful flower pots and planters in a product grid, with filters for price, brand, and categories.',
+			copy: 'I introduced consistent card spacing and styling, strengthened typographic hierarchy, and added contextual hover actions such as Add to Cart and More Info to make the next step clearer.',
+		},
+	},
+	{
+		category: 'Product detail pages',
+		before: {
+			image: productDetailBefore,
+			alt: 'Online store page showing a gray men’s hooded fleece jacket, price and add-to-cart button, plus recommended winter clothing and emergency ponchos.',
+			copy: 'The buy box did the job, then the page fell off. Related products sat in an uneven row with no shared card structure, and item details competed with the purchase action.',
+		},
+		after: {
+			image: productDetailAfter,
+			alt: 'Online store page showing a gray hooded fleece jacket for men, priced at $35, with product details, add-to-cart button, and related items.',
+			copy: 'I separated item details from the buy box, added a clear in-stock state, and rebuilt related products as consistent cards with brand, price, and an Add to Cart action.',
+		},
+	},
+	{
+		category: 'Social media',
+		before: {
+			image: socialMediaBefore,
+			alt: 'Website page screenshot featuring a craftsman working with wood, Facebook promotion, newsletter signup, service links, and blog articles.',
+			copy: 'The existing component required a custom HTML block, meaning social media links had to be added and styled manually with HTML and CSS. This created unnecessary friction for team members who were not comfortable working with code.',
+		},
+		after: {
+			image: socialMediaAfter,
+			alt: 'Website screenshot featuring a contact form, happy dog in greenery, social media icons, and portraits of friendly store staff.',
+			copy: 'I replaced the custom HTML approach with a configurable component that lets the team control the heading, supporting text, icon style, spacing, and size through the theme settings. Social icons can be added using Font Awesome class names without requiring additional HTML or CSS.',
+		},
+	},
+];
+
+const reusableComponents = [
+	{
+		label: 'Interior page banner',
+		image: interiorPageBanner,
+		alt: 'Pet supply website banner featuring dog, cat, small animal, and fish products, plus a kitten being fed and a blue holiday promotion.',
+		copy: 'Flexible content, imagery, alignment, colors, CTA styling, and banner sizing allow the same component to adapt to different page layouts.',
+	},
+	{
+		label: 'Tile layout',
+		image: tileLayout,
+		alt: 'Equipment rental website showing contractor, DIY, home/business, and landscaping rental tiles with tools, boxes, and outdoor machinery.',
+		copy: 'Configurable image or solid-color tiles support flexible content, overlays, CTAs, and responsive layouts across up to seven tiles.',
+	},
+	{
+		label: 'Image bar',
+		image: imageBar,
+		alt: 'Pet supply webpage featuring trusted brand logos above three dogs labeled Grooming, In-Store Pickup, and Delivery, with a newsletter signup.',
+		copy: 'Adjustable section height, image overlay, text alignment, and linked text provide a simple way to create flexible promotional or content-focused banners.',
+	},
+	{
+		label: 'CTA banner',
+		image: ctaBanner,
+		alt: 'Website footer showing “Stay Connected” with social media icons above a bright blue pet-themed banner offering “Shop Now” and “Find a Location” buttons.',
+		copy: 'Flexible text positioning, up to two CTAs, background options, button styling, and banner sizing allow the component to adapt to different promotional needs.',
+	},
+];
+
+const accessibilityItems = [
+	{
+		label: 'Keyboard navigation and focus',
+		copy: 'Improved skip links, focus states, keyboard interactions, focus trapping, and focus restoration across shared navigation, drawers, dialogs, and interactive components.',
+	},
+	{
+		label: 'Accessible components',
+		copy: 'Applied semantic markup, ARIA states, screen-reader-friendly content, and reduced-motion considerations across search, filters, carousels, product interfaces, forms, and other shared components.',
+	},
+	{
+		label: 'Efficient front-end',
+		copy: 'Reduced unnecessary scripts, consolidated duplicated functionality, and improved client-side interactions to reduce frontend overhead and improve maintainability.',
+	},
+	{
+		label: 'Smarter loading',
+		copy: 'Applied appropriate loading strategies for images, scripts, and media to prioritize critical content while reducing unnecessary page weight.',
+	},
+	{
+		label: 'Shared improvements',
+		copy: 'Built accessibility and performance improvements into the shared architecture so improvements can benefit multiple storefronts rather than being repeatedly implemented on individual sites.',
+	},
+];
+
+const closingBadges = [
+	'Shopify',
+	'Liquid',
+	'JavaScript',
+	'CSS',
+	'Theme Architecture',
+	'Reusable Components',
+	'Accessibility',
+	'UX/UI',
+];
+
+---
+
+<BaseLayout title={pageTitle} {description} accentColor={projectAccents.shopify}>
+	<Header backToProjects />
+
+	<main id="main">
+		<div class="section-group section-group--intro">
+			<div class="container">
+				<section class="hero hero--project" aria-labelledby="case-study-heading">
+					<h1 id="case-study-heading">Shopify Theme Architecture &amp; Development</h1>
+					<p class="hero__subheading">
+						I maintain and evolve a shared Shopify theme architecture supporting 300+
+						storefronts. My work spans scalable front-end development, reusable components,
+						accessibility, performance, production releases, and ongoing improvements—balancing
+						a consistent technical foundation with the flexibility each storefront needs.
+					</p>
+					<ul class="badge-list hero__badges">
+						<li class="badge">{careerHighlights.experience}</li>
+						<li class="badge">{careerHighlights.storefronts}</li>
+						<li class="badge">{careerHighlights.releases}</li>
+						<li class="badge">Scalable Architecture</li>
+					</ul>
+					<a
+						class="btn hero__cta"
+						href="https://kirchnerbuildingcenters.com/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="View Kirchner Building Centers live site (opens in a new tab)"
+					>
+						View Live Site
+					</a>
+				</section>
+			</div>
+
+		<section class="section-block" aria-labelledby="case-study-context-heading">
+			<div class="container">
+				<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
+				<div class="content-grid">
+					<div class="content-grid__column">
+						<section class="content-block" aria-labelledby="case-study-who">
+							<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
+							<div class="content-copy">
+								<p>
+									This work was completed as part of my role at New Media Retailer, where I
+									serve as the primary front-end developer responsible for building,
+									maintaining, and evolving the Shopify theme architecture used across
+									client storefronts.
+								</p>
+								<p>
+									I work from business requirements and design direction to turn each
+									client's needs into a functional Shopify storefront using reusable
+									components, custom front-end development, and third-party app
+									integrations. After launch, I remain a technical resource for more
+									complex front-end and theme-related needs as the storefront evolves.
+								</p>
+							</div>
+						</section>
+
+						<section class="content-block" aria-labelledby="case-study-work">
+							<h2 id="case-study-work" class="text-accent section-label">What did I work on</h2>
+							<div class="content-copy">
+								<p>
+									A shared Shopify theme system that allows individual storefronts to look
+									and behave differently without requiring a separate theme implementation
+									for every client. The system provides a reusable foundation that can be
+									configured and extended to meet the needs of each storefront while
+									remaining maintainable at scale.
+								</p>
+							</div>
+						</section>
+
+						<section class="content-block" aria-labelledby="case-study-why">
+							<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
+							<div class="content-copy">
+								<p>
+									I enjoy working at the intersection of design, development, and systems
+									thinking. This work gives me the opportunity to solve individual
+									storefront problems while also improving the shared foundation those
+									storefronts depend on. A small improvement to a reusable component or
+									theme pattern can make the experience better for one client while also
+									creating a stronger system for the hundreds that follow.
+								</p>
+							</div>
+						</section>
+					</div>
+
+					<div class="content-grid__column">
+						<section class="content-block" aria-labelledby="case-study-challenge">
+							<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
+							<div class="content-copy">
+								<p>
+									The core challenge is balancing storefront flexibility with the
+									constraints of a shared production architecture. Each client has different
+									business goals, content, design requirements, and integrations, but those
+									differences cannot turn every storefront into a one-off implementation.
+								</p>
+								<p>
+									The architecture needs to make customization practical while keeping the
+									underlying system reusable and predictable. That means building flexible
+									components and theme patterns that can adapt to different storefronts
+									without introducing unnecessary complexity or technical debt.
+								</p>
+								<p>
+									This isn't a single project with a defined launch date. I've worked on
+									the architecture continuously as storefront requirements, accessibility
+									expectations, integrations, and Shopify itself have evolved. The
+									challenge is maintaining a stable foundation while continuing to adapt
+									the system to new requirements.
+								</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+		</div>
+
+		<div class="section-group">
+		<section class="section-block" aria-labelledby="theme-structure-heading">
+			<div class="container">
+				<div class="heading-block">
+					<h2 id="theme-structure-heading">How I make one theme work for hundreds</h2>
+					<p class="section-intro">
+						The shared theme acts as a foundation rather than a finished storefront. Reusable
+						components, flexible theme patterns, and configurable functionality allow each client
+						storefront to be assembled and customized without requiring an entirely separate
+						implementation.
+					</p>
+				</div>
+
+				<div class="theme-diagram" role="group" aria-labelledby="theme-diagram-heading">
+					<h3 id="theme-diagram-heading" class="subsection-title">Shared Shopify theme</h3>
+					<div class="theme-grid">
+						{
+							themeColumns.map((column) => (
+								<div class="theme-grid__column">
+									{
+										column.groups.map((group) => (
+											<div class="theme-grid__group">
+												<h4 class="text-accent theme-grid__label">{group.label}</h4>
+												{
+													group.items && group.items.length > 0 && (
+														<ul class="theme-grid__list">
+															{group.items.map((item) => (
+																<li>{item}</li>
+															))}
+														</ul>
+													)
+												}
+											</div>
+										))
+									}
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-block" aria-labelledby="foundation-benefits-heading">
+			<div class="container">
+				<div class="heading-block">
+					<h2 id="foundation-benefits-heading">What that shared foundation gives us</h2>
+					<p class="section-intro">
+						The foundation establishes the structure, styling patterns, and theme organization
+						shared across storefronts. Global styles and store-specific configuration provide
+						consistency where it matters while giving each storefront the flexibility to maintain
+						its own branding, content, and requirements.
+					</p>
+				</div>
+
+				<div class="showcase-grid">
+					{
+						foundationFeatures.map((feature) => (
+							<article
+								class="showcase-item showcase-item--feature"
+								aria-labelledby={`foundation-${slugify(feature.label)}`}
+							>
+								{
+									feature.image ? (
+										<Image
+											class="showcase-item__media"
+											src={feature.image}
+											alt={feature.alt ?? feature.label}
+											widths={[640, 960, 1280]}
+											sizes="(min-width: 48rem) 30vw, 92vw"
+										/>
+									) : (
+										<div class="media-placeholder" aria-hidden="true" />
+									)
+								}
+								<div class="heading-block">
+									<h3
+										id={`foundation-${slugify(feature.label)}`}
+										class="text-accent section-label showcase-item__label"
+									>
+										{feature.label}
+									</h3>
+									<p class="showcase-item__copy">{feature.copy}</p>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+		</div>
+
+		<div class="section-group">
+		<section class="section-block" aria-labelledby="header-showcase-heading">
+			<div class="container">
+				<h2 id="header-showcase-heading">One header, different storefronts</h2>
+
+				<div class="showcase-grid showcase-grid--spaced">
+					{
+						headerExamples.map((example) => (
+							<figure class="showcase-item" aria-labelledby={`header-${slugify(example.label)}`}>
+								<figcaption
+									id={`header-${slugify(example.label)}`}
+									class="text-accent section-label showcase-item__label"
+								>
+									{example.label}
+								</figcaption>
+								{
+									example.image ? (
+										<Image
+											class="showcase-item__media"
+											src={example.image}
+											alt={example.alt ?? example.label}
+											widths={[640, 960, 1280]}
+											sizes="(min-width: 48rem) 30vw, 92vw"
+										/>
+									) : (
+										<div class="media-placeholder" aria-hidden="true" />
+									)
+								}
+							</figure>
+						))
+					}
+				</div>
+
+				<div class="content-grid">
+					<div class="content-grid__column">
+						<section class="content-block" aria-labelledby="header-shared-foundation">
+							<h3 id="header-shared-foundation" class="text-accent section-label">
+								A shared foundation
+							</h3>
+							<div class="content-copy">
+								<p>
+									From pet stores and garden centers to hardware, rental, retail, and
+									informational sites, these storefronts share the same underlying theme
+									foundation. I maintain the architecture so common frontend functionality
+									remains centralized while each storefront adapts to its own brand, content,
+									and business needs.
+								</p>
+							</div>
+						</section>
+
+						<section class="content-block" aria-labelledby="header-build-once">
+							<h3 id="header-build-once" class="text-accent section-label">
+								Build once, configure per storefront
+							</h3>
+							<div class="content-copy">
+								<p>
+									The header is a good example of this approach. Common functionality such as
+									navigation, search, account access, cart, and social links is built as
+									reusable components rather than separate implementations for each storefront.
+								</p>
+								<p>
+									Each storefront can then configure which components it uses and how they
+									appear. The underlying behavior stays shared, while the presentation and
+									functionality can adapt to different brands, layouts, and customer
+									experiences.
+								</p>
+							</div>
+						</section>
+					</div>
+
+					<div class="content-grid__column">
+						<section class="content-block" aria-labelledby="header-improve-system">
+							<h3 id="header-improve-system" class="text-accent section-label">
+								Improve the system
+							</h3>
+							<div class="content-copy">
+								<p>
+									As requirements change, I improve the shared architecture rather than
+									solving each new problem with another storefront-specific implementation.
+									Reusable components, centralized behavior, and improvements to
+									accessibility and performance allow changes to benefit multiple storefronts
+									at once, strengthening the system as it evolves.
+								</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-block" aria-labelledby="ui-improvements-heading">
+			<div class="container">
+				<div class="heading-block">
+					<h2 id="ui-improvements-heading">UI/UX improvements</h2>
+					<p class="section-intro">
+						Working within the shared theme architecture, I look for opportunities to improve
+						how storefronts look, feel, and function. These examples show how I've evolved
+						existing patterns to improve hierarchy, interaction, usability, and flexibility
+						without rebuilding the underlying system.
+					</p>
+				</div>
+
+				<p id="ui-improvements-eyebrow" class="text-accent section-label">Before / after</p>
+
+				<div class="before-after-list" role="group" aria-labelledby="ui-improvements-eyebrow">
+					{
+						uiImprovements.map((example) => (
+							<section
+								class="before-after-block"
+								aria-labelledby={`before-after-${slugify(example.category)}`}
+							>
+								<h3
+									id={`before-after-${slugify(example.category)}`}
+									class="subsection-title"
+								>
+									{example.category}
+								</h3>
+
+								<div class="before-after-grid">
+									<article class="before-after-item" aria-labelledby={`${slugify(example.category)}-before`}>
+										{
+											example.before.image ? (
+												<Image
+													class="before-after-item__media"
+													src={example.before.image}
+													alt={example.before.alt ?? `${example.category} before`}
+													widths={[640, 960, 1280, 1920]}
+													sizes="(min-width: 48rem) 46vw, 92vw"
+												/>
+											) : (
+												<div class="media-placeholder" aria-hidden="true" />
+											)
+										}
+										<div class="heading-block">
+											<h4 id={`${slugify(example.category)}-before`} class="text-accent section-label">
+												Before
+											</h4>
+											<p class="before-after-item__copy">{example.before.copy}</p>
+										</div>
+									</article>
+
+									<article class="before-after-item" aria-labelledby={`${slugify(example.category)}-after`}>
+										{
+											example.after.image ? (
+												<Image
+													class="before-after-item__media"
+													src={example.after.image}
+													alt={example.after.alt ?? `${example.category} after`}
+													widths={[640, 960, 1280, 1920]}
+													sizes="(min-width: 48rem) 46vw, 92vw"
+												/>
+											) : (
+												<div class="media-placeholder" aria-hidden="true" />
+											)
+										}
+										<div class="heading-block">
+											<h4 id={`${slugify(example.category)}-after`} class="text-accent section-label">
+												After
+											</h4>
+											<p class="before-after-item__copy">{example.after.copy}</p>
+										</div>
+									</article>
+								</div>
+							</section>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section-block" aria-labelledby="frontend-development-heading">
+			<div class="container">
+				<div class="heading-block">
+					<h2 id="frontend-development-heading">Front-end development</h2>
+					<p class="section-intro">
+						I use Shopify Liquid, CSS, and JavaScript to turn the shared architecture into
+						flexible, production-ready storefront experiences. My focus is building reusable
+						frontend patterns that can adapt to different storefronts without sacrificing
+						usability, performance, or maintainability.
+					</p>
+				</div>
+
+				<div class="heading-block">
+					<p class="text-accent section-label">A small selection</p>
+					<h3 id="component-gallery-heading" class="subsection-title">
+						Reusable components I've built and maintained
+					</h3>
+				</div>
+
+				<div class="showcase-grid showcase-grid--2">
+					{
+						reusableComponents.map((component) => (
+							<article
+								class="showcase-item showcase-item--feature"
+								aria-labelledby={`component-${slugify(component.label)}`}
+							>
+								{
+									component.image ? (
+										<Image
+											class="showcase-item__media"
+											src={component.image}
+											alt={component.alt ?? component.label}
+											widths={[640, 960, 1280, 1920]}
+											sizes="(min-width: 48rem) 46vw, 92vw"
+										/>
+									) : (
+										<div class="media-placeholder" aria-hidden="true" />
+									)
+								}
+								<div class="heading-block">
+									<h4
+										id={`component-${slugify(component.label)}`}
+										class="text-accent section-label showcase-item__label"
+									>
+										{component.label}
+									</h4>
+									<p class="showcase-item__copy">{component.copy}</p>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+		</div>
+
+		<div class="section-group">
+		<section class="section-block" aria-labelledby="accessibility-performance-heading">
+			<div class="container">
+				<div class="heading-block">
+					<h2 id="accessibility-performance-heading">Accessibility and performance</h2>
+					<p class="section-intro">
+						Accessibility and performance are part of the front-end architecture, not a final
+						checklist. I make improvements at the component and system level so they can benefit
+						storefronts across the platform.
+					</p>
+				</div>
+
+				<div class="content-list content-list--grid">
+					{
+						accessibilityItems.map((item) => (
+							<section class="content-block" aria-labelledby={slugify(item.label)}>
+								<h3 id={slugify(item.label)} class="text-accent section-label">
+									{item.label}
+								</h3>
+								<p>{item.copy}</p>
+							</section>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section-block" aria-labelledby="case-study-closing-heading">
+			<div class="container">
+				<div class="heading-block">
+					<h2 id="case-study-closing-heading">What this means</h2>
+					<div class="content-copy content-copy--narrow">
+						<p>
+							Maintaining a shared Shopify architecture across hundreds of storefronts has taught
+							me to think beyond individual page builds and consider how frontend decisions affect
+							scalability, maintainability, accessibility, and future development.
+						</p>
+						<p>
+							My role combines hands-on front-end development with ongoing architectural
+							problem-solving, creating storefronts that are flexible for clients while remaining
+							sustainable for the platform.
+						</p>
+					</div>
+				</div>
+				<ul class="badge-list hero__badges">
+					{closingBadges.map((badge) => <li class="badge">{badge}</li>)}
+				</ul>
+			</div>
+		</section>
+		</div>
+	</main>
+
+	<Footer />
+</BaseLayout>

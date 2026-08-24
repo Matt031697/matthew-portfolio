@@ -1,65 +1,373 @@
 ---
-const navItems = [
-	{ label: 'Projects', href: '/projects' },
-	{ label: 'Resume', href: '/resume' },
-	{ label: 'About Me', href: '/about' },
-	{ label: 'Contact', href: '/contact' },
-];
+import { navItems } from '../lib/site.ts';
+
+interface Props {
+	backToProjects?: boolean;
+}
+
+const { backToProjects = false } = Astro.props;
 ---
 
 <header class="site-header">
 	<div class="container site-header__inner">
-		<a class="site-header__brand" href="/">Matthew</a>
+		<div class="frosted-cluster">
+			{
+				backToProjects ? (
+					<nav class="site-nav site-nav--back" aria-label="Case study navigation">
+						<a class="nav-link" href="/#projects">
+							Back to projects
+						</a>
+					</nav>
+				) : (
+					<>
+						<button
+							type="button"
+							class="nav-toggle"
+							aria-expanded="false"
+							aria-controls="site-nav-panel"
+							aria-label="Open menu"
+						>
+							<span class="nav-toggle__line" />
+							<span class="nav-toggle__line" />
+							<span class="nav-toggle__line" />
+						</button>
 
-		<nav class="site-nav" aria-label="Primary">
-			<ul class="site-nav__list">
-				{
-					navItems.map((item) => (
-						<li>
-							<a href={item.href}>{item.label}</a>
-						</li>
-					))
-				}
-			</ul>
-		</nav>
+						<nav class="site-nav site-nav--desktop" aria-label="Primary navigation">
+							<ul class="site-nav__list">
+								{navItems.map((item) => (
+									<li>
+										<a class="nav-link" href={item.href}>
+											{item.label}
+										</a>
+									</li>
+								))}
+							</ul>
+						</nav>
+					</>
+				)
+			}
+		</div>
 	</div>
+
+	{
+		!backToProjects && (
+			<>
+				<div class="nav-backdrop" data-nav-backdrop hidden />
+				<div class="nav-panel" id="site-nav-panel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+					<nav class="site-nav site-nav--mobile" aria-label="Primary navigation">
+						<ul class="site-nav__list">
+							{navItems.map((item) => (
+								<li>
+									<a class="nav-link nav-link--menu" href={item.href} data-nav-link>
+										{item.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+				</div>
+			</>
+		)
+	}
 </header>
 
 <style>
 	.site-header {
-		border-bottom: 1px solid var(--color-border);
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background-color: transparent;
 	}
 
 	.site-header__inner {
 		display: flex;
-		flex-wrap: wrap;
+		justify-content: flex-end;
 		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-sm);
-		padding-block: var(--space-sm);
+		padding-block: var(--space-md);
 	}
 
-	.site-header__brand {
-		font-weight: 700;
-		text-decoration: none;
+	@media (min-width: 48rem) {
+		.site-header__inner {
+			padding-block: var(--space-lg);
+		}
 	}
 
 	.site-nav__list {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-sm);
+		justify-content: flex-end;
+		gap: var(--space-sm) var(--space-md);
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	.site-nav a {
-		display: inline-block;
-		padding: var(--space-xs);
-		text-decoration: none;
+	@media (min-width: 48rem) {
+		.site-nav__list {
+			gap: var(--space-md) var(--space-lg);
+		}
 	}
 
-	.site-nav a:hover {
-		text-decoration: underline;
+	/* Desktop nav */
+
+	.site-nav--back {
+		display: block;
+	}
+
+	.site-nav--desktop {
+		display: none;
+	}
+
+	@media (min-width: 64rem) {
+		.site-nav--desktop {
+			display: block;
+		}
+	}
+
+	/* Hamburger toggle */
+
+	.nav-toggle {
+		position: relative;
+		z-index: 70;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.375rem;
+		width: 2.75rem;
+		height: 2.75rem;
+		padding: var(--space-xs);
+		border: none;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	@media (min-width: 64rem) {
+		.nav-toggle {
+			display: none;
+		}
+	}
+
+	.nav-toggle:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+	}
+
+	.nav-toggle__line {
+		display: block;
+		width: 1.5rem;
+		height: 2px;
+		background-color: var(--color-text);
+		transition:
+			transform var(--transition-accordion),
+			opacity 200ms ease;
+	}
+
+	.nav-toggle[aria-expanded='true'] .nav-toggle__line:nth-child(1) {
+		transform: translateY(0.5rem) rotate(45deg);
+	}
+
+	.nav-toggle[aria-expanded='true'] .nav-toggle__line:nth-child(2) {
+		opacity: 0;
+	}
+
+	.nav-toggle[aria-expanded='true'] .nav-toggle__line:nth-child(3) {
+		transform: translateY(-0.5rem) rotate(-45deg);
+	}
+
+	/* Slide-out panel */
+
+	.nav-backdrop {
+		position: fixed;
+		inset: 0;
+		z-index: 55;
+		background-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+		opacity: 0;
+		transition: opacity var(--transition-accordion);
+		pointer-events: none;
+	}
+
+	.nav-backdrop.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.nav-panel {
+		--nav-panel-width: 80%;
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 60;
+		width: var(--nav-panel-width);
+		height: 100dvh;
+		background-color: var(--color-background);
+		transform: translateX(100%);
+		transition: transform var(--transition-accordion);
+		overflow-y: auto;
+	}
+
+	@media (orientation: landscape) and (max-width: 63.99rem) {
+		.nav-panel {
+			--nav-panel-width: 70%;
+		}
+	}
+
+	@media (min-width: 48rem) and (max-width: 63.99rem) {
+		.nav-panel {
+			--nav-panel-width: 60%;
+		}
+	}
+
+	.nav-panel.is-open {
+		transform: translateX(0);
+	}
+
+	.site-nav--mobile .site-nav__list {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-md);
+		padding: calc(var(--space-2xl) + var(--space-sm)) var(--space-lg) var(--space-xl);
+	}
+
+	.nav-link--menu {
+		font-size: var(--font-size-body);
+		padding: var(--space-xs) 0;
 	}
 </style>
+
+{
+	!backToProjects && (
+		<script>
+			function waitForTransition(element) {
+				return new Promise((resolve) => {
+					const timeout = window.setTimeout(resolve, 500);
+
+					element.addEventListener(
+						'transitionend',
+						(event) => {
+							if (event.propertyName !== 'transform') return;
+							window.clearTimeout(timeout);
+							resolve(undefined);
+						},
+						{ once: true },
+					);
+				});
+			}
+
+			function setupMobileNav() {
+				const header = document.querySelector('.site-header');
+				if (!header || header.dataset.navInit === 'true') return;
+				header.dataset.navInit = 'true';
+
+				const toggle = header.querySelector('.nav-toggle');
+				const panel = header.querySelector('.nav-panel');
+				const backdrop = header.querySelector('[data-nav-backdrop]');
+				const links = header.querySelectorAll('[data-nav-link]');
+
+				if (
+					!(toggle instanceof HTMLButtonElement) ||
+					!(panel instanceof HTMLElement) ||
+					!(backdrop instanceof HTMLElement)
+				) {
+					return;
+				}
+
+				const pageRegions = [
+					document.getElementById('main'),
+					document.querySelector('.site-footer'),
+				].filter((region) => region instanceof HTMLElement);
+
+				const setPageLocked = (locked) => {
+					document.body.style.overflow = locked ? 'hidden' : '';
+					pageRegions.forEach((region) => {
+						region.inert = locked;
+					});
+				};
+
+				const getFocusable = () =>
+					[toggle, ...panel.querySelectorAll('a')].filter(
+						(item) => item instanceof HTMLElement,
+					);
+
+				const openMenu = () => {
+					panel.hidden = false;
+					backdrop.hidden = false;
+					setPageLocked(true);
+
+					requestAnimationFrame(() => {
+						panel.classList.add('is-open');
+						backdrop.classList.add('is-visible');
+					});
+
+					toggle.setAttribute('aria-expanded', 'true');
+					toggle.setAttribute('aria-label', 'Close menu');
+				};
+
+				const closeMenu = async () => {
+					panel.classList.remove('is-open');
+					backdrop.classList.remove('is-visible');
+					toggle.setAttribute('aria-expanded', 'false');
+					toggle.setAttribute('aria-label', 'Open menu');
+
+					await waitForTransition(panel);
+
+					panel.hidden = true;
+					backdrop.hidden = true;
+					setPageLocked(false);
+
+					if (document.activeElement && !header.contains(document.activeElement)) {
+						toggle.focus();
+					}
+				};
+
+				const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+
+				toggle.addEventListener('click', () => {
+					if (isOpen()) {
+						closeMenu();
+					} else {
+						openMenu();
+					}
+				});
+
+				backdrop.addEventListener('click', closeMenu);
+
+				links.forEach((link) => {
+					link.addEventListener('click', closeMenu);
+				});
+
+				document.addEventListener('keydown', (event) => {
+					if (!isOpen()) return;
+
+					if (event.key === 'Escape') {
+						closeMenu();
+						toggle.focus();
+						return;
+					}
+
+					if (event.key !== 'Tab') return;
+
+					const focusable = getFocusable();
+					const first = focusable[0];
+					const last = focusable[focusable.length - 1];
+
+					if (event.shiftKey && document.activeElement === first) {
+						event.preventDefault();
+						last.focus();
+					} else if (!event.shiftKey && document.activeElement === last) {
+						event.preventDefault();
+						first.focus();
+					}
+				});
+
+				window.matchMedia('(min-width: 64rem)').addEventListener('change', (event) => {
+					if (event.matches && isOpen()) {
+						closeMenu();
+					}
+				});
+			}
+
+			setupMobileNav();
+			document.addEventListener('astro:page-load', setupMobileNav);
+		</script>
+	)
+}

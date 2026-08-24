@@ -1,0 +1,442 @@
+---
+const faqItems = [
+	{
+		title: 'Shopify theme development',
+		tags: 'Shopify + Liquid + JavaScript + Front-end architecture',
+		body: 'I maintain and evolve a shared Shopify architecture supporting hundreds of storefronts. From reusable components and theme enhancements to scalable UI patterns, I build frontend experiences that balance usability, accessibility, performance, and maintainability.',
+		href: '/projects/shopify-theme-architecture',
+	},
+	{
+		title: 'Bondfire Design Company',
+		tags: 'Brand strategy + Visual identity + UX/UI + Web design',
+		body: 'I built Bondfire Design Company from the ground up, developing its visual identity, brand system, and digital experience. From the logo and visual language to the website itself, every piece was designed to create a cohesive expression of how I approach design and development.',
+		href: '/projects/bondfire-design-company',
+	},
+	{
+		title: 'AI-assisted websites',
+		tags: 'Cursor + AI-assisted development + Accessibility',
+		body: 'I use AI-assisted development to rapidly design and build lightweight, production-ready MightyLocal companion sites. AI accelerates implementation, while I remain responsible for architecture, design, accessibility, performance, and final quality.',
+		href: '/projects/ai-assisted-websites',
+	},
+	{
+		title: 'Shopify accessibility audits',
+		tags: 'WCAG 2.1 + WAVE + Lighthouse + Manual testing',
+		body: 'I audit every Shopify storefront for accessibility errors and contrast failures before it goes live, then turn findings into frontend improvements. When a barrier lives in a shared component, I fix it in the theme so the next site inherits the work.',
+		href: '/projects/shopify-accessibility-audits',
+	},
+	{
+		title: 'Graphic, print & photography',
+		tags: 'Adobe Creative Suite + Print design + Photography',
+		body: 'A collection of graphic design, print, and photography created across client work and personal projects. I focus on composition, hierarchy, and print design so the work holds up on a page, in a room, in a feed, and in a frame.',
+		href: '/projects/graphic-print-photography',
+	},
+];
+
+const skillGroups = [
+	{
+		label: 'Front-end development & architecture',
+		skills: ['Shopify', 'Liquid', 'JavaScript', 'HTML', 'CSS', 'Git'],
+	},
+	{
+		label: 'Design & UX/UI',
+		skills: ['UX/UI', 'Visual design', 'Brand identity', 'Adobe Creative Suite', 'Webflow'],
+	},
+	{
+		label: 'Accessibility & quality',
+		skills: ['WCAG 2.1', 'WAVE', 'Manual testing', 'Performance'],
+	},
+	{
+		label: 'Platforms',
+		skills: ['Shopify', 'WordPress', 'Webflow', 'HubSpot'],
+	},
+];
+
+const careerSteps = [
+	'Digital Marketing Support Specialist',
+	'Web Designer',
+	'Front-end Web Designer & Developer',
+];
+---
+
+<section id="projects" class="philosophy section-block" aria-label="Projects and resume">
+	<div class="container">
+		<div class="content-grid">
+			<section class="content-grid__column" aria-labelledby="philosophy-heading">
+				<div class="heading-block">
+					<p class="text-accent section-label">Designing with purpose</p>
+					<h2 id="philosophy-heading">Good front-end development is design made real.</h2>
+					<p class="philosophy__intro">
+						I approach front-end development as an extension of design, translating
+						visual hierarchy, interaction, and accessibility into code that performs in
+						production.
+					</p>
+				</div>
+
+				<div class="accordion">
+					{
+						faqItems.map((item) => (
+							<details class="accordion__item" data-accordion>
+								<summary class="accordion__summary">
+									<span class="accordion__title">{item.title}</span>
+									<span class="accordion__icon" aria-hidden="true">
+										+
+									</span>
+								</summary>
+								<div class="accordion__content">
+									<div class="accordion__panel">
+										<p class="tag-line accordion__tags">{item.tags}</p>
+										<p class="accordion__body">{item.body}</p>
+										<a
+											class="btn"
+											href={item.href ?? '#'}
+											aria-label={
+												item.href
+													? `View case study: ${item.title}`
+													: `View case study: ${item.title} (placeholder)`
+											}
+										>
+											View Case Study
+										</a>
+									</div>
+								</div>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<section id="resume" class="content-grid__column" aria-labelledby="resume-heading">
+				<div class="heading-block">
+					<p class="text-accent section-label">Why me</p>
+					<h2 id="resume-heading">Design is where I started. Code is how I brought it to life.</h2>
+					<div class="content-copy">
+						<p>
+							I bring a designer's eye and a developer's discipline to every project.
+							That dual perspective helps me bridge design and engineering teams,
+							translate mockups into production-ready interfaces, and build Shopify
+							experiences that hold up under real-world use.
+						</p>
+						<p>
+							Whether I'm evolving a shared theme architecture, auditing storefront
+							accessibility, or shaping a brand from the ground up, I focus on work
+							that is thoughtful, maintainable, and built to scale.
+						</p>
+					</div>
+				</div>
+
+				<ol class="career-timeline" aria-label="Career path">
+					{
+						careerSteps.map((step) => (
+							<li class="career-timeline__item">
+								<span class="career-timeline__marker" aria-hidden="true"></span>
+								<span class="career-timeline__label">{step}</span>
+							</li>
+						))
+					}
+				</ol>
+
+				<div class="skill-groups">
+					{
+						skillGroups.map((group) => (
+							<div class="skill-group">
+								<h3 class="text-accent skill-group__label">{group.label}</h3>
+								<p class="tag-line skill-group__skills">{group.skills.join(' + ')}</p>
+							</div>
+						))
+					}
+				</div>
+
+				<a class="btn" href="/resume.pdf" download="Matthew-Ward-Resume.pdf">
+					Download Resume
+				</a>
+			</section>
+		</div>
+	</div>
+</section>
+
+<style>
+	.philosophy {
+		padding-block-end: var(--space-lg);
+	}
+
+	/* Accordion */
+
+	.accordion {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+	}
+
+	.accordion__item {
+		border-radius: var(--radius-md);
+		border: 1px solid color-mix(in srgb, var(--color-text) 24%, white);
+		background-color: var(--color-background);
+	}
+
+	.accordion__summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-sm);
+		padding: var(--space-md);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.accordion__summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.accordion__title {
+		font-weight: var(--font-weight-bold);
+		letter-spacing: var(--letter-spacing-body);
+	}
+
+	.accordion__icon {
+		flex-shrink: 0;
+		font-size: 1.25rem;
+		font-weight: var(--font-weight-regular);
+		line-height: 1;
+		transition: transform 500ms ease-in-out;
+	}
+
+	.accordion__item.is-open .accordion__icon {
+		transform: rotate(45deg);
+	}
+
+	.accordion__content {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows var(--transition-accordion);
+	}
+
+	.accordion__item.is-open .accordion__content {
+		grid-template-rows: 1fr;
+	}
+
+	.accordion__panel {
+		overflow: hidden;
+		min-height: 0;
+		padding: 0 var(--space-md) var(--space-md);
+		opacity: 0;
+		transition: opacity var(--transition-accordion);
+	}
+
+	.accordion__item.is-open .accordion__panel {
+		opacity: 1;
+	}
+
+	.accordion__tags {
+		margin: 0 0 var(--space-sm);
+	}
+
+	.accordion__body {
+		margin: 0 0 var(--space-md);
+	}
+
+	/* Career timeline */
+
+	#resume {
+		container-type: inline-size;
+	}
+
+	.career-timeline {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.career-timeline__item {
+		position: relative;
+		display: grid;
+		grid-template-columns: 0.5rem minmax(0, 1fr);
+		column-gap: var(--space-sm);
+		align-items: start;
+	}
+
+	.career-timeline__item:not(:last-child) {
+		padding-bottom: var(--space-sm);
+	}
+
+	.career-timeline__item:not(:last-child)::after {
+		content: '';
+		position: absolute;
+		top: 0.75rem;
+		left: calc(0.25rem - 1px);
+		width: 2px;
+		height: calc(100% - 0.75rem);
+		background-color: var(--color-border);
+	}
+
+	.career-timeline__marker {
+		position: relative;
+		z-index: 1;
+		width: 0.5rem;
+		height: 0.5rem;
+		margin-top: 0.25rem;
+		border-radius: 50%;
+		background-color: var(--color-border);
+	}
+
+	.career-timeline__item:last-child .career-timeline__marker {
+		background-color: var(--color-project);
+	}
+
+	.career-timeline__label {
+		min-width: 0;
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-body);
+		line-height: 1.35;
+		text-wrap: balance;
+		color: var(--color-text-subtle);
+	}
+
+	.career-timeline__item:last-child .career-timeline__label {
+		color: var(--color-project);
+	}
+
+	@container (min-width: 24rem) {
+		.career-timeline {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.career-timeline__item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: var(--space-xs);
+			padding-bottom: 0;
+			text-align: center;
+		}
+
+		.career-timeline__item:not(:last-child)::after {
+			top: 0.25rem;
+			left: calc(50% + 0.5rem);
+			width: calc(100% - 1rem);
+			height: 2px;
+		}
+
+		.career-timeline__marker {
+			margin-top: 0;
+		}
+	}
+
+	/* Skills */
+
+	.skill-groups {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
+	.skill-group__label {
+		margin: 0 0 var(--space-xs);
+		font-size: var(--font-size-body);
+		text-transform: none;
+	}
+
+	.skill-group__skills {
+		margin: 0;
+	}
+</style>
+
+<script>
+	function setAccordionExpanded(details, isOpen) {
+		details.classList.toggle('is-open', isOpen);
+	}
+
+	function nextAccordionToken(details) {
+		const token = String(Number(details.dataset.accordionToken || '0') + 1);
+		details.dataset.accordionToken = token;
+		return token;
+	}
+
+	function waitForTransition(element, propertyName) {
+		return new Promise((resolve) => {
+			const timeout = window.setTimeout(resolve, 500);
+
+			element.addEventListener(
+				'transitionend',
+				(event) => {
+					if (event.propertyName !== propertyName) return;
+					window.clearTimeout(timeout);
+					resolve(undefined);
+				},
+				{ once: true },
+			);
+		});
+	}
+
+	async function closeAccordion(details) {
+		const summary = details.querySelector('.accordion__summary');
+		const content = details.querySelector('.accordion__content');
+		if (!(summary instanceof HTMLElement) || !(content instanceof HTMLElement)) return;
+		if (!details.classList.contains('is-open') && !details.open) return;
+
+		const token = nextAccordionToken(details);
+		details.dataset.animating = 'true';
+
+		setAccordionExpanded(details, false);
+		await waitForTransition(content, 'grid-template-rows');
+		if (details.dataset.accordionToken !== token) return;
+
+		details.open = false;
+		details.dataset.animating = 'false';
+	}
+
+	async function openAccordion(details) {
+		const summary = details.querySelector('.accordion__summary');
+		const content = details.querySelector('.accordion__content');
+		if (!(summary instanceof HTMLElement) || !(content instanceof HTMLElement)) return;
+
+		const token = nextAccordionToken(details);
+		details.dataset.animating = 'true';
+
+		details.open = true;
+		await new Promise(requestAnimationFrame);
+		if (details.dataset.accordionToken !== token) return;
+
+		setAccordionExpanded(details, true);
+		await waitForTransition(content, 'grid-template-rows');
+		if (details.dataset.accordionToken !== token) return;
+
+		details.dataset.animating = 'false';
+	}
+
+	function setupAccordions() {
+		document.querySelectorAll('[data-accordion]').forEach((details) => {
+			if (details.dataset.accordionInit === 'true') return;
+			details.dataset.accordionInit = 'true';
+
+			const summary = details.querySelector('.accordion__summary');
+			if (!(summary instanceof HTMLElement)) return;
+
+			summary.addEventListener('click', async (event) => {
+				event.preventDefault();
+				if (details.dataset.animating === 'true') return;
+
+				const group = details.closest('.accordion');
+				const wasOpen = details.classList.contains('is-open');
+				const others = group
+					? [...group.querySelectorAll('[data-accordion]')].filter(
+							(item) => item !== details && (item.classList.contains('is-open') || item.open),
+						)
+					: [];
+
+				if (wasOpen) {
+					await closeAccordion(details);
+					return;
+				}
+
+				await Promise.all([...others.map((item) => closeAccordion(item)), openAccordion(details)]);
+			});
+		});
+	}
+
+	setupAccordions();
+	document.addEventListener('astro:page-load', setupAccordions);
+</script>

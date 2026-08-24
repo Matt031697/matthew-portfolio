@@ -1,25 +1,118 @@
 ---
+import { siteAvailability, siteEmail, siteLinkedIn, siteLocation } from '../lib/site.ts';
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
 	<div class="container">
-		<p class="site-footer__text">
-			&copy; {year} Matthew. All rights reserved.
-		</p>
+		<div class="site-footer__inner">
+			<nav class="site-footer__bar" aria-label="Footer">
+				<div class="frosted-cluster">
+					<a class="nav-link" href={`mailto:${siteEmail}`}>Contact Me</a>
+				</div>
+				<a
+					class="site-footer__linkedin"
+					href={siteLinkedIn}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="LinkedIn (opens in a new tab)"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 448 512"
+						aria-hidden="true"
+						focusable="false"
+					>
+						<!-- Font Awesome Free LinkedIn brand icon -->
+						<path
+							d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+						></path>
+					</svg>
+				</a>
+			</nav>
+
+			<p class="site-footer__meta text-caption">
+				{siteLocation} · {siteAvailability}
+			</p>
+
+			<hr class="site-footer__divider" />
+
+			<p class="site-footer__copyright text-caption">
+				Copyright &copy; {year} Matthew Ward
+			</p>
+		</div>
 	</div>
 </footer>
 
 <style>
 	.site-footer {
-		border-top: 1px solid var(--color-border);
-		margin-top: auto;
+		padding-block: var(--space-2xl);
 	}
 
-	.site-footer__text {
+	.site-footer__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		gap: var(--space-lg);
+		min-height: 10rem;
+		text-align: left;
+	}
+
+	.site-footer__bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		gap: var(--space-md);
+	}
+
+	.site-footer__linkedin {
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex-shrink: 0;
+		min-width: 2.75rem;
+		min-height: 2.75rem;
+		padding: var(--space-xs);
+		padding-inline-end: 0;
+		margin-inline-start: auto;
+		color: var(--color-text);
+		text-decoration: none;
+		transition: var(--transition-nav);
+	}
+
+	.site-footer__linkedin:hover {
+		color: var(--color-nav-hover);
+	}
+
+	.site-footer__linkedin:focus-visible {
+		color: var(--color-accent);
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+	}
+
+	.site-footer__linkedin svg {
+		width: 1.5rem;
+		height: 1.5rem;
+		fill: currentColor;
+	}
+
+	.site-footer__meta {
 		margin: 0;
-		padding-block: var(--space-md);
-		color: var(--color-text-muted);
-		font-size: 0.875rem;
+	}
+
+	.site-footer__divider {
+		width: 100%;
+		margin: 0;
+		border: 0;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.site-footer__copyright {
+		align-self: stretch;
+		margin: 0;
+		text-align: center;
 	}
 </style>

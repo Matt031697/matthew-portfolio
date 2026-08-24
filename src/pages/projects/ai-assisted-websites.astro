@@ -1,0 +1,571 @@
+---
+import { Image } from 'astro:assets';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projectAccents } from '../../lib/site.ts';
+import { slugify } from '../../lib/strings.ts';
+import petXtrasHomepage from '../../assets/projects/ai-websites/3 Column Case Study Media 1280x720px Astro (6).png';
+import oberstsHomepage from '../../assets/projects/ai-websites/3 Column Case Study Media 1280x720px Astro (7).png';
+import northingtonHomepage from '../../assets/projects/ai-websites/3 Column Case Study Media 1280x720px Astro (8).png';
+import petXtrasDevices from '../../assets/projects/ai-websites/3 Column Case Study Media 1280x720px Astro (9).png';
+import oberstsDevices from '../../assets/projects/ai-websites/3 Column Case Study Media 1280x720px Astro (10).png';
+import northingtonDevices from '../../assets/projects/ai-websites/3 Column Case Study Media 1280x720px Astro (11).png';
+
+const pageTitle = 'AI-Assisted Websites — Matthew';
+const description =
+	'I use AI-assisted development to rapidly design and build lightweight, production-ready websites — while remaining responsible for architecture, design, accessibility, performance, and final quality.';
+
+const workflowSteps = [
+	{
+		label: 'Infrastructure',
+		copy: 'Each site starts from an Astro foundation created by a tier 3 dev: shared packages, a store repository in GitHub, Cloudflare for hosting, and a prompt and asset system that gives every project the same production-ready baseline.',
+	},
+	{
+		label: 'Local Development',
+		copy: 'I clone or update the store repository, install dependencies, and run the site locally. Before customizing anything, I quality-check the baseline so I know what the foundation already provides.',
+	},
+	{
+		label: 'AI-Assisted Build',
+		copy: 'Category-specific prompts in Cursor customize the site around the business — brand, content, layout, components, and page structure. A pet store, a grooming salon, and a windows-and-doors line do not start from the same design prompt.',
+	},
+	{
+		label: 'Review',
+		copy: 'I read the generated changes before accepting them. Anything that drifts from the brand, the content, accessibility, or the scope of the site gets rejected or rewritten by hand. AI proposes. I decide what ships.',
+	},
+	{
+		label: 'Optimization',
+		copy: 'Images move from local files to the Cloudflare CDN. Type checking, production builds, accessibility review, and responsive testing happen before the site is treated as ready to deploy.',
+	},
+	{
+		label: 'Deployment',
+		copy: 'Changes are committed and pushed to GitHub. A GitHub Actions workflow deploys the Astro site to Cloudflare Workers. I verify the development URL and confirm it is ready to be passed onto onboarding to connect any custom DNS.',
+	},
+];
+
+const cursorUses = [
+	{
+		label: 'Design direction',
+		copy: 'Category prompts I have made set the tone before a layout exists: warmth and knowledge for a pet store, a gentle professional feel for grooming, practical clarity for windows and doors. Cursor uses that brief to produce a first pass that already leans in the right direction.',
+	},
+	{
+		label: 'Page scaffolding',
+		copy: 'I use it to stand up the homepage flow, offering pages, about, contact, and a branded 404 from the MightyLocal template stack, custom SiteShell, header chrome, and the routes the business actually needs.',
+	},
+	{
+		label: 'Brand and components',
+		copy: 'It drafts namespaced CSS tokens, button variants, pathway tiles, split intros, and visit-or-call bands so the site has a small component library instead of one-off markup on every page.',
+	},
+	{
+		label: 'Content and data',
+		copy: 'Business inputs become benefit-led copy, offerings files, and an image registry. Cursor is fast at turning a positioning statement into scannable sections. I still rewrite anything that sounds generic.',
+	},
+	{
+		label: 'Production patterns',
+		copy: 'Repeated requirements like accessibility statements, footer legal links, contact forms, favicons, and offers or events widgets when the business uses them are faster to implement from a prompt than to rebuild by hand each time.',
+	},
+	{
+		label: 'Iteration, not one shot',
+		copy: 'The useful work happens across multiple rounds. I generate, review, adjust the prompt or the code, and generate again. The first pass is a starting point, not the site.',
+	},
+];
+
+const humanDirection = [
+	{
+		label: 'Design decisions',
+		copy: 'How much brand color to use, whether a section needs photography or an icon, which typefaces carry the personality, and where whitespace should stay tight so the site stays scannable.',
+	},
+	{
+		label: 'Architecture',
+		copy: 'When to keep a MightyLocal framework route, when to override it so brand styles apply, how live location data shows up in the header, and what belongs in a custom component versus the shared theme.',
+	},
+	{
+		label: 'UX',
+		copy: 'Every section should answer one visitor question. Phone, hours, and location stay obvious. These are companion sites that drive visits and calls not catalogs, carts, or checkout flows.',
+	},
+	{
+		label: 'Accessibility',
+		copy: 'Skip links, heading order, keyboard navigation, contrast, touch targets, an accessibility statement, and a real 404. Those are structural decisions, not a plugin Cursor can be trusted to finish.',
+	},
+	{
+		label: 'Content',
+		copy: 'Short, local, and specific to the business. Years in the community, departments, services, and trusted brands belong on the site. Filler, repeated photos, and sales-heavy filler do not.',
+	},
+	{
+		label: 'Refinement',
+		copy: 'After each AI pass I tighten spacing, correct markup, remove extra navigation, and pull the work back to scope. The last 30% is almost never generated, it is directed.',
+	},
+];
+
+const deployStages = [
+	{
+		label: 'Astro',
+		copy: 'Local preview, type checking, and a production build against the MightyLocal Astro stack.',
+	},
+	{
+		label: 'GitHub',
+		copy: 'The store repository is the source of truth. A commit and push trigger the Deploy Astro Site Worker workflow.',
+	},
+	{
+		label: 'Cloudflare Workers',
+		copy: 'The site runs as an Astro SSR Worker and goes live on a mightylocal.dev URL.',
+	},
+	{
+		label: 'CDN',
+		copy: 'Images upload to Cloudflare. Local image paths are rewritten to CDN URLs so the repo stays lean and assets load globally.',
+	},
+];
+
+const qualityChecks = [
+	{
+		label: 'Type checking',
+		copy: 'The project has to typecheck before it is considered ready. Generated code that does not compile does not ship.',
+	},
+	{
+		label: 'Production builds',
+		copy: 'A clean build is the gate after local work and after image migration. If the build fails, the workflow stops until it is fixed.',
+	},
+	{
+		label: 'Image migration',
+		copy: 'Local images are verified, uploaded to the CDN, and rewritten in source. I confirm the expected files changed, CDN URLs load, migrated images no longer point at local paths, and that every image has suitable alt text.',
+	},
+	{
+		label: 'Source review',
+		copy: 'I am responsible for checking unexpected files, leftover local image references, and scope creep during the build. Not after the site is live.',
+	},
+	{
+		label: 'Accessibility',
+		copy: 'Skip link, semantics, keyboard use, contrast, contact form protection, a favicon, a 404, and an accessibility statement are part of the pass, not a later audit.',
+	},
+	{
+		label: 'Responsive testing',
+		copy: 'The custom header, utility bar, cards, and visit actions have to hold up from a condensed mobile layout to desktop. I check the site in the browser, not only in the generated markup.',
+	},
+];
+
+const liveSites = [
+	{
+		name: "Oberst's Pet Paradise",
+		slug: 'obersts-pet-paradise',
+		location: 'Ford City, PA',
+		href: 'https://obersts-pet-paradise-pa.mightylocal.dev/',
+		copy: 'A specialty pet store organized around eight departments. Aquatic leads as the signature offering; the rest stay scannable so visitors can find fish, reptiles, birds, and small animals without a catalog-style layout.',
+		image: oberstsDevices,
+		alt: 'Responsive exotic pet care website displayed on desktop, laptop, and smartphone, featuring veterinary departments and a friendly parrot; welcoming tone.',
+	},
+	{
+		name: 'Pet Xtras Grooming',
+		slug: 'pet-xtras-grooming',
+		location: 'Howell, MI',
+		href: 'https://pet-xtras-mi.mightylocal.dev/',
+		copy: 'A grooming salon that uses the about page to build trust: People\'s Choice recognition, natural products, and wellness checks. The story does the selling so the site stays a companion, not a booking engine.',
+		image: petXtrasDevices,
+		alt: 'Responsive pet grooming website displayed on a desktop monitor, laptop, and smartphone, showcasing services, testimonials, and a clean modern layout.',
+	},
+	{
+		name: 'Northington Windows & Doors',
+		slug: 'northington-windows-doors',
+		location: 'CT & MA',
+		href: 'https://northington-windows-doors.mightylocal.dev/',
+		copy: 'A private-label windows and doors line for builders and homeowners across five showrooms. Budget-friendly positioning, clear product paths, and a contact-first layout instead of a catalog.',
+		image: northingtonDevices,
+		alt: 'Responsive home-improvement website displayed on a desktop, laptop, and smartphone, featuring entry, patio, storm, and interior doors.',
+	},
+];
+
+const learnedItems = [
+	{
+		label: 'What AI is genuinely good at',
+		copy: 'Scaffolding a site from a detailed prompt, repeating component patterns, drafting first-pass layout and CSS tokens, and moving through boilerplate much faster than starting from a blank file. Given a strong foundation and a specific brief, it gets to a working website quickly.',
+	},
+	{
+		label: 'Where it struggles',
+		copy: 'Restraint. Left alone it adds extra navigation, saturated brand blocks, repeated photos, and features the business does not need. It also misses framework boundaries which MightyLocal routes to keep, which widgets belong, and when a marketing site is starting to look like a catalog.',
+	},
+	{
+		label: 'Where expertise matters',
+		copy: 'Writing the prompts, choosing the architecture, judging the design, rewriting the content, and deciding when the site is actually done. The workflow only holds if someone who knows the stack and the standard reviews every pass before it moves forward.',
+	},
+];
+
+const resultBadges = [
+	'Cursor',
+	'MightyLocal',
+	'Accessibility',
+	'AI-Assisted Development',
+];
+
+const featuredLiveSite =
+	liveSites.find((site) => site.slug === 'northington-windows-doors') ?? liveSites[0];
+
+const workflowMockups = [
+	{
+		image: petXtrasHomepage,
+		alt: 'Pet Extras grooming website homepage showing a fluffy golden dog being groomed, with booking information and a friendly, professional tone.',
+	},
+	{
+		image: oberstsHomepage,
+		alt: 'Exotic pet store website homepage featuring a yellow bird, clownfish, hamster, and tortoise; welcoming text promotes local pet care.',
+	},
+	{
+		image: northingtonHomepage,
+		alt: 'Website homepage for Northington Window Works featuring a welcoming home exterior, bold “Windows & doors that work as hard as you,” and service stats.',
+	},
+];
+---
+
+<BaseLayout title={pageTitle} {description} accentColor={projectAccents.astro}>
+	<Header backToProjects />
+
+	<main id="main">
+		<div class="section-group section-group--intro">
+			<div class="container">
+				<section class="hero hero--project" aria-labelledby="case-study-heading">
+					<h1 id="case-study-heading">AI-Assisted Websites</h1>
+					<p class="hero__subheading">
+						I use AI-assisted development to rapidly design and build lightweight, production-ready
+						websites. AI accelerates the implementation process, while I remain responsible for
+						the architecture, design decisions, accessibility, performance, and final quality.
+					</p>
+					<ul class="badge-list hero__badges">
+						<li class="badge">Cursor</li>
+						<li class="badge">Accessibility</li>
+						<li class="badge">AI-Assisted Development</li>
+					</ul>
+					<a
+						class="btn hero__cta"
+						href={featuredLiveSite.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`View live site: ${featuredLiveSite.name} (opens in a new tab)`}
+					>
+						View Live Site
+					</a>
+				</section>
+			</div>
+
+			<section class="section-block" aria-labelledby="case-study-context-heading">
+				<div class="container">
+					<h2 id="case-study-context-heading" class="visually-hidden">Case study context</h2>
+					<div class="content-grid">
+						<div class="content-grid__column">
+							<section class="content-block" aria-labelledby="case-study-who">
+								<h2 id="case-study-who" class="text-accent section-label">Who was this for</h2>
+								<div class="content-copy">
+									<p>
+										The websites I build are designed for local businesses that need a polished,
+										modern digital presence without the complexity of a large custom development
+										project. Each site is tailored around the business, its customers, brand,
+										services, and local market.
+									</p>
+								</div>
+							</section>
+
+							<section class="content-block" aria-labelledby="case-study-work">
+								<h2 id="case-study-work" class="text-accent section-label">What did I build</h2>
+								<div class="content-copy">
+									<p>
+										I use AI-assisted development to design and build lightweight, performant
+										websites. Starting from an established project foundation, I use Cursor to
+										accelerate development while maintaining control over the design, architecture,
+										content, accessibility, and final implementation.
+									</p>
+								</div>
+							</section>
+
+							<section class="content-block" aria-labelledby="case-study-why">
+								<h2 id="case-study-why" class="text-accent section-label">Why do you care</h2>
+								<div class="content-copy">
+									<p>
+										AI makes it possible to move from an idea to a working website significantly
+										faster, but speed isn't the goal on its own. The challenge is using AI as a
+										development partner while maintaining the design quality, accessibility,
+										performance, and technical standards expected of a production website.
+									</p>
+								</div>
+							</section>
+						</div>
+
+						<div class="content-grid__column">
+							<section class="content-block" aria-labelledby="case-study-challenge">
+								<h2 id="case-study-challenge" class="text-accent section-label">The challenge</h2>
+								<div class="content-copy">
+									<p>
+										The challenge is not simply building one website faster. It's developing a
+										repeatable process for creating companion sites efficiently while still
+										allowing each website to feel tailored to its business.
+									</p>
+									<p>
+										I built an asset and prompt management system that gives me a consistent
+										starting point for each project, then use AI-assisted development to move
+										through multiple rounds of design and implementation. After each iteration,
+										I review the generated work, make targeted adjustments, and quality-check
+										the site before moving forward.
+									</p>
+									<p>
+										The goal is to find the right balance between speed, consistency,
+										customization, and quality, using AI to accelerate the work without letting
+										the process drift beyond the scope of what we're building.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="workflow-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">The workflow</p>
+						<h2 id="workflow-heading">How companion sites get built without starting over</h2>
+						<p class="section-intro">
+							Every MightyLocal companion site follows the same sequence. Shared infrastructure
+							and prompts make the work repeatable. The review loop is what keeps each website
+							specific to the business.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid">
+						{
+							workflowSteps.map((step) => (
+								<section class="content-block" aria-labelledby={`workflow-${slugify(step.label)}`}>
+									<h3 id={`workflow-${slugify(step.label)}`} class="text-accent section-label">
+										{step.label}
+									</h3>
+									<p>{step.copy}</p>
+								</section>
+							))
+						}
+					</div>
+
+					<div class="media-row media-row--3" role="group" aria-label="Companion site mockups">
+						{
+							workflowMockups.map((mockup) => (
+								<Image
+									class="showcase-item__media"
+									src={mockup.image}
+									alt={mockup.alt}
+									widths={[640, 960, 1280]}
+									sizes="(min-width: 48rem) 30vw, 92vw"
+								/>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="ai-partner-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">AI as a development partner</p>
+						<h2 id="ai-partner-heading">What I actually use Cursor for</h2>
+						<p class="section-intro">
+							I use Cursor to move through implementation faster, not to invent the architecture
+							or accept a first draft as finished. The live sites later in this case study are the
+							proof. Cursor is the partner that gets me there.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid">
+						{
+							cursorUses.map((item) => (
+								<section class="content-block" aria-labelledby={`cursor-${slugify(item.label)}`}>
+									<h3 id={`cursor-${slugify(item.label)}`} class="text-accent section-label">
+										{item.label}
+									</h3>
+									<p>{item.copy}</p>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="human-direction-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Human direction still matters</p>
+						<h2 id="human-direction-heading">The calls AI cannot make</h2>
+						<p class="section-intro">
+							AI can generate a working page in minutes. It cannot decide whether that page is
+							the right page. These are the calls that stay with me on every build.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid">
+						{
+							humanDirection.map((item) => (
+								<section class="content-block" aria-labelledby={`direction-${slugify(item.label)}`}>
+									<h3 id={`direction-${slugify(item.label)}`} class="text-accent section-label">
+										{item.label}
+									</h3>
+									<p>{item.copy}</p>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="local-to-live-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">From local to live</p>
+						<h2 id="local-to-live-heading">Astro, GitHub, Cloudflare Workers, and the CDN</h2>
+						<p class="section-intro">
+							The path from a local Astro preview to a production URL is intentional and short:
+							source control, a Worker deploy, and a CDN for images. There is no separate hosting
+							stack to reinvent for each store.
+						</p>
+					</div>
+
+					<ol class="pipeline pipeline--deploy" aria-label="Deployment path">
+						{
+							deployStages.map((stage) => (
+								<li class="pipeline__item">
+									<h3 class="text-accent pipeline__label">{stage.label}</h3>
+									<p>{stage.copy}</p>
+								</li>
+							))
+						}
+					</ol>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="quality-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Quality control</p>
+						<h2 id="quality-heading">What has to pass before a site ships</h2>
+						<p class="section-intro">
+							Speed only holds if the site still typechecks, builds, stays accessible, and
+							survives a source review. This is the gate between an AI-assisted draft and a
+							production Worker.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid">
+						{
+							qualityChecks.map((item) => (
+								<section class="content-block" aria-labelledby={`quality-${slugify(item.label)}`}>
+									<h3 id={`quality-${slugify(item.label)}`} class="text-accent section-label">
+										{item.label}
+									</h3>
+									<p>{item.copy}</p>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="applications-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">Real-world applications</p>
+						<h2 id="applications-heading">The same workflow, three live businesses</h2>
+						<p class="section-intro">
+							The proof is not a screenshot of a prompt. It is live companion sites — same
+							foundation, same workflow, different businesses. Each one had to feel like it
+							belonged to that store, not to a template.
+						</p>
+					</div>
+
+					<div class="showcase-grid showcase-grid--spaced">
+						{
+							liveSites.map((site) => (
+								<article
+									class="showcase-item showcase-item--feature"
+									aria-labelledby={`site-${site.slug}`}
+								>
+								{
+									site.image ? (
+										<Image
+											class="showcase-item__media"
+											src={site.image}
+											alt={site.alt ?? site.name}
+											widths={[640, 960, 1280]}
+											sizes="(min-width: 48rem) 30vw, 92vw"
+										/>
+									) : (
+										<div class="media-placeholder media-placeholder--compact" aria-hidden="true" />
+									)
+								}
+									<div class="heading-block">
+										<p class="text-accent section-label">{site.location}</p>
+										<h3 id={`site-${site.slug}`} class="subsection-title">
+											{site.name}
+										</h3>
+										<p class="showcase-item__copy">{site.copy}</p>
+										<a
+											class="btn"
+											href={site.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label={`View live site: ${site.name} (opens in a new tab)`}
+										>
+											View Live Site
+										</a>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="learned-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">What I've learned</p>
+						<h2 id="learned-heading">Where AI helps, and where it doesn't</h2>
+						<p class="section-intro">
+							Using AI on real client sites has made the boundaries obvious. It is a strong
+							implementation partner and a weak editor-in-chief.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid content-list--3">
+						{
+							learnedItems.map((item) => (
+								<section class="content-block" aria-labelledby={`learned-${slugify(item.label)}`}>
+									<h3 id={`learned-${slugify(item.label)}`} class="text-accent section-label">
+										{item.label}
+									</h3>
+									<p>{item.copy}</p>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="result-heading">
+				<div class="container">
+					<div class="heading-block">
+						<h2 id="result-heading">The Result</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								The result is a companion site that feels like it belongs to that retailer.
+								The design and the details do not thin out because the store is smaller, part
+								of a different affiliate, or working at a different price point.
+							</p>
+						</div>
+					</div>
+					<ul class="badge-list hero__badges">
+						{resultBadges.map((badge) => <li class="badge">{badge}</li>)}
+					</ul>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<Footer />
+</BaseLayout>
