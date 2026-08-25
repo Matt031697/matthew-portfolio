@@ -487,18 +487,23 @@ blockquote {
 	gap: var(--space-md);
 }
 
-.content-copy a {
-	text-decoration: underline;
-	text-decoration-color: color-mix(in srgb, var(--color-project) 45%, transparent);
-	text-underline-offset: 0.18em;
-	transition: color var(--transition-nav), text-decoration-color var(--transition-nav);
+p a {
+	font-weight: var(--font-weight-bold);
+	color: inherit;
+	text-decoration: none;
+	transition: var(--transition-nav);
 }
 
 @media (hover: hover) {
-	.content-copy a:hover {
+	p a:hover {
 		color: var(--color-project);
-		text-decoration-color: var(--color-project);
 	}
+}
+
+p a:focus-visible {
+	color: var(--color-accent);
+	outline: 3px solid var(--color-focus);
+	outline-offset: 2px;
 }
 
 /* Label + heading + copy as one unit (avoids parent flex gap splitting them) */
@@ -549,10 +554,17 @@ blockquote {
 }
 
 .section-intro {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
 	max-width: 65ch;
 	margin: 0 0 var(--space-xl);
 	font-weight: var(--font-weight-regular);
 	letter-spacing: var(--letter-spacing-body);
+}
+
+.section-intro p {
+	margin: 0;
 }
 
 .section-group .section-block + .section-block {
