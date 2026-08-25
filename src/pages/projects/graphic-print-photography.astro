@@ -8,6 +8,9 @@ import { slugify } from '../../lib/strings.ts';
 import prospectusPage1 from '../../assets/projects/design/prospectus-page-1.png';
 import prospectusPage2 from '../../assets/projects/design/prospectus-page-2.png';
 import petTradeShowBooth from '../../assets/projects/design/pet-trade-show-booth.png';
+import tawanPoster from '../../assets/projects/design/tawan-wattuya-poster.png';
+import tawanPostcardFront from '../../assets/projects/design/tawan-wattuya-postcard-front.png';
+import tawanPostcardBack from '../../assets/projects/design/tawan-wattuya-postcard-back.png';
 import facebookBanner from '../../assets/projects/design/facebook-banner.png';
 import facebookBanner2 from '../../assets/projects/design/facebook-banner-2.png';
 import dougieCarousel1 from '../../assets/projects/design/dougiedeluxe-carousel-1.png';
@@ -18,6 +21,10 @@ import werkCarousel1 from '../../assets/projects/design/werkthestudio-carousel-1
 import werkCarousel2 from '../../assets/projects/design/werkthestudio-carousel-2.png';
 import werkCarousel3 from '../../assets/projects/design/werkthestudio-carousel-3.png';
 import werkLogo from '../../assets/projects/design/werkthestudio-primary-logo.jpg';
+import bondfireLogo from '../../assets/projects/bondfire/foundation-mosaic-left.png';
+import bondfireCarousel1 from '../../assets/projects/design/bondfire-carousel-1.png';
+import bondfireCarousel2 from '../../assets/projects/design/bondfire-carousel-2.png';
+import bondfireCarousel3 from '../../assets/projects/design/bondfire-carousel-3.png';
 import kobeBryant from '../../assets/projects/design/illustration-kobe-bryant.png';
 import magicJohnson from '../../assets/projects/design/illustration-magic-johnson.png';
 import jumpShot from '../../assets/projects/design/illustration-jerry-west.png';
@@ -47,6 +54,25 @@ const facebookBanners = [
 	},
 ] as const;
 
+const tawanPostcardSides = [
+	{
+		label: 'Front',
+		image: tawanPostcardFront,
+		alt: 'Expressive close-up portrait of a green, Frankenstein-like figure with bright red hair, sharp teeth, and intense eyes; eerie, hand-painted style.',
+		className: 'gallery-item__media--postcard-front',
+		widths: [320, 396],
+		sizes: '(min-width: 48rem) 22vw, 45vw',
+	},
+	{
+		label: 'Back',
+		image: tawanPostcardBack,
+		alt: 'Flyer for “Menagerie,” paintings by Tawan Wattuya, at Project Space Gallery, Feb. 6–Mar. 15, 2019; lists opening reception and events.',
+		className: 'gallery-item__media--postcard-back',
+		widths: [396, 612],
+		sizes: '(min-width: 48rem) 32vw, 55vw',
+	},
+] as const;
+
 const prospectusPages = [
 	{
 		label: 'Page 1 Prospectus',
@@ -61,6 +87,32 @@ const prospectusPages = [
 ] as const;
 
 const identityCarousels = [
+	{
+		name: 'Bondfire',
+		tools: 'Primary logo + Instagram carousel',
+		logoOnWhite: true,
+		logo: {
+			image: bondfireLogo,
+			alt: 'Logo for Bondfire Design Company, featuring bold orange “BONDFIRE” text with a flame for the letter I, above black “DESIGN COMPANY” lettering.',
+		},
+		slides: [
+			{
+				label: 'Slide 1',
+				image: bondfireCarousel1,
+				alt: 'White graphic with black starbursts, a bear silhouette at bottom left, and a phone edge at right surrounding the “Bondfire Design Company” logo.',
+			},
+			{
+				label: 'Slide 2',
+				image: bondfireCarousel2,
+				alt: 'Promotional BONDFIRE graphic with two angled smartphones displaying a website, a white flame logo and name, and wildfire flames in the background.',
+			},
+			{
+				label: 'Slide 3',
+				image: bondfireCarousel3,
+				alt: 'Promotional graphic for a web design company, showing angled smartphone and tablet website mockups in black, white, and orange tones.',
+			},
+		],
+	},
 	{
 		name: 'DougieDeluxe',
 		tools: 'Primary logo + Instagram carousel',
@@ -89,6 +141,7 @@ const identityCarousels = [
 	{
 		name: 'Werkthestudio',
 		tools: 'Primary logo + Instagram carousel',
+		logoOnWhite: true,
 		logo: {
 			image: werkLogo,
 			alt: 'Black-and-white logo reading “werk. the studio,” with bold lowercase lettering and a clean, modern typographic style on a white background.',
@@ -208,9 +261,10 @@ const closingBadges = [
 						<p class="text-accent section-label">Print and environmental</p>
 						<h2 id="print-heading">Made for a page, and for a room</h2>
 						<p class="section-intro">
-							A two-page prospectus for a tradeshow magazine, and a booth that has to read
-							from across an aisle. Hierarchy and print design have to hold up on paper
-							and in the room.
+							A two-page prospectus for a tradeshow magazine, a booth that has to read
+							from across an aisle, and exhibition print for a painting show: a poster
+							for the room, a postcard for the hand. Hierarchy and print design have to
+							hold up on paper and in the room.
 						</p>
 					</div>
 
@@ -257,6 +311,56 @@ const closingBadges = [
 						</figure>
 					</div>
 
+					<div
+						class="print-exhibition"
+						role="group"
+						aria-label="Tawan Wattuya exhibition print"
+					>
+						<figure
+							class="print-spread print-spread--postcard"
+							aria-labelledby="piece-tawan-wattuya-postcard"
+						>
+							<div class="print-spread__pages">
+								{
+									tawanPostcardSides.map((side) => (
+										<Image
+											class:list={['gallery-item__media', side.className]}
+											src={side.image}
+											alt={side.alt}
+											widths={[...side.widths]}
+											sizes={side.sizes}
+										/>
+									))
+								}
+							</div>
+							<figcaption
+								id="piece-tawan-wattuya-postcard"
+								class="text-accent section-label gallery-item__label print-spread__label"
+							>
+								Tawan Wattuya postcard
+							</figcaption>
+						</figure>
+
+						<figure
+							class="gallery-item"
+							aria-labelledby="piece-tawan-wattuya-poster"
+						>
+							<Image
+								class="gallery-item__media gallery-item__media--poster"
+								src={tawanPoster}
+								alt="Promotional poster for a Tawan Wattuya painting workshop, featuring vibrant abstract brushstrokes, event details, and a black-and-white artist portrait."
+								widths={[640, 960, 1280, 1920, 2560]}
+								sizes="(min-width: 48rem) 36vw, 92vw"
+							/>
+							<figcaption
+								id="piece-tawan-wattuya-poster"
+								class="text-accent section-label gallery-item__label"
+							>
+								Tawan Wattuya poster
+							</figcaption>
+						</figure>
+					</div>
+
 					<div class="heading-block">
 						<h2 id="case-study-context-heading">The work</h2>
 						<div class="content-copy content-copy--narrow">
@@ -280,7 +384,7 @@ const closingBadges = [
 						<p class="text-accent section-label">Social</p>
 						<h2 id="social-heading">Built for the feed</h2>
 						<p class="section-intro">
-							Facebook campaign banners for New Media Retailer, plus client identities built
+							Facebook campaign banners for New Media Retailer, plus identities built
 							for Instagram, with a primary logo and a three-slide carousel for each.
 						</p>
 					</div>
@@ -328,8 +432,7 @@ const closingBadges = [
 										class:list={[
 											'gallery-item__media',
 											'gallery-item__media--logo-tile',
-											client.name === 'Werkthestudio' &&
-												'gallery-item__media--logo-tile-white',
+											client.logoOnWhite && 'gallery-item__media--logo-tile-white',
 										]}
 										src={client.logo.image}
 										alt={client.logo.alt}

@@ -985,7 +985,7 @@ blockquote {
 		align-items: start;
 	}
 
-	.print-spread,
+	.print-row .print-spread,
 	.print-row > .gallery-item {
 		display: grid;
 		grid-template-rows: subgrid;
@@ -996,6 +996,54 @@ blockquote {
 	.print-row .gallery-item__media--booth {
 		aspect-ratio: 2400 / 2000;
 	}
+}
+
+.print-exhibition {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--space-xl);
+	align-items: start;
+}
+
+.print-row + .print-exhibition,
+.print-exhibition + .heading-block {
+	margin-top: var(--space-2xl);
+}
+
+@media (min-width: 48rem) {
+	.print-exhibition {
+		grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+	}
+}
+
+.gallery-item__media--poster {
+	width: 100%;
+	aspect-ratio: 3893 / 2387;
+	object-fit: contain;
+}
+
+.print-spread--postcard .print-spread__pages {
+	display: grid;
+	grid-template-columns: minmax(0, 396fr) minmax(0, 612fr);
+	align-items: start;
+}
+
+.print-spread--postcard .print-spread__label {
+	text-align: left;
+}
+
+.gallery-item__media--postcard-front,
+.gallery-item__media--postcard-back {
+	width: 100%;
+	object-fit: contain;
+}
+
+.gallery-item__media--postcard-front {
+	aspect-ratio: 396 / 612;
+}
+
+.gallery-item__media--postcard-back {
+	aspect-ratio: 612 / 396;
 }
 
 .banner-pair {
@@ -1026,7 +1074,8 @@ blockquote {
 .gallery-item__media--logo-tile {
 	aspect-ratio: 1 / 1;
 	object-fit: contain;
-	background-color: var(--color-surface-muted);
+	padding: var(--space-sm);
+	background-color: var(--color-background);
 }
 
 .gallery-item__media--logo-tile-white {
