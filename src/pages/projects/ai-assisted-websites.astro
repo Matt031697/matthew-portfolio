@@ -14,27 +14,12 @@ import northingtonDevices from '../../assets/projects/ai-websites/northington-de
 
 const pageTitle = 'AI-Assisted Websites, Matthew';
 const description =
-	'I use AI-assisted development to rapidly design and build lightweight, production-ready websites, while remaining responsible for architecture, design, accessibility, performance, and final quality.';
-
-const workflowSteps = [
-	{
-		label: 'Foundation',
-		copy: 'Shared Astro packages, GitHub store repo, Cloudflare hosting, and category-specific prompts. Every project starts from the same production-ready baseline.',
-	},
-	{
-		label: 'AI-assisted build',
-		copy: 'Cursor customizes layout, components, brand tokens, and content around the business. A pet store, grooming salon, and windows line do not share the same design prompt.',
-	},
-	{
-		label: 'Review and refine',
-		copy: 'I read every generated change. What drifts from brand, accessibility, or scope gets rejected or rewritten. Images migrate to the CDN; typecheck, build, and responsive testing run before anything ships.',
-	},
-];
+	'Companion sites for local businesses that do not match a templated program. Cursor and a shared Astro system speed up implementation; I own the design, architecture, and accessibility decisions.';
 
 const cursorUses = [
 	{
 		label: 'Design direction and scaffolding',
-		copy: 'Category prompts set tone before layout exists. Cursor stands up homepage flow, offering pages, components, and routes from the MightyLocal template stack.',
+		copy: 'Category prompts set tone before layout exists. Cursor stands up homepage flow, offering pages, components, and routes from the shared template stack.',
 	},
 	{
 		label: 'Content and patterns',
@@ -53,7 +38,7 @@ const humanDirection = [
 	},
 	{
 		label: 'Architecture',
-		copy: 'When to keep a MightyLocal route, when to override it, how live location data shows in the header, and what belongs in a custom component versus the shared theme.',
+		copy: 'When to keep a shared route, when to override it, how the shared API feeds live location data into the header, and what belongs in a custom component versus the shared theme.',
 	},
 	{
 		label: 'Quality and content',
@@ -64,7 +49,7 @@ const humanDirection = [
 const deployStages = [
 	{
 		label: 'Astro',
-		copy: 'Local preview, type checking, and a production build against the MightyLocal Astro stack.',
+		copy: 'Local preview, type checking, and a production build against the shared Astro stack.',
 	},
 	{
 		label: 'GitHub',
@@ -72,26 +57,11 @@ const deployStages = [
 	},
 	{
 		label: 'Cloudflare Workers',
-		copy: 'The site runs as an Astro SSR Worker and goes live on a mightylocal.dev URL.',
+		copy: 'The site runs as an Astro SSR Worker and goes live on Cloudflare.',
 	},
 	{
 		label: 'CDN',
 		copy: 'Images upload to Cloudflare. Local image paths are rewritten to CDN URLs so the repo stays lean and assets load globally.',
-	},
-];
-
-const qualityChecks = [
-	{
-		label: 'Build gate',
-		copy: 'Typecheck and a clean production build before anything ships. Generated code that does not compile does not deploy.',
-	},
-	{
-		label: 'Accessibility and responsive',
-		copy: 'Skip link, semantics, keyboard use, contrast, contact form protection, favicon, 404, and accessibility statement, checked in the browser, not only in markup.',
-	},
-	{
-		label: 'Source and assets',
-		copy: 'Images verified, uploaded to the CDN, and rewritten in source. Scope creep, leftover local paths, and missing alt text get caught before the site goes live.',
 	},
 ];
 
@@ -132,7 +102,7 @@ const learnedItems = [
 	},
 	{
 		label: 'Where it struggles',
-		copy: 'Restraint. Left alone it adds extra navigation, saturated brand blocks, repeated photos, and features the business does not need. It also misses framework boundaries which MightyLocal routes to keep, which widgets belong, and when a marketing site is starting to look like a catalog.',
+		copy: 'Restraint. Left alone it adds extra navigation, saturated brand blocks, repeated photos, and features the business does not need. It also misses framework boundaries: which shared routes to keep, which widgets belong, and when a marketing site is starting to look like a catalog.',
 	},
 	{
 		label: 'Where expertise matters',
@@ -142,7 +112,7 @@ const learnedItems = [
 
 const resultBadges = [
 	'Cursor',
-	'MightyLocal',
+	'Astro',
 	'Accessibility',
 	'AI-Assisted Development',
 ];
@@ -175,13 +145,15 @@ const workflowMockups = [
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
 					<h1 id="case-study-heading">AI-Assisted Websites</h1>
 					<p class="hero__subheading">
-						Three live companion sites for local businesses, built with Cursor on a shared Astro
-						foundation. AI speeds up implementation; I own design, architecture, accessibility,
-						and what ships.
+						Companion sites created to reach markets outside of those who match a templated
+						program. After all, everyone deserves quality, and I'm someone who wants to
+						provide that to them. Assisted with Cursor and a shared Astro system, AI speeds
+						up implementation while I own the design, architecture, and accessibility
+						decisions.
 					</p>
 					<ul class="badge-list hero__badges">
 						<li class="badge">Cursor</li>
-						<li class="badge">MightyLocal</li>
+						<li class="badge">Astro</li>
 						<li class="badge">Accessibility</li>
 						<li class="badge">AI-Assisted Development</li>
 					</ul>
@@ -254,14 +226,15 @@ const workflowMockups = [
 						<h2 id="case-study-context-heading">The work</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								MightyLocal companion sites for local retailers, polished, lightweight, and
-								tailored around each business, its customers, and its market. I use Cursor on a
-								shared Astro foundation to move fast without sacrificing production standards.
+								Companion sites for local retailers, polished, lightweight, and tailored around
+								each business, its customers, and its market. I use Cursor on an Astro
+								foundation to move fast without sacrificing production standards.
 							</p>
 							<p>
-								The challenge is repeatable speed with real customization: a process that scales
-								across stores while each site still feels specific, with a review loop that keeps
-								AI output from drifting past scope.
+								The challenge is maintaining quality and speed with real customization. I am
+								responsible for a workflow that stays efficient across stores while each site
+								still feels specific, and for a review loop that keeps AI output from drifting
+								past scope.
 							</p>
 						</div>
 					</div>
@@ -282,56 +255,6 @@ const workflowMockups = [
 				</div>
 			</section>
 
-			<section class="section-block" aria-labelledby="workflow-heading">
-				<div class="container">
-					<div class="content-grid content-grid--center">
-						<div class="content-grid__column">
-							<div class="heading-block">
-								<h2 id="workflow-heading">How companion sites get built</h2>
-								<p class="section-intro">
-									Shared infrastructure and category prompts make the work repeatable. Review
-									and refinement keep each site specific to the business.
-								</p>
-							</div>
-
-							{
-								workflowSteps.map((step) => (
-									<section class="content-block" aria-labelledby={`workflow-${slugify(step.label)}`}>
-										<h3 id={`workflow-${slugify(step.label)}`} class="section-label">
-											{step.label}
-										</h3>
-										<p>{step.copy}</p>
-									</section>
-								))
-							}
-						</div>
-
-						<div class="content-grid__column">
-							<div class="heading-block">
-								<h2 id="local-to-live-heading">From local to live</h2>
-								<p class="section-intro">
-									Astro preview → GitHub → Cloudflare Workers → CDN. No separate hosting stack
-									per store.
-								</p>
-							</div>
-
-							<ol class="pipeline" aria-label="Deployment path">
-								{
-									deployStages.map((stage) => (
-										<li class="pipeline__item">
-											<h3 class="text-accent pipeline__label">{stage.label}</h3>
-											<p>{stage.copy}</p>
-										</li>
-									))
-								}
-							</ol>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-
-		<div class="section-group">
 			<section class="section-block" aria-labelledby="ai-partner-heading">
 				<div class="container">
 					<div class="content-grid content-grid--center">
@@ -380,28 +303,26 @@ const workflowMockups = [
 				</div>
 			</section>
 
-			<section class="section-block" aria-labelledby="quality-heading">
+			<section class="section-block" aria-labelledby="local-to-live-heading">
 				<div class="container">
 					<div class="heading-block">
-						<h2 id="quality-heading">Before it ships</h2>
+						<h2 id="local-to-live-heading">From local to live</h2>
 						<p class="section-intro">
-							Speed only holds if the site still typechecks, builds, stays accessible, and
-							survives a source review.
+							Astro preview → GitHub → Cloudflare Workers → CDN. No separate hosting stack
+							per store.
 						</p>
 					</div>
 
-					<div class="content-list content-list--grid content-list--3">
+					<ol class="pipeline" aria-label="Deployment path">
 						{
-							qualityChecks.map((item) => (
-								<section class="content-block" aria-labelledby={`quality-${slugify(item.label)}`}>
-									<h3 id={`quality-${slugify(item.label)}`} class="text-accent section-label">
-										{item.label}
-									</h3>
-									<p>{item.copy}</p>
-								</section>
+							deployStages.map((stage) => (
+								<li class="pipeline__item">
+									<h3 class="text-accent pipeline__label">{stage.label}</h3>
+									<p>{stage.copy}</p>
+								</li>
 							))
 						}
-					</div>
+					</ol>
 				</div>
 			</section>
 		</div>
@@ -413,10 +334,10 @@ const workflowMockups = [
 						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								Three live companion sites, each tailored to the business, built on the same
-								Astro foundation, and held to the same production standard. AI accelerates
-								implementation; judgment on design, architecture, accessibility, and scope stays
-								human.
+								Companion sites, each uniquely tailored to meet their needs, built on the
+								same foundation, held to the same standard. AI accelerates implementation,
+								allowing for focus on judgment of design, architecture, and accessibility,
+								and making sure the scope stays human.
 							</p>
 						</div>
 					</div>
@@ -444,3 +365,17 @@ const workflowMockups = [
 
 	<Footer />
 </BaseLayout>
+
+<style>
+	@media (min-width: 48rem) {
+		.pipeline {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.pipeline {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+</style>
