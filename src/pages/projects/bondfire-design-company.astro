@@ -36,35 +36,25 @@ import applicationLanyard from '../../assets/projects/bondfire/application-lanya
 
 const pageTitle = 'Bondfire Design Company, Matthew';
 const description =
-	'Case study: building Bondfire Design Company from the ground up, with brand identity, digital experience, and a website built to support a real freelance design and development business.';
+	'Case study: Bondfire Design Company. Quality for business owners big or small. Identity, website, and marketing system built to support the people who need it.';
 
 const processSteps = [
 	{
-		label: 'Discovery + positioning',
-		copy: "Defined Bondfire's audience, values, and positioning, with professional credibility and an approachable, outdoors-inspired personality.",
+		label: 'Naming the work',
+		copy: 'I wanted to be seen as an approachable studio. This is rooted in small-town New York. What is more personable than the people you love around a fire, bonding over their stories? That is why I want people to let me help tell theirs.',
 	},
 	{
-		label: 'Identity system',
-		copy: 'Logo, typography, color palette, and iconography into a flexible system for digital and print.',
+		label: 'Building the system',
+		copy: 'A logo stack that is approachable, unique, and multifunctional. Type that is easy to spot, and friendly enough to stay long enough to read. Color that is warm and solid, so you know where it is rooted. Icons that provide a little fun.',
 	},
 	{
-		label: 'Website design + development',
-		copy: 'Responsive layouts, content structure, and front-end build in Webflow, with the brand system carried into a working site.',
+		label: 'Building the site',
+		copy: "A site that lets you know you're in Upstate New York, but still caught up with the times. Friendly layout, important content with no fluff, and everything you need to become a partner.",
 	},
 	{
-		label: 'Launch + iteration',
-		copy: 'Responsive testing, accessibility checks, and ongoing refinement as the business took on real client work.',
+		label: 'Using it',
+		copy: 'Testing, constructive criticism, ears to listen, and real client testimonials. A brand that feels like your own.',
 	},
-];
-
-const foundationValues = [
-	'Transparency',
-	'Trust',
-	'Quality Relationships',
-	'Open Communication',
-	'Community',
-	'Connection',
-	'Creativity',
 ];
 
 const colorPalette = [
@@ -79,6 +69,7 @@ const colorPalette = [
 const logoExamples = [
 	{
 		image: foundationMosaicLeft,
+		inset: true,
 		alt: 'Logo for Bondfire Design Company, featuring bold orange “BONDFIRE” text with a flame symbol, above black “DESIGN COMPANY” lettering.',
 	},
 	{
@@ -179,13 +170,16 @@ const resultBadges = [
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
 					<h1 id="case-study-heading">Bondfire Design Company</h1>
 					<p class="hero__subheading">
-						My freelance design and development business, brand identity, website, and
-						marketing system built from scratch to support real client work.
+						I believe all business owners, big or small, deserve quality, and that is
+						why I started Bondfire Design Company. Regardless of price point, the
+						details aren't ignored, design is backed by passion, and transparency is
+						the foundation for customer service. This is a business, identity,
+						website, and marketing system built to support those who need it.
 					</p>
 					<ul class="badge-list hero__badges">
-						<li class="badge">Built to Be Credible</li>
-						<li class="badge">Rooted in Connection</li>
-						<li class="badge">Built for Real Work</li>
+						<li class="badge">Visual identity</li>
+						<li class="badge">Webflow</li>
+						<li class="badge">Real client work</li>
 					</ul>
 					<a
 						class="btn hero__cta"
@@ -208,26 +202,18 @@ const resultBadges = [
 							<div class="heading-block">
 								<h2 id="foundation-heading">The brand</h2>
 								<p class="section-intro">
-									Warmth and connection around a fire, rooted in Upstate New York. Professional
-									enough for client work, approachable enough to reflect how I build relationships.
+									Warmth and connection around a fire, rooted in Upstate New York.
+									Professional enough for client work, approachable enough to feel like
+									me.
 								</p>
 							</div>
-
-							<ul class="foundation-values" aria-label="Brand values">
-								{
-									foundationValues.map((value) => (
-										<li>
-											<h3 class="section-label">{value}</h3>
-										</li>
-									))
-								}
-							</ul>
 
 							<div class="heading-block">
 								<h2 id="process-heading">How it came together</h2>
 								<p class="section-intro">
-									Defining the business and the brand at the same time, tested through real client
-									work, not just a brand board.
+									The business and the brand had to show up together. I was not designing
+									a board for a drawer. I needed something I could put in front of a real
+									client.
 								</p>
 							</div>
 
@@ -247,7 +233,7 @@ const resultBadges = [
 							<div class="media-mosaic" role="group" aria-label="Brand visual examples">
 								<div class="media-mosaic__row">
 									<Image
-										class="media-mosaic__image"
+										class="media-mosaic__image media-mosaic__image--inset"
 										src={foundationMosaicLeft}
 										alt="Logo for Bondfire Design Company, featuring bold orange “BONDFIRE” text with a flame symbol, above black “DESIGN COMPANY” lettering."
 										widths={[400, 800]}
@@ -275,8 +261,7 @@ const resultBadges = [
 											Web Design | Graphic Design | Photography
 										</p>
 										<p id="foundation-banner-heading" class="media-mosaic__headline">
-											Bringing Your Vision to Life,<br />
-											One Story at a Time
+											Bringing Your Vision to Life, One Story at a Time
 										</p>
 										<p class="media-mosaic__tagline">Designing authentic connections.</p>
 										<div class="media-mosaic__actions">
@@ -299,15 +284,14 @@ const resultBadges = [
 						<div class="content-grid">
 							<div class="content-grid__column">
 								<div class="heading-block">
-									<h2 id="visual-identity-heading">Visual Identity</h2>
+									<h2 id="visual-identity-heading">Visual identity</h2>
 
 									<div class="subsection-intro">
 										<h3 class="subsection-title">Logos</h3>
 										<div class="content-copy">
 											<p>
-												The flame connects to the name while staying simple enough to work as a
-												header mark, app icon, or print lockup. Approachable in form, recognizable
-												at every size.
+												The flame is the name, simple enough to work as a header mark, an
+												icon, or print. I wanted it recognizable small without getting cute.
 											</p>
 										</div>
 									</div>
@@ -319,7 +303,7 @@ const resultBadges = [
 									{
 										logoExamples.map((logo) => (
 											<Image
-												class="media-mosaic__image"
+												class:list={['media-mosaic__image', logo.inset && 'media-mosaic__image--inset']}
 												src={logo.image}
 												alt={logo.alt}
 												widths={[400, 800]}
@@ -339,8 +323,8 @@ const resultBadges = [
 									<h3 class="subsection-title">Typography</h3>
 									<div class="content-copy">
 										<p>
-											Montserrat balances modern geometry with approachability. Bold for headings,
-											classic for supporting content, consistent without feeling rigid.
+											Montserrat for the geometry and the warmth. Bold for headings,
+											regular for the rest, consistent without feeling stiff.
 										</p>
 									</div>
 								</div>
@@ -400,9 +384,8 @@ const resultBadges = [
 									<h3 class="subsection-title">Color</h3>
 									<div class="content-copy">
 										<p>
-											Primary orange for energy and recognition, deep brown instead of corporate
-											navy, charcoal and off-white for digital surfaces, grounded and approachable
-											without losing polish.
+											Orange for energy and recognition. Deep brown instead of corporate
+											navy. Charcoal and off-white for screens. Grounded, not cold.
 										</p>
 									</div>
 								</div>
@@ -450,9 +433,8 @@ const resultBadges = [
 									<h3 class="subsection-title">Iconography</h3>
 									<div class="content-copy">
 										<p>
-											Rounded icons pair outdoor imagery with digital tools, including mountains, tents,
-											and campfires alongside cameras and laptops, consistent across interfaces
-											and marketing materials.
+											Outdoor marks next to cameras and laptops. Same rounded language so a
+											tent and a monitor feel like they belong in one kit.
 										</p>
 									</div>
 								</div>
@@ -495,8 +477,8 @@ const resultBadges = [
 					<div class="heading-block">
 						<h2 id="identity-in-work-heading">In application</h2>
 						<p class="section-intro">
-							Digital, print, and physical. The system tested across website, merch, signage,
-							and client-facing materials.
+							Website, merch, signage. I wanted to see if the system still held when
+							it left the artboard.
 						</p>
 					</div>
 
@@ -523,8 +505,8 @@ const resultBadges = [
 							<div class="heading-block">
 								<h2 id="real-clients-heading">Built for real clients</h2>
 								<p class="section-intro">
-									Not a portfolio exercise. A functioning freelance business with ongoing
-									projects and relationships.
+									Not a class project. A working freelance business, and a client who
+									said the work was worth five stars.
 								</p>
 							</div>
 
@@ -563,10 +545,10 @@ const resultBadges = [
 						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								The result was a flexible brand and digital system that could grow with the business
-								while maintaining a consistent standard across every client touchpoint. Building
-								Bondfire also allowed me to bring design, front-end development, UX, and accessibility
-								together in one working experience.
+								This company gave me a face for the work I wanted to create, own, and
+								be proud of. The identity holds, and it lets me be unique enough to
+								feel like a studio, and consistent enough that people know who they
+								are working with.
 							</p>
 						</div>
 					</div>
