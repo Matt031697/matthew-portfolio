@@ -1,12 +1,14 @@
 ---
 import '../styles/global.css';
+import { siteEmail, siteLinkedIn, siteLocation, siteName } from '../lib/site.ts';
 
 const faviconAlt =
 	'Blue geometric M and W letters interlock in a bold, angular logo on a white background, conveying a clean, modern, professional tone.';
 
 const openGraphImageHref = '/matthew-portfolio-open-graph.png';
 const openGraphImageAlt =
-	'Portfolio hero banner for Matthew, a frontend developer and designer, featuring bold introduction, design services, and laptop and phone mockups.';
+	'Light blue share card with “Hi, I’m Matthew” and “Designer & Front-end Developer,” a laptop and stacked phones showing pet-retailer sites, and a large MW mark in the corner.';
+const jobTitle = 'Designer & Front-end Developer';
 
 interface Props {
 	title?: string;
@@ -15,13 +17,46 @@ interface Props {
 }
 
 const {
-	title = 'Matthew, Frontend Developer & Designer',
-	description = 'Frontend Developer & Designer specializing in Shopify storefronts, visual design, accessibility, and marketing websites.',
+	title = 'Matthew, Designer & Front-end Developer',
+	description = 'Designer and front-end developer. Shopify storefronts, brand identity, accessibility, and campaign work for retailers and local businesses.',
 	accentColor,
 } = Astro.props;
 
-const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
-const openGraphImageUrl = new URL(openGraphImageHref, Astro.site ?? Astro.url).href;
+const siteOrigin = Astro.site ?? Astro.url;
+const siteUrl = new URL('/', siteOrigin).href;
+const pageUrl = new URL(Astro.url.pathname, siteOrigin).href;
+const openGraphImageUrl = new URL(openGraphImageHref, siteOrigin).href;
+const [addressLocality, addressRegion] = siteLocation.split(', ');
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'WebSite',
+			'@id': `${siteUrl}#website`,
+			url: siteUrl,
+			name: siteName,
+			description,
+			publisher: { '@id': `${siteUrl}#person` },
+		},
+		{
+			'@type': 'Person',
+			'@id': `${siteUrl}#person`,
+			name: siteName,
+			jobTitle,
+			url: siteUrl,
+			email: siteEmail,
+			image: openGraphImageUrl,
+			sameAs: [siteLinkedIn],
+			address: {
+				'@type': 'PostalAddress',
+				addressLocality,
+				addressRegion,
+				addressCountry: 'US',
+			},
+		},
+	],
+};
 ---
 
 <!doctype html>
@@ -30,6 +65,7 @@ const openGraphImageUrl = new URL(openGraphImageHref, Astro.site ?? Astro.url).h
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={pageUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
@@ -54,6 +90,7 @@ const openGraphImageUrl = new URL(openGraphImageHref, Astro.site ?? Astro.url).h
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	</head>
 	<body
 		class:list={[accentColor && 'is-project']}

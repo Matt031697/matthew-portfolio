@@ -6,11 +6,11 @@ import aiThumb from '../assets/projects/case-study-thumbnails/ai-assisted-websit
 import auditsThumb from '../assets/projects/case-study-thumbnails/shopify-accessibility-audits.png';
 import graphicThumb from '../assets/projects/case-study-thumbnails/graphic-print-photography.png';
 
-const faqItems = [
+const projects = [
 	{
-		title: 'Shopify theme development',
+		title: 'Shopify theme architecture',
 		tags: 'Shopify + Liquid + JavaScript + Front-end architecture',
-		body: 'I maintain and evolve a shared Shopify architecture supporting hundreds of storefronts. From reusable components and theme enhancements to scalable UI patterns, I build frontend experiences that balance usability, accessibility, performance, and maintainability.',
+		body: 'I manage one shared Shopify theme that hundreds of storefronts run on. I design the layouts, write the copy, install the apps, and ship the updates. After a site goes live I investigate issues, build custom pages, and make design or code improvements that then live in the theme.',
 		href: '/projects/shopify-theme-architecture',
 		image: shopifyThumb,
 		imageAlt:
@@ -28,7 +28,7 @@ const faqItems = [
 	{
 		title: 'AI-assisted websites',
 		tags: 'Cursor + AI-assisted development + Accessibility',
-		body: 'I use AI-assisted development to rapidly design and build lightweight, production-ready MightyLocal companion sites. AI accelerates implementation, while I remain responsible for architecture, design, accessibility, performance, and final quality.',
+		body: 'I use AI-assisted development to design and build production-ready sites for local retailers. A shared API I own feeds live locations, offers, and events; I own the architecture, design, accessibility, performance, and everything else that ships.',
 		href: '/projects/ai-assisted-websites',
 		image: aiThumb,
 		imageAlt:
@@ -44,9 +44,9 @@ const faqItems = [
 			'Floating smartphones and tablet screens show online shopping pages, product photos, and forms against a calm teal background, suggesting digital commerce.',
 	},
 	{
-		title: 'Graphic, print & photography',
+		title: 'Graphic design, print & photography',
 		tags: 'Adobe Creative Suite + Print design + Photography',
-		body: 'A collection of graphic design, print, and photography created across client work and personal projects. I focus on composition, hierarchy, and print design so the work holds up on a page, in a room, in a feed, and in a frame.',
+		body: 'Graphic design, print, and photography from client work and personal projects. I focus on composition and hierarchy so the work holds up on a page, in a room, in a feed, and in a frame.',
 		href: '/projects/graphic-print-photography',
 		image: graphicThumb,
 		imageAlt:
@@ -56,12 +56,12 @@ const faqItems = [
 
 const skillGroups = [
 	{
-		label: 'Front-end development & architecture',
+		label: 'Front-end development',
 		skills: ['Shopify', 'Liquid', 'JavaScript', 'HTML', 'CSS', 'Git'],
 	},
 	{
-		label: 'Design & UX/UI',
-		skills: ['UX/UI', 'Visual design', 'Brand identity', 'Adobe Creative Suite', 'Webflow'],
+		label: 'Design & UX',
+		skills: ['Visual design', 'Brand identity', 'UX/UI', 'Adobe Creative Suite'],
 	},
 	{
 		label: 'Accessibility & quality',
@@ -74,49 +74,68 @@ const skillGroups = [
 ];
 
 const careerSteps = [
-	'Digital Marketing Support Specialist',
-	'Web Designer',
-	'Front-end Web Designer & Developer',
+	{
+		title: 'Digital Marketing Support Specialist',
+		detail: '2020–2021',
+	},
+	{
+		title: 'Web Designer',
+		detail: '2021–2022',
+	},
+	{
+		title: 'Front-end Web Designer & Developer',
+		detail: '2022–Present',
+	},
 ];
 ---
 
 <section id="projects" class="philosophy section-block" aria-label="Projects and resume">
 	<div class="container">
-		<nav class="project-strip" aria-label="Selected work previews">
-			{
-				faqItems.map((item) => (
-					<a class="project-strip__link" href={item.href}>
-						<span class="project-strip__frame">
-							<Image
-								class="project-strip__media"
-								src={item.image}
-								alt={item.imageAlt ?? ''}
-								widths={[160, 240, 320, 480]}
-								sizes="(min-width: 48rem) 18vw, 42vw"
-							/>
-							<span class="project-strip__overlay" aria-hidden="true">View Case Study</span>
-						</span>
-						<span class="project-strip__label">{item.title}</span>
-					</a>
-				))
-			}
-		</nav>
+		<div class="project-strip-wrap">
+			<nav class="project-strip" aria-label="Selected work previews">
+				{
+					projects.map((item) => (
+						<a class="project-strip__link" href={item.href}>
+							<span class="project-strip__frame">
+								<Image
+									class="project-strip__media"
+									src={item.image}
+									alt={item.imageAlt ?? ''}
+									widths={[160, 240, 320, 480, 720]}
+									sizes="(min-width: 64rem) 18vw, (min-width: 48rem) 30vw, 88vw"
+								/>
+								<span class="project-strip__overlay" aria-hidden="true">View Case Study</span>
+							</span>
+							<span class="project-strip__label">{item.title}</span>
+						</a>
+					))
+				}
+			</nav>
+			<p class="project-strip__cue" aria-hidden="true">
+				<span class="project-strip__cue-label">Swipe</span>
+				<span class="project-strip__cue-arrow">→</span>
+			</p>
+		</div>
 
 		<div class="content-grid">
 			<section class="content-grid__column" aria-labelledby="philosophy-heading">
 				<div class="heading-block">
 					<p class="text-accent section-label">What I do</p>
-					<h2 id="philosophy-heading">Brands, campaigns, and storefronts.</h2>
+					<h2 id="philosophy-heading">Websites, assets, and experiences.</h2>
 					<p class="philosophy__intro">
-						Design, marketing, and front-end work for real businesses, from identity
-						and print to Shopify architecture that has to perform in production.
+						Day to day I manage one shared Shopify theme for hundreds of retailers. I
+						design and build on it, and I support the stores that run on it.
 					</p>
 				</div>
 
 				<div class="accordion">
 					{
-						faqItems.map((item) => (
-							<details class="accordion__item" data-accordion>
+						projects.map((item, index) => (
+							<details
+								class:list={['accordion__item', { 'is-open': index === 0 }]}
+								open={index === 0}
+								data-accordion
+							>
 								<summary class="accordion__summary">
 									<span class="accordion__title">{item.title}</span>
 									<span class="accordion__icon" aria-hidden="true">
@@ -129,12 +148,8 @@ const careerSteps = [
 										<p class="accordion__body">{item.body}</p>
 										<a
 											class="btn"
-											href={item.href ?? '#'}
-											aria-label={
-												item.href
-													? `View case study: ${item.title}`
-													: `View case study: ${item.title} (placeholder)`
-											}
+											href={item.href}
+											aria-label={`View case study: ${item.title}`}
 										>
 											View Case Study
 										</a>
@@ -149,19 +164,26 @@ const careerSteps = [
 			<section id="resume" class="content-grid__column" aria-labelledby="resume-heading">
 				<div class="heading-block">
 					<p class="text-accent section-label">Why me</p>
-					<h2 id="resume-heading">Design is where I started. Code is how I brought it to life.</h2>
+					<h2 id="resume-heading">Designing from passion, coding from curiosity.</h2>
 					<div class="content-copy">
 						<p>
-							I bring a designer's eye and a developer's discipline to every project.
-							That dual perspective helps me bridge design, marketing, and engineering,
-							translating ideas into production-ready interfaces and work that holds
-							up under real-world use.
+							I used to do my best work in design, and I was happy there. Then I
+							realized I didn't like sending my vision off to be finished by someone
+							else. I was too curious. I wanted to own how something looks and
+							understand how it gets built, and the journey grew from there.
 						</p>
 						<p>
-							Whether I'm evolving a shared theme architecture, building campaign
-							collateral, auditing storefront accessibility, or shaping a brand from
-							the ground up, I focus on work that is thoughtful, maintainable, and
-							built to scale.
+							Now I do my best work sitting with design and development on the same
+							problem. I'll wear whatever hat the work needs, whether that's the
+							layout, the build, or the fix after it ships, because I'd rather stay on
+							it than hand it off. I love to think big picture — it's a puzzle. Creating shared pieces so a
+							layout can work for hundreds of stores, not just one, is the reward.
+						</p>
+						<p>
+							I think I'm picky in a useful way: before something ships I check it,
+							click through it, and look at both the whole page and the small stuff.
+							That's how I like the design to reach people, and how I know it will hold
+							up.
 						</p>
 					</div>
 				</div>
@@ -171,7 +193,10 @@ const careerSteps = [
 						careerSteps.map((step) => (
 							<li class="career-timeline__item">
 								<span class="career-timeline__marker" aria-hidden="true"></span>
-								<span class="career-timeline__label">{step}</span>
+								<span class="career-timeline__copy">
+									<span class="career-timeline__label">{step.title}</span>
+									<span class="career-timeline__detail">{step.detail}</span>
+								</span>
 							</li>
 						))
 					}
@@ -205,13 +230,20 @@ const careerSteps = [
 		padding-block-end: var(--space-lg);
 	}
 
+	.project-strip-wrap {
+		position: relative;
+		margin-block: var(--space-lg) var(--space-xl);
+	}
+
 	.project-strip {
 		display: flex;
 		gap: var(--space-sm);
-		margin-block: var(--space-xl);
+		margin-inline-end: calc(-1 * var(--container-padding));
+		padding-inline-end: var(--container-padding);
 		overflow-x: auto;
 		overscroll-behavior-x: contain;
-		scroll-snap-type: x proximity;
+		scroll-snap-type: x mandatory;
+		scroll-padding-inline: 0;
 		-webkit-overflow-scrolling: touch;
 		scrollbar-width: none;
 	}
@@ -224,11 +256,45 @@ const careerSteps = [
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-xs);
-		flex: 0 0 calc((100% - (2 * var(--space-sm))) / 2.15);
+		flex: 0 0 calc(100% - 1.75rem);
 		min-width: 0;
 		text-decoration: none;
 		color: inherit;
 		scroll-snap-align: start;
+		scroll-snap-stop: always;
+	}
+
+	.project-strip__cue {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.35rem;
+		margin: var(--space-sm) 0 0;
+		padding-inline-end: 0.15rem;
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-body);
+		color: var(--color-text-subtle);
+		transition: opacity 200ms ease;
+	}
+
+	.project-strip__cue.is-hidden {
+		opacity: 0;
+	}
+
+	.project-strip__cue-arrow {
+		display: inline-block;
+		animation: project-strip-cue 1.6s ease-in-out infinite;
+	}
+
+	@keyframes project-strip-cue {
+		0%,
+		100% {
+			transform: translateX(0);
+		}
+		50% {
+			transform: translateX(0.35rem);
+		}
 	}
 
 	.project-strip__link:focus-visible {
@@ -295,13 +361,26 @@ const careerSteps = [
 	@media (min-width: 48rem) {
 		.project-strip {
 			display: grid;
-			grid-template-columns: repeat(5, minmax(0, 1fr));
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			margin-inline-end: 0;
+			padding-inline-end: 0;
 			overflow: visible;
 			scroll-snap-type: none;
 		}
 
 		.project-strip__link {
 			flex: initial;
+			scroll-snap-stop: normal;
+		}
+
+		.project-strip__cue {
+			display: none;
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.project-strip {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
 		}
 	}
 
@@ -436,6 +515,13 @@ const careerSteps = [
 		background-color: var(--color-project);
 	}
 
+	.career-timeline__copy {
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+		min-width: 0;
+	}
+
 	.career-timeline__label {
 		min-width: 0;
 		font-size: var(--font-size-caption);
@@ -448,6 +534,18 @@ const careerSteps = [
 
 	.career-timeline__item:last-child .career-timeline__label {
 		color: var(--color-project);
+	}
+
+	.career-timeline__detail {
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-regular);
+		letter-spacing: var(--letter-spacing-body);
+		line-height: 1.35;
+		color: var(--color-text-subtle);
+	}
+
+	.career-timeline__item:last-child .career-timeline__detail {
+		color: var(--color-text-subtle);
 	}
 
 	@container (min-width: 24rem) {
@@ -589,6 +687,32 @@ const careerSteps = [
 		});
 	}
 
+	function setupProjectStripCue() {
+		const wrap = document.querySelector('.project-strip-wrap');
+		const strip = wrap?.querySelector('.project-strip');
+		const cue = wrap?.querySelector('.project-strip__cue');
+		if (
+			!(wrap instanceof HTMLElement) ||
+			!(strip instanceof HTMLElement) ||
+			!(cue instanceof HTMLElement) ||
+			strip.dataset.cueInit === 'true'
+		) {
+			return;
+		}
+
+		strip.dataset.cueInit = 'true';
+
+		const updateCue = () => {
+			cue.classList.toggle('is-hidden', strip.scrollLeft > 16);
+		};
+
+		updateCue();
+		strip.addEventListener('scroll', updateCue, { passive: true });
+	}
+
 	setupAccordions();
+	setupProjectStripCue();
 	document.addEventListener('astro:page-load', setupAccordions);
+	document.addEventListener('astro:page-load', setupProjectStripCue);
 </script>
+

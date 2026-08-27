@@ -10,7 +10,7 @@ import { careerHighlights, projectAccents } from '../lib/site.ts';
 <BaseLayout
 	accentColor={projectAccents.home}
 	title="Matthew, Designer & Front-end Developer"
-	description="Designer and front-end developer. Brands, campaigns, and Shopify storefronts for retailers and local businesses."
+	description="Designer and front-end developer. Shopify storefronts, marketing assets, shared components, and technical support for retailers."
 >
 	<Header />
 
@@ -20,13 +20,23 @@ import { careerHighlights, projectAccents } from '../lib/site.ts';
 				<p class="text-accent section-label hero__eyebrow">Hi, I'm Matthew</p>
 				<h1 id="hero-heading">Designer &amp; Front-end Developer.</h1>
 				<p class="hero__subheading">
-					I design brands, campaigns, and storefronts for retailers and local
-					businesses, then build them to hold up in production.
+					I design Shopify storefronts and marketing assets, build the shared
+					components they run on, and stay on for hundreds of retailers when
+					something needs fixing.
 				</p>
 				<ul class="badge-list hero__badges">
-					<li class="badge">{careerHighlights.experience}</li>
-					<li class="badge">{careerHighlights.storefronts}</li>
-					<li class="badge">{careerHighlights.releases}</li>
+					<li class="badge">
+						<span class="badge__full">{careerHighlights.experience}</span>
+						<span class="badge__compact">{careerHighlights.experienceCompact}</span>
+					</li>
+					<li class="badge">
+						<span class="badge__full">{careerHighlights.storefronts}</span>
+						<span class="badge__compact">{careerHighlights.storefrontsCompact}</span>
+					</li>
+					<li class="badge">
+						<span class="badge__full">{careerHighlights.releases}</span>
+						<span class="badge__compact">{careerHighlights.releasesCompact}</span>
+					</li>
 				</ul>
 			</section>
 		</div>

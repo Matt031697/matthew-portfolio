@@ -1,5 +1,5 @@
 ---
-import { navItems } from '../lib/site.ts';
+import { navItems, siteName } from '../lib/site.ts';
 
 interface Props {
 	backToProjects?: boolean;
@@ -10,6 +10,16 @@ const { backToProjects = false } = Astro.props;
 
 <header class="site-header">
 	<div class="container site-header__inner">
+		<a class="site-logo" href="/" aria-label={siteName}>
+			<img
+				class="site-logo__mark"
+				src="/mw-mark.png"
+				alt=""
+				width="48"
+				height="48"
+			/>
+		</a>
+
 		<div class="frosted-cluster">
 			{
 				backToProjects ? (
@@ -80,10 +90,44 @@ const { backToProjects = false } = Astro.props;
 	}
 
 	.site-header__inner {
+		position: relative;
+		z-index: 70;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
 		align-items: center;
+		gap: var(--space-sm);
 		padding-block: var(--space-md);
+	}
+
+	.site-logo {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 3.25rem;
+		min-height: 3.25rem;
+		padding: 0.35rem;
+		border-radius: 9999px;
+		background-color: color-mix(in srgb, var(--color-background) 72%, transparent);
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		text-decoration: none;
+		will-change: opacity;
+	}
+
+	.site-logo.is-faded {
+		pointer-events: none;
+	}
+
+	.site-logo:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+		border-radius: var(--radius-md);
+	}
+
+	.site-logo__mark {
+		width: 3rem;
+		height: 3rem;
+		flex-shrink: 0;
 	}
 
 	@media (min-width: 48rem) {
@@ -118,7 +162,7 @@ const { backToProjects = false } = Astro.props;
 		display: none;
 	}
 
-	@media (min-width: 64rem) {
+	@media (min-width: 48rem) {
 		.site-nav--desktop {
 			display: block;
 		}
@@ -141,7 +185,7 @@ const { backToProjects = false } = Astro.props;
 		cursor: pointer;
 	}
 
-	@media (min-width: 64rem) {
+	@media (min-width: 48rem) {
 		.nav-toggle {
 			display: none;
 		}
@@ -233,6 +277,36 @@ const { backToProjects = false } = Astro.props;
 		padding: var(--space-xs) 0;
 	}
 </style>
+
+<script>
+	function setupLogoFade() {
+		const logo = document.querySelector('.site-logo');
+		if (!(logo instanceof HTMLElement) || logo.dataset.fadeInit === 'true') return;
+		logo.dataset.fadeInit = 'true';
+
+		const fadeDistance = 96;
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		const update = () => {
+			const progress = reduceMotion.matches
+				? window.scrollY > 8
+					? 1
+					: 0
+				: Math.min(1, window.scrollY / fadeDistance);
+
+			logo.style.opacity = String(1 - progress);
+			logo.classList.toggle('is-faded', progress >= 0.9);
+			logo.toggleAttribute('inert', progress >= 0.9);
+		};
+
+		update();
+		window.addEventListener('scroll', update, { passive: true });
+		reduceMotion.addEventListener('change', update);
+	}
+
+	setupLogoFade();
+	document.addEventListener('astro:page-load', setupLogoFade);
+</script>
 
 {
 	!backToProjects && (
@@ -359,7 +433,7 @@ const { backToProjects = false } = Astro.props;
 					}
 				});
 
-				window.matchMedia('(min-width: 64rem)').addEventListener('change', (event) => {
+				window.matchMedia('(min-width: 48rem)').addEventListener('change', (event) => {
 					if (event.matches && isOpen()) {
 						closeMenu();
 					}

@@ -22,9 +22,9 @@ import tileLayout from '../../assets/projects/shopify-theme/two-column-cards/til
 import imageBar from '../../assets/projects/shopify-theme/two-column-cards/image-bar.png';
 import ctaBanner from '../../assets/projects/shopify-theme/two-column-cards/cta-banner.png';
 
-const pageTitle = 'Shopify Theme Development, Matthew';
+const pageTitle = 'Shopify theme architecture, Matthew';
 const description =
-	'Case study: maintaining and evolving a shared Shopify theme supporting 300+ storefronts across front-end development, reusable components, accessibility, and performance.';
+	'Case study: one shared Shopify theme for hundreds of storefronts. Layouts, components, updates, and support that each retailer inherits.';
 
 const themeColumns = [
 	{
@@ -78,19 +78,19 @@ const foundationFeatures = [
 		label: 'Responsive by default',
 		image: responsiveByDefault,
 		alt: 'Screenshot of Arey Building Supply website featuring a bright unfinished home interior, staircase, maroon navigation, search bar, and catalog button.',
-		copy: 'A shared hero structure adapts to different content, imagery, and screen sizes without requiring a separate implementation for each storefront.',
+		copy: 'Same hero structure. Different photos, copy, and screen sizes. I do not rebuild it for each store.',
 	},
 	{
 		label: 'Flexible presentation',
 		image: flexiblePresentation,
 		alt: 'E-commerce webpage featuring project supplies, pet departments for furry, feathered and scaly animals, plus dog and cat essentials.',
-		copy: 'Shared components can adapt their layout and styling to fit different storefronts without rebuilding the underlying functionality.',
+		copy: 'Shared components change layout and styling to fit the storefront. The underlying piece stays the same.',
 	},
 	{
 		label: 'Business specific configuration',
 		image: businessConfiguration,
 		alt: 'Farm cattle product listing page showing livestock medicines, fly sprays, leather whitener, and grooming products with prices and brand filters.',
-		copy: 'Storefront settings can expose or hide functionality based on how each business sells and presents its products. For example, a storefront can display a price range when products have variable pricing, while another can use the same underlying component without that functionality.',
+		copy: 'Settings can show or hide behavior per business. One store can show a price range. Another uses the same component without it.',
 	},
 ];
 
@@ -100,7 +100,7 @@ const uiImprovements = [
 		before: {
 			image: catalogBefore,
 			alt: 'Lawn and garden shopping page showing colorful flower pots and planters in white, blue, orange, green, and black, with prices and filters.',
-			copy: 'Unstructured product containers, unclear visual hierarchy, uneven spacings, no effects or interactive CTAs on hover.',
+			copy: 'Product cards had no shared structure, weak hierarchy, uneven spacing, and no hover action for the next step.',
 		},
 		after: {
 			image: catalogAfter,
@@ -131,7 +131,7 @@ const uiImprovements = [
 		after: {
 			image: socialMediaAfter,
 			alt: 'Website screenshot featuring a contact form, happy dog in greenery, social media icons, and portraits of friendly store staff.',
-			copy: 'I replaced the custom HTML approach with a configurable component that lets the team control the heading, supporting text, icon style, spacing, and size through the theme settings. Social icons can be added using Font Awesome class names without requiring additional HTML or CSS.',
+			copy: 'I replaced the custom HTML block with theme settings. The team can control the heading, text, icons, spacing, and size without writing extra HTML or CSS.',
 		},
 	},
 ];
@@ -141,25 +141,25 @@ const reusableComponents = [
 		label: 'Interior page banner',
 		image: interiorPageBanner,
 		alt: 'Pet supply website banner featuring dog, cat, small animal, and fish products, plus a kitten being fed and a blue holiday promotion.',
-		copy: 'Flexible content, imagery, alignment, colors, CTA styling, and banner sizing allow the same component to adapt to different page layouts.',
+		copy: 'Same banner component. Content, image, alignment, color, CTA, and size change to fit the page.',
 	},
 	{
 		label: 'Tile layout',
 		image: tileLayout,
 		alt: 'Equipment rental website showing contractor, DIY, home/business, and landscaping rental tiles with tools, boxes, and outdoor machinery.',
-		copy: 'Configurable image or solid-color tiles support flexible content, overlays, CTAs, and responsive layouts across up to seven tiles.',
+		copy: 'Image or color tiles, overlays, CTAs, and up to seven tiles. One layout, different rental and retail uses.',
 	},
 	{
 		label: 'Image bar',
 		image: imageBar,
 		alt: 'Pet supply webpage featuring trusted brand logos above three dogs labeled Grooming, In-Store Pickup, and Delivery, with a newsletter signup.',
-		copy: 'Adjustable section height, image overlay, text alignment, and linked text provide a simple way to create flexible promotional or content-focused banners.',
+		copy: 'Height, overlay, alignment, and linked text for a simple promo or content strip.',
 	},
 	{
 		label: 'CTA banner',
 		image: ctaBanner,
 		alt: 'Website footer showing “Stay Connected” with social media icons above a bright blue pet-themed banner offering “Shop Now” and “Find a Location” buttons.',
-		copy: 'Flexible text positioning, up to two CTAs, background options, button styling, and banner sizing allow the component to adapt to different promotional needs.',
+		copy: 'Up to two buttons, background and banner size, text placement. Same component, different promotions.',
 	},
 ];
 
@@ -174,7 +174,7 @@ const accessibilityItems = [
 	},
 	{
 		label: 'Shared improvements',
-		copy: 'Accessibility and performance fixes built into the theme so one improvement can benefit hundreds of storefronts. See the dedicated accessibility audits case study for audit workflow and examples.',
+		copy: 'Accessibility and performance fixes built into the theme so one improvement can benefit every storefront that follows. See the dedicated accessibility audits case study for audit workflow and examples.',
 	},
 ];
 
@@ -198,16 +198,26 @@ const closingBadges = [
 		<div class="section-group section-group--intro">
 			<div class="container">
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
-					<h1 id="case-study-heading">Shopify Theme Development</h1>
+					<h1 id="case-study-heading">Shopify theme architecture</h1>
 					<p class="hero__subheading">
-						One shared theme, 300+ storefronts. I build and maintain the front-end architecture
-						behind pet stores, hardware, rental, and retail sites, then improve the UI,
-						components, and accessibility that every client inherits.
+						One shared Shopify theme applied to hundreds of clients. For each build I
+						take ownership of layout, design, copy, app installs, and future updates.
+						When something needs investigating or a custom solution, I assess it and
+						implement it under my roof, and that work goes back into the theme.
 					</p>
 					<ul class="badge-list hero__badges">
-						<li class="badge">{careerHighlights.experience}</li>
-						<li class="badge">{careerHighlights.storefronts}</li>
-						<li class="badge">{careerHighlights.releases}</li>
+						<li class="badge">
+							<span class="badge__full">{careerHighlights.experience}</span>
+							<span class="badge__compact">{careerHighlights.experienceCompact}</span>
+						</li>
+						<li class="badge">
+							<span class="badge__full">{careerHighlights.storefronts}</span>
+							<span class="badge__compact">{careerHighlights.storefrontsCompact}</span>
+						</li>
+						<li class="badge">
+							<span class="badge__full">{careerHighlights.releases}</span>
+							<span class="badge__compact">{careerHighlights.releasesCompact}</span>
+						</li>
 					</ul>
 					<a
 						class="btn hero__cta"
@@ -219,6 +229,20 @@ const closingBadges = [
 						View Live Site
 					</a>
 				</section>
+
+				<section class="section-block" aria-labelledby="case-study-context-heading">
+					<div class="heading-block">
+						<h2 id="case-study-context-heading">The work</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								The task is simple to say and hard to achieve. Every store needs its
+								own voice, its own branding, its own identity, but it still has to live
+								under one theme. I solve that with shared pieces and per-store
+								settings, then I check the work before it ships.
+							</p>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 
@@ -228,8 +252,8 @@ const closingBadges = [
 				<div class="heading-block">
 					<h2 id="header-showcase-heading">One header, different storefronts</h2>
 					<p class="section-intro">
-						Pet stores, garden centers, hardware, rental, and retail. Same theme foundation,
-						different branding and configuration.
+						Pet stores, garden centers, hardware, rental, and retail. Same theme,
+						different branding and settings.
 					</p>
 				</div>
 
@@ -268,8 +292,8 @@ const closingBadges = [
 				<div class="heading-block">
 					<h2 id="ui-improvements-heading">UI/UX improvements</h2>
 					<p class="section-intro">
-						Before-and-after examples of catalog, product, and social patterns evolved within
-						the shared theme, with better hierarchy and interaction without rebuilding the system.
+						Before-and-after work inside the shared theme: clearer hierarchy and
+						interaction, without a new system each time.
 					</p>
 				</div>
 
@@ -343,33 +367,12 @@ const closingBadges = [
 		</div>
 
 		<div class="section-group">
-		<section class="section-block" aria-labelledby="case-study-context-heading">
-			<div class="container">
-				<div class="heading-block">
-					<h2 id="case-study-context-heading">The work</h2>
-					<div class="content-copy content-copy--narrow">
-						<p>
-							At New Media Retailer, I maintain the shared Shopify theme used across 300+ client
-							storefronts, from business requirements and design direction through launch and
-							ongoing front-end support.
-						</p>
-						<p>
-							The challenge is scale: each client needs different branding, content, and
-							integrations, but the architecture has to stay reusable. I solve storefront
-							problems while improving the shared components, patterns, and accessibility fixes
-							that every site inherits.
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
 		<section class="section-block" aria-labelledby="building-blocks-heading">
 			<div class="container">
 				<div class="heading-block">
 					<h2 id="building-blocks-heading">Building blocks</h2>
 					<p class="section-intro">
-						Global styles and per-store configuration, plus Liquid, CSS, and JavaScript patterns
+						Global styles and per-store settings, plus Liquid, CSS, and JavaScript
 						built once and adapted per storefront.
 					</p>
 				</div>
@@ -459,8 +462,8 @@ const closingBadges = [
 				<div class="heading-block">
 					<h2 id="theme-structure-heading">How one theme scales</h2>
 					<p class="section-intro">
-						A reusable foundation of components, patterns, and configurable functionality, so
-						each storefront can be assembled without a separate implementation.
+						Components, patterns, and settings that can be assembled per storefront
+						instead of a unique build each time.
 					</p>
 				</div>
 
@@ -498,9 +501,9 @@ const closingBadges = [
 				<div class="heading-block">
 					<h2 id="accessibility-performance-heading">Accessibility and performance</h2>
 					<div class="section-intro">
-						<p>Improvements at the component and system level, not a final checklist.</p>
+						<p>I build this into the components, not as a last-minute checklist.</p>
 						<p>
-							<a href="/projects/shopify-accessibility-audits">See the accessibility audits case study</a> for audit workflow and examples.
+							<a href="/projects/shopify-accessibility-audits">See the accessibility audits case study</a> for the audit workflow and examples.
 						</p>
 					</div>
 				</div>
@@ -526,9 +529,11 @@ const closingBadges = [
 					<h2 id="case-study-closing-heading">The result</h2>
 					<div class="content-copy content-copy--narrow">
 						<p>
-							Maintaining a shared Shopify architecture across hundreds of storefronts means
-							thinking beyond individual page builds, and how front-end decisions affect
-							scalability, maintainability, and accessibility for every client that follows.
+							Hundreds of updates, done so the naked eye can't tell the stores are
+							part of a template. Layouts, settings, and components are shared so they
+							fit many different use cases under one umbrella. That is how unique
+							designs, enjoyable experiences, and results show up for retailers big or
+							small.
 						</p>
 					</div>
 				</div>

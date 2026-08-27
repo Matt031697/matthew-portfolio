@@ -15,7 +15,7 @@
 	--color-background: #ffffff;
 	--color-text-muted: var(--color-text);
 	--color-text-subtle: color-mix(in srgb, var(--color-text) 68%, white);
-	--color-nav-hover: #dadada;
+	--color-nav-hover: var(--color-project);
 	--color-border: color-mix(in srgb, var(--color-text) 14%, white);
 	--color-surface-subtle: color-mix(in srgb, var(--color-text) 4%, white);
 	--color-surface-muted: color-mix(in srgb, var(--color-text) 8%, white);
@@ -61,7 +61,7 @@
 	--radius-md: 0.5rem;
 
 	/* Layout */
-	--container-max-width: none;
+	--container-max-width: 90rem;
 	--container-padding: clamp(1.25rem, 4vw + 0.5rem, 3.125rem);
 
 	/* Badges */
@@ -275,28 +275,45 @@ blockquote {
 	white-space: nowrap;
 }
 
-@media (max-width: 30rem) {
+.badge__compact {
+	display: none;
+}
+
+@media (max-width: 63.99rem) {
 	.badge {
-		white-space: normal;
-		text-align: center;
+		padding: 0.4rem 0.75rem;
+		font-size: 0.75rem;
+		white-space: nowrap;
+	}
+
+	.badge__full {
+		display: none;
+	}
+
+	.badge__compact {
+		display: inline;
+	}
+
+	.badge-list {
+		gap: 0.5rem;
+	}
+}
+
+@media (min-width: 64rem) and (max-width: 79.99rem) {
+	.badge {
+		padding: 0.5rem 1rem;
+		font-size: 0.8125rem;
 	}
 }
 
 .badge-list {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+	flex-flow: row wrap;
+	align-items: center;
 	gap: var(--space-sm);
 	margin: 0;
 	padding: 0;
 	list-style: none;
-}
-
-@media (min-width: 48rem) {
-	.badge-list {
-		flex-flow: row wrap;
-		align-items: center;
-	}
 }
 
 /* Navigation links */
@@ -313,7 +330,7 @@ blockquote {
 }
 
 .nav-link:hover {
-	color: var(--color-nav-hover);
+	color: var(--color-project);
 }
 
 .nav-link:focus-visible {
@@ -347,7 +364,7 @@ blockquote {
 }
 
 .back-link:hover {
-	color: var(--color-nav-hover);
+	color: var(--color-project);
 }
 
 .back-link:focus-visible {
@@ -527,7 +544,7 @@ p a:focus-visible {
 	margin: 0;
 }
 
-.heading-block > :is(.section-intro, .content-copy, .philosophy__intro, .about__lede) {
+.heading-block > :is(.section-intro, .content-copy, .philosophy__intro) {
 	margin-block: var(--space-xs) 0;
 }
 
@@ -536,10 +553,6 @@ p a:focus-visible {
 }
 
 .heading-block > .subsection-title:last-child {
-	margin-bottom: var(--space-lg);
-}
-
-.heading-block > .about__lede:last-child {
 	margin-bottom: var(--space-lg);
 }
 

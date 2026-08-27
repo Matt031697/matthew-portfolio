@@ -1,3 +1,4 @@
+export const siteName = 'Matthew Ward';
 export const siteEmail = 'matthewmj.ward@gmail.com';
 export const siteLinkedIn = 'https://www.linkedin.com/in/matthew-ward-307b08268/';
 export const siteLocation = 'Mount Upton, NY';
@@ -5,13 +6,17 @@ export const siteLocation = 'Mount Upton, NY';
 
 export const careerHighlights = {
 	experience: '6+ Years Experience',
-	storefronts: '300+ Shopify Storefronts Supported',
-	releases: '120+ Production Releases Shipped',
+	experienceCompact: '6+ Years',
+	storefronts: '300+ Storefronts Supported',
+	storefrontsCompact: '300+ Storefronts',
+	releases: '200+ Theme Updates Shipped',
+	releasesCompact: '200+ Updates',
 } as const;
 
 export const navItems = [
 	{ label: 'Projects', href: '/#projects' },
 	{ label: 'About', href: '/#about' },
+	{ label: 'Resume', href: '/#resume' },
 	{ label: 'Contact', href: `mailto:${siteEmail}` },
 ] as const;
 
