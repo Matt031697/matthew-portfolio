@@ -483,6 +483,10 @@ blockquote {
 	margin-bottom: 0;
 }
 
+.content-grid__column .heading-block + .heading-block {
+	margin-top: 0;
+}
+
 .content-grid__column h2,
 .content-grid__column .heading-prominent {
 	margin: 0 0 var(--space-md);
@@ -581,10 +585,6 @@ p a:focus-visible {
 }
 
 .section-group .section-block + .section-block {
-	padding-block-start: var(--space-lg);
-}
-
-.section-group--intro .section-block {
 	padding-block-start: var(--space-lg);
 }
 
@@ -728,10 +728,6 @@ p a:focus-visible {
 	.showcase-grid--2 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
-}
-
-.showcase-grid--spaced {
-	margin-bottom: var(--space-xl);
 }
 
 .showcase-item {
@@ -1389,7 +1385,6 @@ p a:focus-visible {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: var(--space-md);
-	margin-top: var(--space-xl);
 }
 
 @media (min-width: 48rem) {
@@ -1528,7 +1523,7 @@ p a:focus-visible {
 .content-list + .showcase-grid,
 .content-list + .media-row,
 .content-list + .badge-list,
-.heading-block + .content-list,
+.heading-block:not(:has(> .section-intro:last-child)) + .content-list,
 .heading-block + .media-row,
 .heading-block + .shipped-grid,
 .pipeline + .testimonial-media,
@@ -1537,7 +1532,6 @@ p a:focus-visible {
 .showcase-grid + .coverage-block,
 .heading-block + .heading-block,
 .showcase-grid + .content-list,
-.showcase-grid + .building-blocks__label,
 .gallery-grid + .showcase-item,
 .gallery-grid + .gallery-item {
 	margin-top: var(--space-xl);

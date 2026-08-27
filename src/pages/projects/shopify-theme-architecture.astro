@@ -229,8 +229,12 @@ const closingBadges = [
 						View Live Site
 					</a>
 				</section>
+			</div>
+		</div>
 
-				<section class="section-block" aria-labelledby="case-study-context-heading">
+		<div class="section-group">
+			<section class="section-block" aria-labelledby="case-study-context-heading">
+				<div class="container">
 					<div class="heading-block">
 						<h2 id="case-study-context-heading">The work</h2>
 						<div class="content-copy content-copy--narrow">
@@ -242,12 +246,10 @@ const closingBadges = [
 							</p>
 						</div>
 					</div>
-				</section>
-			</div>
-		</div>
+				</div>
+			</section>
 
-		<div class="section-group">
-		<section class="section-block" aria-labelledby="header-showcase-heading">
+			<section class="section-block" aria-labelledby="header-showcase-heading">
 			<div class="container">
 				<div class="heading-block">
 					<h2 id="header-showcase-heading">One header, different storefronts</h2>
@@ -257,7 +259,7 @@ const closingBadges = [
 					</p>
 				</div>
 
-				<div class="showcase-grid showcase-grid--spaced">
+				<div class="showcase-grid">
 					{
 						headerExamples.map((example) => (
 							<figure class="showcase-item" aria-labelledby={`header-${slugify(example.label)}`}>
@@ -364,9 +366,7 @@ const closingBadges = [
 				</div>
 			</div>
 		</section>
-		</div>
 
-		<div class="section-group">
 		<section class="section-block" aria-labelledby="building-blocks-heading">
 			<div class="container">
 				<div class="heading-block">
@@ -411,9 +411,11 @@ const closingBadges = [
 					}
 				</div>
 
-				<p id="building-blocks-components" class="text-accent section-label building-blocks__label">
-					Reusable components
-				</p>
+				<div class="heading-block">
+					<h3 id="building-blocks-components" class="subsection-title">
+						Reusable components
+					</h3>
+				</div>
 
 				<div
 					class="showcase-grid showcase-grid--2"
@@ -440,12 +442,12 @@ const closingBadges = [
 									)
 								}
 								<div class="heading-block">
-									<h3
+									<h4
 										id={`component-${slugify(component.label)}`}
 										class="text-accent section-label showcase-item__label"
 									>
 										{component.label}
-									</h3>
+									</h4>
 									<p class="showcase-item__copy">{component.copy}</p>
 								</div>
 							</article>
@@ -454,9 +456,7 @@ const closingBadges = [
 				</div>
 			</div>
 		</section>
-		</div>
 
-		<div class="section-group">
 		<section class="section-block" aria-labelledby="theme-structure-heading">
 			<div class="container">
 				<div class="heading-block">
