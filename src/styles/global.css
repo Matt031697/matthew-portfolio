@@ -553,14 +553,16 @@ p a:focus-visible {
 }
 
 .heading-block > .section-intro:last-child {
-	margin-bottom: var(--space-xl);
+	margin-bottom: var(--space-lg);
 }
 
 .heading-block > .subsection-title:last-child {
 	margin-bottom: var(--space-lg);
 }
 
-/* Section blocks */
+/* Section blocks
+   Between sections: padding-xl plus sibling padding-lg.
+   Inside a section, related headings, copy, and media use space-lg. */
 
 .section-block {
 	padding-block: var(--space-xl);
@@ -575,7 +577,7 @@ p a:focus-visible {
 	flex-direction: column;
 	gap: var(--space-md);
 	max-width: 65ch;
-	margin: 0 0 var(--space-xl);
+	margin: 0 0 var(--space-lg);
 	font-weight: var(--font-weight-regular);
 	letter-spacing: var(--letter-spacing-body);
 }
@@ -584,7 +586,7 @@ p a:focus-visible {
 	margin: 0;
 }
 
-.section-group .section-block + .section-block {
+.section-group .section-block ~ .section-block {
 	padding-block-start: var(--space-lg);
 }
 
@@ -1266,7 +1268,7 @@ p a:focus-visible {
 .identity-rows {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xl);
+	gap: var(--space-lg);
 }
 
 .media-row {
@@ -1409,7 +1411,7 @@ p a:focus-visible {
 .before-after-list {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xl);
+	gap: var(--space-lg);
 }
 
 .before-after-grid {
@@ -1534,7 +1536,7 @@ p a:focus-visible {
 .showcase-grid + .content-list,
 .gallery-grid + .showcase-item,
 .gallery-grid + .gallery-item {
-	margin-top: var(--space-xl);
+	margin-top: var(--space-lg);
 }
 
 .content-copy--narrow {
