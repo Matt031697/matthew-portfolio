@@ -178,16 +178,7 @@ const accessibilityItems = [
 	},
 ];
 
-const closingBadges = [
-	'Shopify',
-	'Liquid',
-	'JavaScript',
-	'CSS',
-	'Theme Architecture',
-	'Reusable Components',
-	'Accessibility',
-	'UX/UI',
-];
+const closingBadges = ['Shopify', 'Theme Architecture', 'Accessibility'];
 
 ---
 
@@ -221,10 +212,10 @@ const closingBadges = [
 					</ul>
 					<a
 						class="btn hero__cta"
-						href="https://kirchnerbuildingcenters.com/"
+						href="https://monsterpetsonline.com/"
 						target="_blank"
 						rel="noopener noreferrer"
-						aria-label="View Kirchner Building Centers live site (opens in a new tab)"
+						aria-label="View Monster Pets live site (opens in a new tab)"
 					>
 						View Live Site
 					</a>
@@ -255,7 +246,7 @@ const closingBadges = [
 						</p>
 					</div>
 
-					<div class="showcase-grid">
+					<div class="showcase-grid showcase-grid--3">
 					{
 						headerExamples.map((example) => (
 							<figure class="showcase-item" aria-labelledby={`header-${slugify(example.label)}`}>
@@ -272,7 +263,7 @@ const closingBadges = [
 											src={example.image}
 											alt={example.alt ?? example.label}
 											widths={[640, 960, 1280]}
-											sizes="(min-width: 48rem) 30vw, 92vw"
+											sizes="(min-width: 64rem) 30vw, 92vw"
 										/>
 									) : (
 										<div class="media-placeholder" aria-hidden="true" />
@@ -288,6 +279,7 @@ const closingBadges = [
 		<section class="section-block" aria-labelledby="ui-improvements-heading">
 			<div class="container">
 				<div class="heading-block">
+					<p id="ui-improvements-eyebrow" class="text-accent section-label">Before / after</p>
 					<h2 id="ui-improvements-heading">UI/UX improvements</h2>
 					<p class="section-intro">
 						Before-and-after work inside the shared theme: clearer hierarchy and
@@ -295,9 +287,7 @@ const closingBadges = [
 					</p>
 				</div>
 
-				<p id="ui-improvements-eyebrow" class="text-accent section-label">Before / after</p>
-
-				<div class="before-after-list" role="group" aria-labelledby="ui-improvements-eyebrow">
+				<div class="before-after-list" role="group" aria-labelledby="ui-improvements-heading">
 					{
 						uiImprovements.map((example) => (
 							<section
@@ -373,22 +363,22 @@ const closingBadges = [
 					</p>
 				</div>
 
-				<div class="showcase-grid">
+				<div class="showcase-grid showcase-grid--3">
 					{
 						foundationFeatures.map((feature) => (
 							<article
 								class="showcase-item showcase-item--feature"
 								aria-labelledby={`foundation-${slugify(feature.label)}`}
 							>
-								{
-									feature.image ? (
-										<Image
-											class="showcase-item__media"
-											src={feature.image}
-											alt={feature.alt ?? feature.label}
-											widths={[640, 960, 1280]}
-											sizes="(min-width: 48rem) 30vw, 92vw"
-										/>
+									{
+										feature.image ? (
+											<Image
+												class="showcase-item__media"
+												src={feature.image}
+												alt={feature.alt ?? feature.label}
+												widths={[640, 960, 1280]}
+												sizes="(min-width: 64rem) 30vw, 92vw"
+											/>
 									) : (
 										<div class="media-placeholder" aria-hidden="true" />
 									)

@@ -1,0 +1,31 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projectAccents } from '../lib/site.ts';
+---
+
+<BaseLayout
+	accentColor={projectAccents.home}
+	title="Page not found, Matthew"
+	description="That page isn't on this site. Selected work is on the homepage."
+	noindex
+>
+	<Header />
+
+	<main id="main">
+		<div class="container">
+			<section class="hero" aria-labelledby="not-found-heading">
+				<p class="text-accent section-label hero__eyebrow">404</p>
+				<h1 id="not-found-heading">This page isn't here.</h1>
+				<p class="hero__subheading">
+					The link may be old, or the address might be mistyped. Selected work is on
+					the homepage.
+				</p>
+				<a class="btn hero__cta" href="/">Back to homepage</a>
+			</section>
+		</div>
+	</main>
+
+	<Footer />
+</BaseLayout>

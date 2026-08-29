@@ -37,7 +37,7 @@ const projects = [
 	{
 		title: 'Shopify accessibility audits',
 		tags: 'WCAG 2.1 + WAVE + Lighthouse + Manual testing',
-		body: 'I audit every Shopify storefront for accessibility errors and contrast failures before it goes live, then turn findings into frontend improvements. When a barrier lives in a shared component, I fix it in the theme so the next site inherits the work.',
+		body: 'I make sure every storefront is accessible. Digital shouldn’t be exclusive. Assessments, quality checks, and changes all happen before something ships. When the barrier lives in a shared component, I fix it in the theme so the next site inherits the work.',
 		href: '/projects/shopify-accessibility-audits',
 		image: auditsThumb,
 		imageAlt:
@@ -46,7 +46,7 @@ const projects = [
 	{
 		title: 'Graphic design, print & photography',
 		tags: 'Adobe Creative Suite + Print design + Photography',
-		body: 'Graphic design, print, and photography from client work and personal projects. I focus on composition and hierarchy so the work holds up on a page, in a room, in a feed, and in a frame.',
+		body: 'I make graphic design, print, and photography for people and businesses who needed work they could hold, walk past, or photograph. I design and develop for the screen too. There is no preview button on a booth or a poster. I care about composition and hierarchy so the piece holds up in both places.',
 		href: '/projects/graphic-print-photography',
 		image: graphicThumb,
 		imageAlt:
@@ -94,7 +94,7 @@ const careerSteps = [
 		<div class="project-strip-wrap">
 			<nav class="project-strip" aria-label="Selected work previews">
 				{
-					projects.map((item) => (
+					projects.map((item, index) => (
 						<a class="project-strip__link" href={item.href}>
 							<span class="project-strip__frame">
 								<Image
@@ -103,6 +103,8 @@ const careerSteps = [
 									alt={item.imageAlt ?? ''}
 									widths={[160, 240, 320, 480, 720]}
 									sizes="(min-width: 64rem) 18vw, (min-width: 48rem) 30vw, 88vw"
+									loading={index === 0 ? 'eager' : 'lazy'}
+									fetchpriority={index === 0 ? 'high' : 'auto'}
 								/>
 								<span class="project-strip__overlay" aria-hidden="true">View Case Study</span>
 							</span>
@@ -222,13 +224,9 @@ const careerSteps = [
 </section>
 
 <style>
-	.philosophy.section-block {
-		padding-block-start: 0;
-	}
-
 	.project-strip-wrap {
 		position: relative;
-		margin-block: var(--space-lg);
+		margin-block-end: var(--space-section);
 	}
 
 	.project-strip {
@@ -587,6 +585,16 @@ const careerSteps = [
 
 	.skill-group__skills {
 		margin: 0;
+	}
+
+	@media (min-width: 64rem) {
+		.philosophy .content-grid {
+			align-items: stretch;
+		}
+
+		#resume > .btn {
+			margin-top: auto;
+		}
 	}
 </style>
 

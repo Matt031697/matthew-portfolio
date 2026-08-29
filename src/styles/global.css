@@ -51,6 +51,7 @@
 	--space-lg: 2.5rem;
 	--space-xl: 4rem;
 	--space-2xl: 6rem;
+	--space-section: calc(var(--space-xl) + var(--space-lg));
 
 	/* Motion */
 	--transition-nav: color 200ms ease;
@@ -93,7 +94,7 @@ body {
 	font-size: var(--font-size-body);
 	font-weight: var(--font-weight-regular);
 	line-height: var(--line-height-body);
-	letter-spacing: var(--letter-spacing-body);
+	letter-spacing: 0;
 	color: var(--color-text);
 	background-color: transparent;
 }
@@ -229,13 +230,12 @@ blockquote {
 }
 
 /* Parent flex gap controls label-to-content spacing in these blocks */
-.content-block :is(.section-label, .heading-prominent),
+.content-block .section-label,
 .showcase-item .section-label,
 .showcase-item--feature .section-label,
 .type-specimen__block .section-label,
 .before-after-item .section-label,
-.testimonial .section-label,
-.foundation-values .section-label {
+.testimonial .section-label {
 	margin-bottom: 0;
 }
 
@@ -337,38 +337,8 @@ blockquote {
 	color: var(--color-accent);
 }
 
-.nav-link--flush {
-	padding-inline-start: 0;
-}
-
-.frosted-cluster {
-	display: flex;
-	align-items: center;
-	width: fit-content;
-	padding: 0.25rem 0.75rem;
-	border-radius: 9999px;
-	background-color: color-mix(in srgb, var(--color-background) 72%, transparent);
-	backdrop-filter: blur(14px);
-	-webkit-backdrop-filter: blur(14px);
-}
-
-.back-link {
-	display: inline-block;
-	margin-bottom: var(--space-lg);
-	font-size: var(--font-size-nav);
-	font-weight: var(--font-weight-semibold);
-	letter-spacing: var(--letter-spacing-body);
-	color: var(--color-text);
-	text-decoration: none;
-	transition: var(--transition-nav);
-}
-
-.back-link:hover {
+.nav-link[aria-current] {
 	color: var(--color-project);
-}
-
-.back-link:focus-visible {
-	color: var(--color-accent);
 }
 
 /* Buttons */
@@ -442,7 +412,6 @@ blockquote {
 	max-width: 65ch;
 	margin: 0;
 	font-weight: var(--font-weight-regular);
-	letter-spacing: var(--letter-spacing-body);
 }
 
 .hero__badges {
@@ -487,12 +456,11 @@ blockquote {
 	margin-top: 0;
 }
 
-.content-grid__column h2,
-.content-grid__column .heading-prominent {
+.content-grid__column h2 {
 	margin: 0 0 var(--space-md);
 }
 
-.content-grid__column .content-block :is(.section-label, .heading-prominent) {
+.content-grid__column .content-block .section-label {
 	margin-bottom: 0;
 }
 
@@ -510,15 +478,9 @@ blockquote {
 
 p a {
 	font-weight: var(--font-weight-bold);
-	color: inherit;
+	color: var(--color-project);
 	text-decoration: none;
 	transition: var(--transition-nav);
-}
-
-@media (hover: hover) {
-	p a:hover {
-		color: var(--color-project);
-	}
 }
 
 p a:focus-visible {
@@ -539,11 +501,11 @@ p a:focus-visible {
 	margin: 0;
 }
 
-.heading-block > :is(h1, h2, h3, h4, .heading-prominent, .subsection-title) {
+.heading-block > :is(h1, h2, h3, h4, .subsection-title) {
 	margin: 0;
 }
 
-.content-grid__column .heading-block :is(h2, .heading-prominent),
+.content-grid__column .heading-block h2,
 .section-block .heading-block :is(h2, h3, h4) {
 	margin: 0;
 }
@@ -561,8 +523,8 @@ p a:focus-visible {
 }
 
 /* Section blocks
-   Between sections: padding-xl plus sibling padding-lg.
-   Inside a section, related headings, copy, and media use space-lg. */
+   Between sections: --space-section (padding-xl plus sibling padding-lg).
+   Inside a section, related headings, copy, and media use --space-lg. */
 
 .section-block {
 	padding-block: var(--space-xl);
@@ -579,7 +541,6 @@ p a:focus-visible {
 	max-width: 65ch;
 	margin: 0 0 var(--space-lg);
 	font-weight: var(--font-weight-regular);
-	letter-spacing: var(--letter-spacing-body);
 }
 
 .section-intro p {
@@ -599,17 +560,6 @@ p a:focus-visible {
 	font-size: var(--font-size-h4);
 	font-weight: var(--font-weight-semibold);
 	letter-spacing: var(--letter-spacing-body);
-}
-
-/* Subsection heading with section-level visual weight (use h3 for correct outline) */
-
-.heading-prominent {
-	margin: 0 0 var(--space-md);
-	font-size: var(--font-size-h2);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-heading);
-	letter-spacing: var(--letter-spacing-heading);
-	color: var(--color-text);
 }
 
 .subsection-intro {
@@ -720,6 +670,10 @@ p a:focus-visible {
 	.showcase-grid--2 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
+
+	.showcase-grid--3 {
+		grid-template-columns: minmax(0, 1fr);
+	}
 }
 
 @media (min-width: 64rem) {
@@ -729,6 +683,10 @@ p a:focus-visible {
 
 	.showcase-grid--2 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.showcase-grid--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }
 
@@ -741,6 +699,10 @@ p a:focus-visible {
 
 .showcase-item--feature {
 	gap: var(--space-md);
+}
+
+.showcase-item--feature > .heading-block {
+	flex: 1;
 }
 
 .showcase-item__label {
@@ -757,8 +719,8 @@ p a:focus-visible {
 	margin: 0;
 }
 
-.showcase-item .btn {
-	margin-top: var(--space-sm);
+.showcase-item > .btn {
+	margin-top: 0;
 }
 
 .media-placeholder,
@@ -787,20 +749,12 @@ p a:focus-visible {
 	object-fit: cover;
 }
 
-.media-placeholder--short {
-	aspect-ratio: 2 / 1;
-}
-
 .icon-pattern__image {
 	aspect-ratio: 3 / 1;
 }
 
 .media-placeholder--compact {
 	aspect-ratio: 4 / 3;
-}
-
-.media-placeholder--portrait {
-	aspect-ratio: 3 / 4;
 }
 
 /* Project gallery */
@@ -839,34 +793,6 @@ p a:focus-visible {
 
 	.gallery-grid--4 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.gallery-grid--featured {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.gallery-grid--featured > :first-child {
-		grid-column: 1 / -1;
-	}
-
-	.gallery-grid--mixed {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		grid-template-rows: repeat(2, minmax(0, 1fr));
-	}
-
-	.gallery-grid--mixed > :first-child {
-		grid-column: 1;
-		grid-row: 1 / span 2;
-	}
-
-	.gallery-grid--mixed .gallery-item {
-		height: 100%;
-	}
-
-	.gallery-grid--mixed > :not(:first-child) .media-placeholder {
-		flex: 1;
-		aspect-ratio: auto;
-		min-height: 10rem;
 	}
 }
 
@@ -916,27 +842,6 @@ p a:focus-visible {
 	margin: 0;
 }
 
-/* Foundation values */
-
-@media (max-width: 23.99rem) {
-	.foundation-values {
-		grid-template-columns: minmax(0, 1fr);
-	}
-}
-
-.foundation-values {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: var(--space-sm) var(--space-md);
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.foundation-values :is(h3, h4) {
-	margin: 0;
-}
-
 /* Media mosaic */
 
 .media-mosaic {
@@ -951,7 +856,6 @@ p a:focus-visible {
 	gap: var(--space-md);
 }
 
-.media-placeholder--square,
 .media-mosaic__image,
 .gallery-banner__image,
 .gallery-item__media--square {
@@ -1030,13 +934,12 @@ p a:focus-visible {
 .print-exhibition {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	gap: var(--space-xl);
+	gap: var(--space-lg);
 	align-items: start;
 }
 
-.print-row + .print-exhibition,
-.print-exhibition + .heading-block {
-	margin-top: var(--space-2xl);
+.print-row + .print-exhibition {
+	margin-top: var(--space-lg);
 }
 
 @media (min-width: 48rem) {
@@ -1114,13 +1017,13 @@ p a:focus-visible {
 .brand-board-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	gap: var(--space-2xl);
+	gap: var(--space-lg);
 }
 
 @media (min-width: 64rem) {
 	.brand-board-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-xl);
+		gap: var(--space-lg);
 	}
 }
 
@@ -1134,7 +1037,7 @@ p a:focus-visible {
 .gallery-item + .brand-board-grid,
 .gallery-grid + .brand-board-grid,
 .banner-pair + .brand-board-grid {
-	margin-top: var(--space-2xl);
+	margin-top: var(--space-lg);
 }
 
 .media-mosaic__banner {
@@ -1278,7 +1181,10 @@ p a:focus-visible {
 }
 
 @media (min-width: 48rem) {
-	.media-row--3,
+	.media-row--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
 	.media-row--4 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -1514,7 +1420,7 @@ p a:focus-visible {
 .coverage-block {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: 0;
 }
 
 .coverage-block .heading-block > .subsection-title:last-child {
@@ -1528,6 +1434,7 @@ p a:focus-visible {
 .heading-block:not(:has(> .section-intro:last-child)) + .content-list,
 .heading-block + .media-row,
 .heading-block + .shipped-grid,
+.heading-block + .badge-list,
 .pipeline + .testimonial-media,
 .showcase-item + .showcase-grid,
 .showcase-grid + .heading-block,
@@ -1615,11 +1522,11 @@ p a:focus-visible {
 /* Anchor offset for sticky header */
 
 #main {
-	scroll-margin-top: 6rem;
+	scroll-margin-top: 5rem;
 }
 
 #projects,
 #about,
 #resume {
-	scroll-margin-top: 6rem;
+	scroll-margin-top: 5rem;
 }

@@ -20,6 +20,14 @@ export const navItems = [
 	{ label: 'Contact', href: `mailto:${siteEmail}` },
 ] as const;
 
+export const projectLinks = [
+	{ label: 'Shopify theme architecture', href: '/projects/shopify-theme-architecture' },
+	{ label: 'Bondfire Design Company', href: '/projects/bondfire-design-company' },
+	{ label: 'AI-assisted websites', href: '/projects/ai-assisted-websites' },
+	{ label: 'Shopify accessibility audits', href: '/projects/shopify-accessibility-audits' },
+	{ label: 'Graphic design, print & photography', href: '/projects/graphic-print-photography' },
+] as const;
+
 export const projectAccents = {
 	home: '#3A588D',
 	shopify: '#136916',

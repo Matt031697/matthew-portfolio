@@ -39,7 +39,7 @@ import photoGallery8 from '../../assets/projects/design/photo-gallery-8.png';
 
 const pageTitle = 'Graphic, Print & Photography, Matthew';
 const description =
-	'Graphic design, print, and photography. Work made for a page, a room, a feed, and a frame.';
+	'Graphic design, print, and photography, plus web design and development. Work that has to hold up on a screen and in the real thing.';
 
 const facebookBanners = [
 	{
@@ -219,13 +219,7 @@ const funPieces = [
 	},
 ] as const;
 
-const closingBadges = [
-	'Print Design',
-	'Visual Identity',
-	'Social Design',
-	'Photography',
-	'Adobe Creative Suite',
-];
+const closingBadges = ['Print Design', 'Visual Identity', 'Photography'];
 
 ---
 
@@ -238,8 +232,10 @@ const closingBadges = [
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
 					<h1 id="case-study-heading">Graphic, Print &amp; Photography</h1>
 					<p class="hero__subheading">
-						Work made for a page, a room, a feed, and a frame. Each piece is designed to
-						hold up in its own format.
+						I make graphic design, print, and photography for people and businesses who
+						needed work they could hold, walk past, or photograph. I design and develop
+						for the screen too. There is no preview button on a booth or a poster. I care
+						about composition and hierarchy so the piece holds up in both places.
 					</p>
 					<ul class="badge-list hero__badges">
 						<li class="badge">Adobe Creative Suite</li>
@@ -258,13 +254,24 @@ const closingBadges = [
 			<section class="section-block" aria-labelledby="print-heading">
 				<div class="container">
 					<div class="heading-block">
+						<h2 id="case-study-context-heading">The work</h2>
+						<div class="content-copy content-copy--narrow">
+							<p>
+								A magazine spread, a booth, a postcard, and a poster are not the same job.
+								Scale, paper, ink, and light change the design before anything goes to print
+								or onto the floor. I stay with those constraints instead of only designing
+								for a screen and hoping it survives.
+							</p>
+						</div>
+					</div>
+
+					<div class="heading-block">
 						<p class="text-accent section-label">Print and environmental</p>
 						<h2 id="print-heading">Made for a page, and for a room</h2>
 						<p class="section-intro">
-							A two-page prospectus for a tradeshow magazine, a booth that has to read
-							from across an aisle, and exhibition print for a painting show: a poster
-							for the room, a postcard for the hand. Hierarchy and print design have to
-							hold up on paper and in the room.
+							A two-page prospectus for a tradeshow magazine, a booth that has to read from
+							across an aisle, and exhibition print for a painting show: a poster for the
+							room, a postcard for the hand.
 						</p>
 					</div>
 
@@ -360,21 +367,6 @@ const closingBadges = [
 							</figcaption>
 						</figure>
 					</div>
-
-					<div class="heading-block">
-						<h2 id="case-study-context-heading">The work</h2>
-						<div class="content-copy content-copy--narrow">
-							<p>
-								Graphic design, print, and photography for people and businesses who needed
-								work they could hold, walk past, or photograph. Composition, hierarchy, type,
-								color, crop, and light. Each format has its own constraints.
-							</p>
-							<p>
-								Physical work has no preview button. Scale, paper, ink, and light change what
-								the design can do before anything goes to print or install.
-							</p>
-						</div>
-					</div>
 				</div>
 			</section>
 
@@ -384,8 +376,8 @@ const closingBadges = [
 						<p class="text-accent section-label">Social</p>
 						<h2 id="social-heading">Built for the feed</h2>
 						<p class="section-intro">
-							Facebook campaign banners for New Media Retailer, plus identities built
-							for Instagram, with a primary logo and a three-slide carousel for each.
+							Campaign banners for the feed, plus identities built for Instagram: a primary
+							logo and a three-slide carousel for each.
 						</p>
 					</div>
 
@@ -468,8 +460,8 @@ const closingBadges = [
 						<p class="text-accent section-label">Photography</p>
 						<h2 id="photography-heading">The gallery is the design work</h2>
 						<p class="section-intro">
-							A gallery designed for photography clients. Sequence, crop, and pacing, not
-							a folder of files.
+							A gallery for photography clients. Sequence, crop, and pacing, not a folder of
+							files.
 						</p>
 					</div>
 
@@ -498,10 +490,10 @@ const closingBadges = [
 					<div class="heading-block">
 						<p class="text-accent section-label">Just for fun</p>
 						<h2 id="just-for-fun-heading">Personal work</h2>
-						<p class="section-intro">Illustrations and experiments outside client work.</p>
+						<p class="section-intro">Illustrations I made for myself, outside client work.</p>
 					</div>
 
-					<div class="gallery-grid gallery-grid--4" role="group" aria-label="Personal illustrations">
+					<div class="gallery-grid gallery-grid--3" role="group" aria-label="Personal illustrations">
 						{
 							funPieces.map((piece) => (
 								<figure
@@ -527,17 +519,16 @@ const closingBadges = [
 					</div>
 				</div>
 			</section>
-		</div>
 
-		<div class="section-group">
 			<section class="section-block" aria-labelledby="case-study-closing-heading">
 				<div class="container">
 					<div class="heading-block">
 						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								Work shaped for the format it ships in, whether a page, a room, a feed, or a
-								frame, with the same attention to hierarchy, crop, and detail throughout.
+								What shipped was made for how it would be seen, on a screen or in a room.
+								Same attention to hierarchy, crop, and detail, whether it was client work or
+								just for fun.
 							</p>
 						</div>
 					</div>

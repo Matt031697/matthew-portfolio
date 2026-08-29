@@ -110,12 +110,7 @@ const learnedItems = [
 	},
 ];
 
-const resultBadges = [
-	'Cursor',
-	'Astro',
-	'Accessibility',
-	'AI-Assisted Development',
-];
+const resultBadges = ['Cursor', 'Astro', 'Accessibility'];
 
 const featuredLiveSite =
 	liveSites.find((site) => site.slug === 'northington-windows-doors') ?? liveSites[0];
@@ -181,7 +176,7 @@ const workflowMockups = [
 						</p>
 					</div>
 
-					<div class="showcase-grid">
+					<div class="showcase-grid showcase-grid--3">
 						{
 							liveSites.map((site) => (
 								<article
@@ -195,7 +190,7 @@ const workflowMockups = [
 												src={site.image}
 												alt={site.alt ?? site.name}
 												widths={[640, 960, 1280]}
-												sizes="(min-width: 48rem) 30vw, 92vw"
+												sizes="(min-width: 64rem) 30vw, 92vw"
 											/>
 										) : (
 											<div class="media-placeholder media-placeholder--compact" aria-hidden="true" />
@@ -207,21 +202,25 @@ const workflowMockups = [
 											{site.name}
 										</h3>
 										<p class="showcase-item__copy">{site.copy}</p>
-										<a
-											class="btn"
-											href={site.href}
-											target="_blank"
-											rel="noopener noreferrer"
-											aria-label={`View live site: ${site.name} (opens in a new tab)`}
-										>
-											View Live Site
-										</a>
 									</div>
+									<a
+										class="btn"
+										href={site.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={`View live site: ${site.name} (opens in a new tab)`}
+									>
+										View Live Site
+									</a>
 								</article>
 							))
 						}
 					</div>
+				</div>
+			</section>
 
+			<section class="section-block" aria-labelledby="case-study-context-heading">
+				<div class="container">
 					<div class="heading-block">
 						<h2 id="case-study-context-heading">The work</h2>
 						<div class="content-copy content-copy--narrow">
@@ -257,7 +256,7 @@ const workflowMockups = [
 
 			<section class="section-block" aria-labelledby="ai-partner-heading">
 				<div class="container">
-					<div class="content-grid content-grid--center">
+					<div class="content-grid">
 						<div class="content-grid__column">
 							<div class="heading-block">
 								<h2 id="ai-partner-heading">What Cursor handles</h2>

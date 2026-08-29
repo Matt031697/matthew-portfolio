@@ -4,7 +4,6 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { careerHighlights, projectAccents } from '../../lib/site.ts';
-import wcagReference from '../../assets/projects/accessibility/wcag-reference.png';
 import waveAudit from '../../assets/projects/accessibility/wave-audit.png';
 import lighthouseAccessibility from '../../assets/projects/accessibility/lighthouse-accessibility.png';
 import skipToContent from '../../assets/projects/accessibility/skip-to-content.png';
@@ -15,55 +14,48 @@ import accessibleNames from '../../assets/projects/accessibility/accessible-name
 
 const pageTitle = 'Shopify Accessibility Audits, Matthew';
 const description =
-	'Auditing every Shopify storefront for accessibility errors and contrast failures before it goes live, and shipping shared theme fixes when the barrier is a pattern.';
+	'I make sure every Shopify storefront is accessible before it ships. When a barrier lives in a shared component, I fix it in the theme so the next site inherits the work.';
 
 const auditProcess = [
 	{
 		label: 'Scan',
-		copy: 'WAVE and Lighthouse on the live storefront, before launch. Errors and contrast, not a performance score.',
+		copy: 'WAVE and Lighthouse on the live site, before launch. I care about errors and contrast, not a performance score.',
 	},
 	{
 		label: 'Investigate',
-		copy: 'Theme, shared component, merchant content, or a third-party app. That decides whether the fix is local or architectural.',
+		copy: 'Is it the theme, a shared piece, the merchant’s content, or an app? That tells me if I fix this store or the whole system.',
 	},
 	{
 		label: 'Test by hand',
-		copy: 'Confirm it on real product, collection, and cart pages. The report is a starting point.',
+		copy: 'I check it on real product, collection, and cart pages. The report is just a starting point.',
 	},
 	{
 		label: 'Fix and recheck',
-		copy: 'Patch this storefront, or the shared theme if the same barrier would show up on the next client.',
+		copy: 'Fix this storefront, or put it in the theme if I know the next client is going to run into the same thing.',
 	},
 ];
 
 const auditTools = [
 	{
-		id: 'tool-wcag',
-		label: 'WCAG 2.1',
-		image: wcagReference,
-		alt: 'Screenshot of WCAG 2.1 guidance showing Principle 1 and Guideline 1.1, with blue sections on text alternatives, non-text content, and time-based media.',
-		copy: 'The bar for what ships. I use it to separate real barriers from nice-to-haves.',
-	},
-	{
 		id: 'tool-wave',
 		label: 'WAVE',
 		image: waveAudit,
-		alt: 'WAVE accessibility report displays a home-building website with the headline “Windows & doors that work as hard as you do” beside a welcoming house photo.',
-		copy: 'First pass for errors and contrast on the live storefront.',
+		alt: 'WAVE sidebar on the Northington Windows & Doors homepage reporting zero errors, zero contrast errors, and an AIM score of 10 out of 10.',
+		copy: 'A first look at errors and contrast on the live page. Not the last word.',
 	},
 	{
 		id: 'tool-lighthouse',
 		label: 'Lighthouse',
 		image: lighthouseAccessibility,
-		alt: 'Accessibility checklist infographic with a green score of 100, presenting website and HTML accessibility guidelines in two columns with green bullets.',
-		copy: 'Second accessibility pass. I read the findings, not the performance pane.',
+		alt: 'Lighthouse Accessibility report with a score of 100, listing items to check by hand beside 31 passed automated audits.',
+		copy: 'A second look. I read the accessibility findings and skip the performance pane.',
 	},
 	{
 		id: 'tool-manual-testing',
 		label: 'Manual testing',
 		image: manualTesting,
-		alt: 'Northington Windows & Doors homepage featuring a welcoming two-story home, product tagline, navigation, location finder, and service statistics.',
-		copy: 'Heading order, contrast, names, and keyboard on the real pages.',
+		alt: 'Northington Windows & Doors homepage with heading-level overlays on the hero and Explore the line section.',
+		copy: 'Then I go through headings, contrast, names, and keyboard on the pages people actually use.',
 	},
 ];
 
@@ -73,28 +65,28 @@ const themeEvidence = [
 		label: 'Skip to content',
 		image: skipToContent,
 		alt: 'Northington Windows & Doors homepage with a visible Skip to content control in the top left, navigation, and a suburban home beside the headline.',
-		copy: 'Keyboard users can jump the header. The link stays hidden until it is focused.',
+		copy: 'It stays out of the way until you tab to it, then you can skip the header and get to the page.',
 	},
 	{
 		id: 'evidence-focus',
 		label: 'Visible focus',
 		image: visibleFocus,
-		alt: 'Northington Windows & Doors webpage featuring a welcoming two-story home, headline about durable affordable products, and location search button.',
-		copy: 'Buttons, links, and controls show a clear outline from the keyboard.',
+		alt: 'Northington Windows & Doors homepage with a visible focus ring around the Call us button in the header, beside Find a Location.',
+		copy: 'Call us has a ring around it when you tab there. I don’t ship a button you can’t see. That outline lives in the theme.',
 	},
 	{
 		id: 'evidence-dialog',
 		label: 'Dialogs',
 		image: dialogMenu,
 		alt: 'Mobile Northington website screenshot with navigation menu open, showing links for windows, doors, locations, resources, contact, and location search.',
-		copy: 'The mobile menu traps focus, closes on Escape, and returns focus to the control that opened it.',
+		copy: 'Opening the menu shouldn’t dump you onto the page behind it. Focus stays inside until you’re ready to close it.',
 	},
 	{
 		id: 'evidence-names',
 		label: 'Accessible names',
 		image: accessibleNames,
 		alt: 'Northington Windows website screenshot showing “Windows & doors that work as hard as you do” beside a modern house; accessibility inspector open.',
-		copy: 'Icon-only controls expose a real name, like Facebook, Close menu, or Next, not an empty button.',
+		copy: 'A Facebook icon with no name is just an empty button. I want the inspector to see Facebook, Close menu, Next.',
 	},
 ];
 
@@ -131,16 +123,7 @@ const shippedGroups = [
 	},
 ];
 
-const closingBadges = [
-	'WCAG 2.1',
-	'WAVE',
-	'Lighthouse',
-	'Contrast',
-	'Manual Testing',
-	'Keyboard',
-	'Shopify',
-	'Shared theme',
-];
+const closingBadges = ['WCAG 2.1', 'Manual Testing', 'Shared theme'];
 ---
 
 <BaseLayout title={pageTitle} {description} accentColor={projectAccents.audits}>
@@ -152,9 +135,10 @@ const closingBadges = [
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
 					<h1 id="case-study-heading">Shopify Accessibility Audits</h1>
 					<p class="hero__subheading">
-						I audit every Shopify storefront for accessibility errors and contrast before it
-						goes live, then turn findings into frontend changes. When a barrier lives in a
-						shared component, I fix it in the theme so the next site inherits the work.
+						I make sure every storefront is accessible. Digital shouldn’t be exclusive.
+						Assessments, quality checks, and changes all happen before something ships.
+						When the barrier lives in a shared component, I fix it in the theme so the
+						next site inherits the work.
 					</p>
 					<ul class="badge-list hero__badges">
 						<li class="badge">WCAG 2.1</li>
@@ -162,112 +146,44 @@ const closingBadges = [
 						<li class="badge">Lighthouse</li>
 						<li class="badge">{careerHighlights.storefronts}</li>
 					</ul>
-					<a class="btn hero__cta" href="/projects/shopify-theme-architecture">
-						View Shared Case Study
+					<a
+						class="btn hero__cta"
+						href="https://kirchnerbuildingcenters.com/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="View Kirchner Building Centers live site (opens in a new tab)"
+					>
+						View Live Site
 					</a>
 				</section>
 			</div>
 		</div>
 
 		<div class="section-group">
-			<section class="section-block" aria-labelledby="audit-process-heading">
-				<div class="container">
-					<div class="heading-block">
-						<p class="text-accent section-label">The process</p>
-						<h2 id="audit-process-heading">Before a storefront goes live</h2>
-						<p class="section-intro">
-							WAVE and Lighthouse surface errors and contrast failures. I confirm what is real,
-							trace it, fix it, and retest before launch, not after.
-						</p>
-					</div>
-
-					<ol class="pipeline content-list--grid" aria-label="Audit process">
-						{
-							auditProcess.map((step) => (
-								<li class="pipeline__item">
-									<h3 class="text-accent pipeline__label">{step.label}</h3>
-									<p>{step.copy}</p>
-								</li>
-							))
-						}
-					</ol>
-				</div>
-			</section>
-
-			<section class="section-block" aria-labelledby="audit-tools-heading">
-				<div class="container">
-					<div class="heading-block">
-						<p class="text-accent section-label">What I use</p>
-						<h2 id="audit-tools-heading">The scan, then the storefront</h2>
-						<p class="section-intro">
-							Northington Windows &amp; Doors is a recent example. The tools find issues. I
-							decide what ships.
-						</p>
-					</div>
-
-					<div class="showcase-grid showcase-grid--2">
-						{
-							auditTools.map((tool) => (
-								<article
-									class="showcase-item showcase-item--feature"
-									aria-labelledby={tool.id}
-								>
-									{
-										tool.image ? (
-											<Image
-												class="showcase-item__media"
-												src={tool.image}
-												alt={tool.alt ?? tool.label}
-												widths={[640, 960, 1280, 1920]}
-												sizes="(min-width: 48rem) 46vw, 92vw"
-											/>
-										) : (
-											<div class="media-placeholder" aria-hidden="true" />
-										)
-									}
-									<div class="heading-block">
-										<h3
-											id={tool.id}
-											class="text-accent section-label showcase-item__label"
-										>
-											{tool.label}
-										</h3>
-										<p class="showcase-item__copy">{tool.copy}</p>
-									</div>
-								</article>
-							))
-						}
-					</div>
-				</div>
-			</section>
-		</div>
-
-		<div class="section-group">
-			<section class="section-block" aria-labelledby="shipped-heading">
+			<section class="section-block" aria-labelledby="case-study-context-heading">
 				<div class="container">
 					<div class="heading-block">
 						<h2 id="case-study-context-heading">The work</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								Every client Shopify storefront gets a pre-launch audit against WCAG 2.1, then
-								frontend fixes at the store level or in the <a href="/projects/shopify-theme-architecture">shared theme</a> when
-								the same barrier would show up on the next site.
-							</p>
-							<p>
-								Storefronts mix theme code, reusable components, third-party apps, and merchant
-								content. I treat audits as a launch gate: find what blocks people, fix it, then ship.
+								One audit is never the same as the next. Mixed code, different components,
+								branding assets, colors, apps, content, the list goes on. That’s what
+								keeps the work interesting, and that’s why I keep my eyes open: find what
+								blocks people, fix it, and ship it. If a barrier becomes consistent, the
+								update goes in the{' '}
+								<a href="/projects/shopify-theme-architecture">shared theme</a>.
 							</p>
 						</div>
 					</div>
 
 					<div class="heading-block">
 						<p class="text-accent section-label">When it belongs in the theme</p>
-						<h2 id="shipped-heading">A shared-theme accessibility pass</h2>
+						<h2 id="shipped-heading">One fix, every storefront</h2>
 						<p class="section-intro">
-							Some barriers are not one-offs. A menu, drawer, or unlabeled control that fails
-							on one client will fail on every storefront that shares the component. This pass
-							shipped those fixes in the theme, without changing how the storefront looks to a
-							typical shopper.
+							A menu, a missing name, a drawer that only works with a mouse. If it fails for
+							one client, it will fail for the next. I put those fixes in the shared Shopify
+							theme so the storefront still looks like itself. Skip, focus, menus, and names
+							are what that looks like on a live page.
 						</p>
 					</div>
 
@@ -305,10 +221,12 @@ const closingBadges = [
 						}
 					</div>
 
-					<div class="coverage-block" aria-labelledby="shipped-changelog-heading">
+					<section class="coverage-block" aria-labelledby="shipped-changelog-heading">
 						<div class="heading-block">
-							<p id="shipped-changelog-heading" class="text-accent section-label">Snapshot of what has shipped</p>
-							<h3 class="subsection-title">Coverage across the theme</h3>
+							<p class="text-accent section-label">What has shipped</p>
+							<h3 id="shipped-changelog-heading" class="subsection-title">
+								Across the theme
+							</h3>
 						</div>
 
 						<div class="shipped-grid">
@@ -327,20 +245,90 @@ const closingBadges = [
 								))
 							}
 						</div>
+					</section>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="audit-process-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">The process</p>
+						<h2 id="audit-process-heading">Before a storefront goes live</h2>
+						<p class="section-intro">
+							Scan, check what’s real, fix it, and look again. All of that before it ships,
+							not after.
+						</p>
+					</div>
+
+					<ol class="pipeline" aria-label="Audit process">
+						{
+							auditProcess.map((step) => (
+								<li class="pipeline__item">
+									<h3 class="text-accent pipeline__label">{step.label}</h3>
+									<p>{step.copy}</p>
+								</li>
+							))
+						}
+					</ol>
+				</div>
+			</section>
+
+			<section class="section-block" aria-labelledby="audit-tools-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">What I use</p>
+						<h2 id="audit-tools-heading">The scan, then the storefront</h2>
+						<p class="section-intro">
+							Northington Windows &amp; Doors is a recent live site I ran through the same
+							checks. The tools point me at issues. I still decide what actually ships.
+						</p>
+					</div>
+
+					<div class="showcase-grid showcase-grid--3">
+						{
+							auditTools.map((tool) => (
+								<article
+									class="showcase-item showcase-item--feature"
+									aria-labelledby={tool.id}
+								>
+									{
+										tool.image ? (
+											<Image
+												class="showcase-item__media"
+												src={tool.image}
+												alt={tool.alt ?? tool.label}
+												widths={[640, 960, 1280, 1920]}
+												sizes="(min-width: 64rem) 30vw, 92vw"
+											/>
+										) : (
+											<div class="media-placeholder" aria-hidden="true" />
+										)
+									}
+									<div class="heading-block">
+										<h3
+											id={tool.id}
+											class="text-accent section-label showcase-item__label"
+										>
+											{tool.label}
+										</h3>
+										<p class="showcase-item__copy">{tool.copy}</p>
+									</div>
+								</article>
+							))
+						}
 					</div>
 				</div>
 			</section>
-		</div>
 
-		<div class="section-group">
 			<section class="section-block" aria-labelledby="case-study-closing-heading">
 				<div class="container">
 					<div class="heading-block">
 						<h2 id="case-study-closing-heading">The result</h2>
 						<div class="content-copy content-copy--narrow">
 							<p>
-								Every storefront audited before launch. When the barrier is shared, the fix
-								ships in the theme, not a report that sits in a folder.
+								Every storefront gets the check before it ships. The report starts it. The
+								fix finishes it, on that store or in the theme, so the next one doesn’t
+								inherit the barrier.
 							</p>
 						</div>
 					</div>
@@ -355,3 +343,17 @@ const closingBadges = [
 
 	<Footer />
 </BaseLayout>
+
+<style>
+	@media (min-width: 48rem) {
+		.pipeline {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.pipeline {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+</style>

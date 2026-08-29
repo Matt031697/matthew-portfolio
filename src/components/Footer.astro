@@ -1,16 +1,15 @@
 ---
-import { siteEmail, siteLinkedIn, siteLocation } from '../lib/site.ts';
+import { projectLinks, siteEmail, siteLinkedIn, siteLocation } from '../lib/site.ts';
 
 const year = new Date().getFullYear();
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <footer class="site-footer">
 	<div class="container">
 		<div class="site-footer__inner">
 			<nav class="site-footer__bar" aria-label="Footer">
-				<div class="frosted-cluster">
-					<a class="nav-link" href={`mailto:${siteEmail}`}>Contact Me</a>
-				</div>
+				<a class="nav-link" href={`mailto:${siteEmail}`}>Contact Me</a>
 				<a
 					class="site-footer__linkedin"
 					href={siteLinkedIn}
@@ -32,6 +31,25 @@ const year = new Date().getFullYear();
 				</a>
 			</nav>
 
+			<nav class="site-footer__work" aria-labelledby="footer-work-heading">
+				<p id="footer-work-heading" class="text-accent section-label">Selected work</p>
+				<ul class="site-footer__work-list">
+					{
+						projectLinks.map((item) => (
+							<li>
+								<a
+									class="site-footer__work-link"
+									href={item.href}
+									aria-current={pathname === item.href ? 'page' : undefined}
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
 			<p class="site-footer__meta text-caption">
 				{siteLocation}
 			</p>
@@ -47,7 +65,7 @@ const year = new Date().getFullYear();
 
 <style>
 	.site-footer {
-		padding-block: var(--space-2xl);
+		padding-block: var(--space-section);
 	}
 
 	.site-footer__inner {
@@ -56,7 +74,6 @@ const year = new Date().getFullYear();
 		align-items: flex-start;
 		justify-content: center;
 		gap: var(--space-lg);
-		min-height: 10rem;
 		text-align: left;
 	}
 
@@ -66,6 +83,53 @@ const year = new Date().getFullYear();
 		justify-content: space-between;
 		width: 100%;
 		gap: var(--space-md);
+	}
+
+	.site-footer__work {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+		width: 100%;
+	}
+
+	.site-footer__work .section-label {
+		margin: 0;
+	}
+
+	.site-footer__work-list {
+		display: flex;
+		flex-flow: row wrap;
+		gap: var(--space-xs) var(--space-md);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.site-footer__work-link {
+		display: inline-block;
+		padding-block: var(--space-2xs);
+		font-size: var(--font-size-nav);
+		font-weight: var(--font-weight-regular);
+		letter-spacing: 0;
+		color: var(--color-text-subtle);
+		text-decoration: none;
+		transition: var(--transition-nav);
+	}
+
+	.site-footer__work-link:hover,
+	.site-footer__work-link:focus-visible {
+		color: var(--color-text);
+	}
+
+	.site-footer__work-link:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+	}
+
+	.site-footer__work-link[aria-current='page'] {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
 	}
 
 	.site-footer__linkedin {
