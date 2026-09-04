@@ -5,6 +5,7 @@ import bondfireThumb from '../assets/projects/case-study-thumbnails/bondfire-des
 import aiThumb from '../assets/projects/case-study-thumbnails/ai-assisted-websites.png';
 import auditsThumb from '../assets/projects/case-study-thumbnails/shopify-accessibility-audits.png';
 import graphicThumb from '../assets/projects/case-study-thumbnails/graphic-print-photography.png';
+import { siteEmployer, siteEmployerLocation, siteEmployerTenure } from '../lib/site.ts';
 
 const projects = [
 	{
@@ -26,10 +27,10 @@ const projects = [
 			'Open silver laptop displaying a modern business website with a dark hero banner, professional photo, and clean white content sections.',
 	},
 	{
-		title: 'AI-assisted websites',
-		tags: 'Cursor + AI-assisted development + Accessibility',
-		body: "Companion sites created to reach markets outside of those who match a templated program. After all, everyone deserves quality, and I'm someone who wants to provide that to them. Assisted with Cursor and a shared Astro system, AI speeds up implementation while I own the design, architecture, and accessibility decisions.",
-		href: '/projects/ai-assisted-websites',
+		title: 'Companion sites',
+		tags: 'Astro + Shared system + Accessibility',
+		body: "Companion sites for local businesses that do not match a templated program. After all, everyone deserves quality. I use one shared Astro system so each store still feels like itself. Design, architecture, and accessibility stay mine.",
+		href: '/projects/companion-sites',
 		image: aiThumb,
 		imageAlt:
 			'Angled silver laptop on a light background displays a web article about pet brands, with a dog photo and red call-to-action button.',
@@ -190,19 +191,28 @@ const careerSteps = [
 					</div>
 				</div>
 
-				<ol class="career-timeline" aria-label="Career path">
-					{
-						careerSteps.map((step) => (
-							<li class="career-timeline__item">
-								<span class="career-timeline__marker" aria-hidden="true"></span>
-								<span class="career-timeline__copy">
-									<span class="career-timeline__label">{step.title}</span>
-									<span class="career-timeline__detail">{step.detail}</span>
-								</span>
-							</li>
-						))
-					}
-				</ol>
+				<div class="career">
+					<div class="career-employer">
+						<p class="career-employer__name">{siteEmployer}</p>
+						<p class="career-employer__detail">
+							{siteEmployerLocation} · {siteEmployerTenure}
+						</p>
+					</div>
+
+					<ol class="career-timeline" aria-label={`Roles at ${siteEmployer}`}>
+						{
+							careerSteps.map((step) => (
+								<li class="career-timeline__item">
+									<span class="career-timeline__marker" aria-hidden="true"></span>
+									<span class="career-timeline__copy">
+										<span class="career-timeline__label">{step.title}</span>
+										<span class="career-timeline__detail">{step.detail}</span>
+									</span>
+								</li>
+							))
+						}
+					</ol>
+				</div>
 
 				<div class="skill-groups">
 					{
@@ -465,6 +475,36 @@ const careerSteps = [
 		container-type: inline-size;
 	}
 
+	.career {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+	}
+
+	.career-employer {
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+	}
+
+	.career-employer__name {
+		margin: 0;
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-body);
+		line-height: 1.35;
+		color: var(--color-text);
+	}
+
+	.career-employer__detail {
+		margin: 0;
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-regular);
+		letter-spacing: var(--letter-spacing-body);
+		line-height: 1.35;
+		color: var(--color-text-subtle);
+	}
+
 	.career-timeline {
 		display: flex;
 		flex-direction: column;
@@ -543,6 +583,11 @@ const careerSteps = [
 	}
 
 	@container (min-width: 24rem) {
+		.career-employer {
+			align-items: center;
+			text-align: center;
+		}
+
 		.career-timeline {
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));

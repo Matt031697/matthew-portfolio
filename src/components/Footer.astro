@@ -1,5 +1,11 @@
 ---
-import { projectLinks, siteEmail, siteLinkedIn, siteLocation } from '../lib/site.ts';
+import {
+	projectLinks,
+	siteAvailability,
+	siteEmail,
+	siteLinkedIn,
+	siteLocation,
+} from '../lib/site.ts';
 
 const year = new Date().getFullYear();
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -8,8 +14,8 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 <footer class="site-footer">
 	<div class="container">
 		<div class="site-footer__inner">
-			<nav class="site-footer__bar" aria-label="Footer">
-				<a class="nav-link" href={`mailto:${siteEmail}`}>Contact Me</a>
+			<nav id="contact" class="site-footer__bar" aria-label="Contact">
+				<a class="nav-link site-footer__email" href={`mailto:${siteEmail}`}>{siteEmail}</a>
 				<a
 					class="site-footer__linkedin"
 					href={siteLinkedIn}
@@ -52,6 +58,8 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 			<p class="site-footer__meta text-caption">
 				{siteLocation}
+				<span aria-hidden="true"> · </span>
+				{siteAvailability}
 			</p>
 
 			<hr class="site-footer__divider" />
@@ -130,6 +138,10 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 		color: var(--color-text);
 		text-decoration: underline;
 		text-underline-offset: 0.2em;
+	}
+
+	.site-footer__email {
+		overflow-wrap: anywhere;
 	}
 
 	.site-footer__linkedin {

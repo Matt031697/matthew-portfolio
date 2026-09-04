@@ -12,37 +12,22 @@ import petXtrasDevices from '../../assets/projects/ai-websites/pet-xtras-devices
 import oberstsDevices from '../../assets/projects/ai-websites/obersts-devices.png';
 import northingtonDevices from '../../assets/projects/ai-websites/northington-devices.png';
 
-const pageTitle = 'AI-Assisted Websites, Matthew';
+const pageTitle = 'Companion sites, Matthew';
 const description =
-	'Companion sites for local businesses that do not match a templated program. Cursor and a shared Astro system speed up implementation; I own the design, architecture, and accessibility decisions.';
+	'Companion sites for local businesses that do not match a templated program. One shared Astro system, three live stores, and a review loop that keeps each site specific.';
 
-const cursorUses = [
+const methodTools = [
 	{
-		label: 'Design direction and scaffolding',
-		copy: 'Category prompts set tone before layout exists. Cursor stands up homepage flow, offering pages, components, and routes from the shared template stack.',
+		label: 'Cursor',
+		copy: 'Implementation speed, not architecture, and not a finished site on the first pass. It scaffolds homepage flow, offerings, and repeated patterns from the shared stack. I generate, review, adjust the prompt or code, and generate again.',
 	},
 	{
-		label: 'Content and patterns',
-		copy: 'Business inputs become benefit-led copy, offerings files, and repeated production patterns like accessibility statements, contact forms, and favicons, faster than rebuilding by hand.',
+		label: 'Astro',
+		copy: 'The foundation. Shared routes, components, and a production build. One stack instead of a new hosting setup per store. I decide when a route stays shared and when a store needs an override.',
 	},
 	{
-		label: 'Iteration, not one shot',
-		copy: 'Useful work happens across multiple rounds. I generate, review, adjust the prompt or code, and generate again. The first pass is a starting point.',
-	},
-];
-
-const humanDirection = [
-	{
-		label: 'Design and UX',
-		copy: 'How much brand color to use, which sections need photography, where whitespace stays tight, and how phone, hours, and location stay obvious on a companion site.',
-	},
-	{
-		label: 'Architecture',
-		copy: 'When to keep a shared route, when to override it, how the shared API feeds live location data into the header, and what belongs in a custom component versus the shared theme.',
-	},
-	{
-		label: 'Quality and content',
-		copy: 'Skip links, heading order, contrast, touch targets, and real 404s. Short, local copy that belongs on the site, not filler, repeated photos, or catalog features the business did not ask for.',
+		label: 'Human review',
+		copy: 'AI can generate a working page in minutes. It cannot decide whether that page is the right page. Brand color, photography, heading order, and whether the copy belongs to that town stay with me.',
 	},
 ];
 
@@ -110,7 +95,7 @@ const learnedItems = [
 	},
 ];
 
-const resultBadges = ['Cursor', 'Astro', 'Accessibility'];
+const resultBadges = ['Astro', 'Shared system', 'Accessibility'];
 
 const featuredLiveSite =
 	liveSites.find((site) => site.slug === 'northington-windows-doors') ?? liveSites[0];
@@ -138,19 +123,18 @@ const workflowMockups = [
 		<div class="section-group section-group--intro">
 			<div class="container">
 				<section class="hero hero--project" aria-labelledby="case-study-heading">
-					<h1 id="case-study-heading">AI-Assisted Websites</h1>
+					<h1 id="case-study-heading">Companion sites</h1>
 					<p class="hero__subheading">
 						Companion sites created to reach markets outside of those who match a templated
 						program. After all, everyone deserves quality, and I'm someone who wants to
-						provide that to them. Assisted with Cursor and a shared Astro system, AI speeds
-						up implementation while I own the design, architecture, and accessibility
-						decisions.
+						provide that to them. One shared Astro system, then a review loop so each store
+						still feels like itself.
 					</p>
 					<ul class="badge-list hero__badges">
-						<li class="badge">Cursor</li>
 						<li class="badge">Astro</li>
+						<li class="badge">Shared system</li>
 						<li class="badge">Accessibility</li>
-						<li class="badge">AI-Assisted Development</li>
+						<li class="badge">Live sites</li>
 					</ul>
 					<a
 						class="btn hero__cta"
@@ -226,14 +210,15 @@ const workflowMockups = [
 						<div class="content-copy content-copy--narrow">
 							<p>
 								Companion sites for local retailers, polished, lightweight, and tailored around
-								each business, its customers, and its market. I use Cursor on an Astro
-								foundation to move fast without sacrificing production standards.
+								each business, its customers, and its market. The stores that land here do not
+								fit the templated program, so the job is a shared foundation that can still
+								bend.
 							</p>
 							<p>
 								The challenge is maintaining quality and speed with real customization. I am
 								responsible for a workflow that stays efficient across stores while each site
-								still feels specific, and for a review loop that keeps AI output from drifting
-								past scope.
+								still feels specific, and for a review loop that keeps generated output from
+								drifting past scope.
 							</p>
 						</div>
 					</div>
@@ -250,54 +235,6 @@ const workflowMockups = [
 								/>
 							))
 						}
-					</div>
-				</div>
-			</section>
-
-			<section class="section-block" aria-labelledby="ai-partner-heading">
-				<div class="container">
-					<div class="content-grid">
-						<div class="content-grid__column">
-							<div class="heading-block">
-								<h2 id="ai-partner-heading">What Cursor handles</h2>
-								<p class="section-intro">
-									Implementation speed, not architecture, and not a finished site on the first
-									pass.
-								</p>
-							</div>
-
-							{
-								cursorUses.map((item) => (
-									<section class="content-block" aria-labelledby={`cursor-${slugify(item.label)}`}>
-										<h3 id={`cursor-${slugify(item.label)}`} class="section-label">
-											{item.label}
-										</h3>
-										<p>{item.copy}</p>
-									</section>
-								))
-							}
-						</div>
-
-						<div class="content-grid__column">
-							<div class="heading-block">
-								<h2 id="human-direction-heading">What stays human</h2>
-								<p class="section-intro">
-									AI can generate a working page in minutes. It cannot decide whether that page
-									is the right page.
-								</p>
-							</div>
-
-							{
-								humanDirection.map((item) => (
-									<section class="content-block" aria-labelledby={`direction-${slugify(item.label)}`}>
-										<h3 id={`direction-${slugify(item.label)}`} class="section-label">
-											{item.label}
-										</h3>
-										<p>{item.copy}</p>
-									</section>
-								))
-							}
-						</div>
 					</div>
 				</div>
 			</section>
@@ -325,6 +262,32 @@ const workflowMockups = [
 				</div>
 			</section>
 
+			<section class="section-block" aria-labelledby="methods-heading">
+				<div class="container">
+					<div class="heading-block">
+						<p class="text-accent section-label">What I use</p>
+						<h2 id="methods-heading">A shared stack, then the review</h2>
+						<p class="section-intro">
+							Cursor speeds up implementation. The Astro system and the review decide what
+							ships.
+						</p>
+					</div>
+
+					<div class="content-list content-list--grid content-list--3">
+						{
+							methodTools.map((item) => (
+								<section class="content-block" aria-labelledby={`method-${slugify(item.label)}`}>
+									<h3 id={`method-${slugify(item.label)}`} class="text-accent section-label">
+										{item.label}
+									</h3>
+									<p>{item.copy}</p>
+								</section>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
 			<section class="section-block" aria-labelledby="case-study-closing-heading">
 				<div class="container">
 					<div class="heading-block">
@@ -332,9 +295,9 @@ const workflowMockups = [
 						<div class="content-copy content-copy--narrow">
 							<p>
 								Companion sites, each uniquely tailored to meet their needs, built on the
-								same foundation, held to the same standard. AI accelerates implementation,
-								allowing for focus on judgment of design, architecture, and accessibility,
-								and making sure the scope stays human.
+								same foundation, held to the same standard. The system carries the repeatable
+								work. I keep the judgment on design, architecture, and accessibility, and I
+								make sure the scope stays human.
 							</p>
 						</div>
 					</div>

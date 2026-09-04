@@ -1527,6 +1527,7 @@ p a:focus-visible {
 
 #projects,
 #about,
-#resume {
+#resume,
+#contact {
 	scroll-margin-top: 5rem;
 }

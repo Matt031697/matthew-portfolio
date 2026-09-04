@@ -2,7 +2,10 @@ export const siteName = 'Matthew Ward';
 export const siteEmail = 'matthewmj.ward@gmail.com';
 export const siteLinkedIn = 'https://www.linkedin.com/in/matthew-ward-307b08268/';
 export const siteLocation = 'Mount Upton, NY';
-/* export const siteAvailability = 'Open to relocation'; */
+export const siteAvailability = 'Seeking relocation';
+export const siteEmployer = 'New Media Retailer';
+export const siteEmployerLocation = 'Norwich, NY';
+export const siteEmployerTenure = '2020–Present';
 
 export const careerHighlights = {
 	experience: '6+ Years Experience',
@@ -23,7 +26,7 @@ export const navItems = [
 export const projectLinks = [
 	{ label: 'Shopify theme architecture', href: '/projects/shopify-theme-architecture' },
 	{ label: 'Bondfire Design Company', href: '/projects/bondfire-design-company' },
-	{ label: 'AI-assisted websites', href: '/projects/ai-assisted-websites' },
+	{ label: 'Companion sites', href: '/projects/companion-sites' },
 	{ label: 'Shopify accessibility audits', href: '/projects/shopify-accessibility-audits' },
 	{ label: 'Graphic design, print & photography', href: '/projects/graphic-print-photography' },
 ] as const;
