@@ -37,14 +37,14 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 				</a>
 			</nav>
 
-			<nav class="site-footer__work" aria-labelledby="footer-work-heading">
-				<h2 id="footer-work-heading">Selected work</h2>
-				<ul class="site-footer__work-list">
+			<nav class="skill-group site-footer__work" aria-labelledby="footer-work-heading">
+				<h3 id="footer-work-heading" class="text-accent skill-group__label">Selected work</h3>
+				<ul class="tag-line skill-group__skills site-footer__work-list">
 					{
 						projectLinks.map((item) => (
 							<li>
 								<a
-									class="nav-link site-footer__work-link"
+									class="site-footer__work-link"
 									href={item.href}
 									aria-current={pathname === item.href ? 'page' : undefined}
 								>
@@ -94,28 +94,30 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 	}
 
 	.site-footer__work {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-sm);
 		width: 100%;
-	}
-
-	.site-footer__work h2 {
-		margin: 0;
 	}
 
 	.site-footer__work-list {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: var(--space-2xs);
-		margin: 0;
+		gap: var(--space-xs);
 		padding: 0;
 		list-style: none;
 	}
 
 	.site-footer__work-link {
-		padding-inline: 0;
+		display: inline-block;
+		padding-block: var(--space-2xs);
+		color: inherit;
+		text-decoration: none;
+		transition: var(--transition-nav);
+	}
+
+	.site-footer__work-link:hover,
+	.site-footer__work-link:focus-visible,
+	.site-footer__work-link[aria-current='page'] {
+		color: var(--color-project);
 	}
 
 	.site-footer__email {
