@@ -38,7 +38,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 			</nav>
 
 			<nav class="site-footer__work" aria-labelledby="footer-work-heading">
-				<h2 id="footer-work-heading" class="text-accent section-label">Selected work</h2>
+				<h2 id="footer-work-heading">Selected work</h2>
 				<ul class="site-footer__work-list">
 					{
 						projectLinks.map((item) => (
@@ -100,11 +100,8 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 		width: 100%;
 	}
 
-	.site-footer__work .section-label {
+	.site-footer__work h2 {
 		margin: 0;
-		font-size: var(--font-size-h4);
-		font-weight: var(--font-weight-bold);
-		line-height: var(--line-height-heading);
 	}
 
 	.site-footer__work-list {
@@ -119,17 +116,6 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 	.site-footer__work-link {
 		padding-inline: 0;
-	}
-
-	@media (max-width: 63.99rem) {
-		.site-footer__work-list {
-			gap: var(--space-xs);
-		}
-
-		.site-footer__work-link {
-			font-size: var(--font-size-body);
-			padding-block: var(--space-xs);
-		}
 	}
 
 	.site-footer__email {
