@@ -38,7 +38,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 			</nav>
 
 			<nav class="site-footer__work" aria-labelledby="footer-work-heading">
-				<p id="footer-work-heading" class="text-accent section-label">Selected work</p>
+				<h2 id="footer-work-heading" class="text-accent section-label">Selected work</h2>
 				<ul class="site-footer__work-list">
 					{
 						projectLinks.map((item) => (
@@ -96,12 +96,15 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 	.site-footer__work {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-xs);
+		gap: var(--space-sm);
 		width: 100%;
 	}
 
 	.site-footer__work .section-label {
 		margin: 0;
+		font-size: var(--font-size-h4);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
 	}
 
 	.site-footer__work-list {
