@@ -659,12 +659,13 @@ p a:focus-visible {
 .showcase-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	gap: var(--space-lg);
+	gap: var(--space-md);
 }
 
 @media (min-width: 48rem) {
 	.showcase-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-lg);
 	}
 
 	.showcase-grid--2 {
@@ -1317,18 +1318,23 @@ p a:focus-visible {
 .before-after-list {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-lg);
+	gap: var(--space-md);
 }
 
 .before-after-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	gap: var(--space-lg);
+	gap: var(--space-md);
 }
 
 @media (min-width: 48rem) {
+	.before-after-list {
+		gap: var(--space-lg);
+	}
+
 	.before-after-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-lg);
 	}
 }
 

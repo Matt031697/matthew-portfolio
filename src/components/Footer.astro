@@ -44,7 +44,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 						projectLinks.map((item) => (
 							<li>
 								<a
-									class="site-footer__work-link"
+									class="nav-link site-footer__work-link"
 									href={item.href}
 									aria-current={pathname === item.href ? 'page' : undefined}
 								>
@@ -106,38 +106,27 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 	.site-footer__work-list {
 		display: flex;
-		flex-flow: row wrap;
-		gap: var(--space-xs) var(--space-md);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-2xs);
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
 	.site-footer__work-link {
-		display: inline-block;
-		padding-block: var(--space-2xs);
-		font-size: var(--font-size-nav);
-		font-weight: var(--font-weight-regular);
-		letter-spacing: 0;
-		color: var(--color-text-subtle);
-		text-decoration: none;
-		transition: var(--transition-nav);
+		padding-inline: 0;
 	}
 
-	.site-footer__work-link:hover,
-	.site-footer__work-link:focus-visible {
-		color: var(--color-text);
-	}
+	@media (max-width: 63.99rem) {
+		.site-footer__work-list {
+			gap: var(--space-xs);
+		}
 
-	.site-footer__work-link:focus-visible {
-		outline: 3px solid var(--color-focus);
-		outline-offset: 2px;
-	}
-
-	.site-footer__work-link[aria-current='page'] {
-		color: var(--color-text);
-		text-decoration: underline;
-		text-underline-offset: 0.2em;
+		.site-footer__work-link {
+			font-size: var(--font-size-body);
+			padding-block: var(--space-xs);
+		}
 	}
 
 	.site-footer__email {
