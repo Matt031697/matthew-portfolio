@@ -64,6 +64,7 @@
 	/* Layout */
 	--container-max-width: 90rem;
 	--container-padding: clamp(1.25rem, 4vw + 0.5rem, 3.125rem);
+	--home-rail: 22rem;
 
 	/* Badges */
 	--badge-font-size: 0.875rem;
@@ -107,19 +108,29 @@ body::before {
 	pointer-events: none;
 	background:
 		radial-gradient(
-			ellipse 80% 70% at 8% 0%,
-			color-mix(in srgb, var(--color-project) 20%, transparent),
-			transparent 72%
-		),
-		radial-gradient(
-			ellipse 70% 60% at 96% 12%,
-			color-mix(in srgb, var(--color-project) 15%, transparent),
+			ellipse 68% 58% at 36% 38%,
+			var(--color-background),
 			transparent 70%
 		),
 		radial-gradient(
-			ellipse 65% 55% at 78% 100%,
-			color-mix(in srgb, var(--color-project) 12%, transparent),
-			transparent 72%
+			ellipse 70% 58% at 100% 18%,
+			color-mix(in srgb, var(--color-project) 28%, white),
+			transparent 78%
+		),
+		radial-gradient(
+			ellipse 52% 44% at 0% 0%,
+			color-mix(in srgb, var(--color-project) 12%, white),
+			transparent 68%
+		),
+		radial-gradient(
+			ellipse 62% 52% at 100% 100%,
+			color-mix(in srgb, var(--color-project) 22%, white),
+			transparent 76%
+		),
+		radial-gradient(
+			ellipse 52% 46% at 0% 100%,
+			color-mix(in srgb, var(--color-project) 14%, white),
+			transparent 74%
 		);
 }
 
@@ -129,14 +140,14 @@ body::after {
 	inset: 0;
 	z-index: -1;
 	pointer-events: none;
-	opacity: 0.2;
-	mix-blend-mode: multiply;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	opacity: 0.14;
+	mix-blend-mode: overlay;
+	background-image: url('/noise.png');
 	background-repeat: repeat;
-	background-size: 96px 96px;
+	background-size: 280px 280px;
 }
 
-@media (prefers-reduced-transparency: reduce) {
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
 	body::before,
 	body::after {
 		display: none;
@@ -264,14 +275,27 @@ blockquote {
 	gap: var(--space-md);
 }
 
+.skill-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
 .skill-group__label {
-	margin: 0 0 var(--space-xs);
-	font-size: var(--font-size-body);
+	margin: 0;
+	font-size: var(--font-size-nav);
+	font-weight: var(--font-weight-bold);
+	letter-spacing: var(--letter-spacing-body);
+	line-height: 1.35;
 	text-transform: none;
 }
 
 .skill-group__skills {
 	margin: 0;
+	font-size: var(--font-size-nav);
+	font-weight: var(--font-weight-regular);
+	letter-spacing: var(--letter-spacing-body);
+	color: var(--color-text);
 }
 
 .badge {
@@ -330,6 +354,16 @@ blockquote {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+.closing-tags {
+	margin: 0;
+	font-size: var(--font-size-nav);
+	font-weight: var(--font-weight-semibold);
+	letter-spacing: var(--letter-spacing-body);
+	line-height: 1.35;
+	color: var(--color-project);
+	text-wrap: balance;
 }
 
 /* Navigation links */
@@ -1453,10 +1487,12 @@ p a:focus-visible {
 .content-list + .showcase-grid,
 .content-list + .media-row,
 .content-list + .badge-list,
+.content-list + .closing-tags,
 .heading-block:not(:has(> .section-intro:last-child)) + .content-list,
 .heading-block + .media-row,
 .heading-block + .shipped-grid,
 .heading-block + .badge-list,
+.heading-block + .closing-tags,
 .pipeline + .testimonial-media,
 .showcase-item + .showcase-grid,
 .showcase-grid + .heading-block,

@@ -3,6 +3,7 @@ export const siteEmail = 'matthewmj.ward@gmail.com';
 export const siteLinkedIn = 'https://www.linkedin.com/in/matthew-ward-307b08268/';
 export const siteLocation = 'Mount Upton, NY';
 export const siteAvailability = 'Seeking relocation';
+export const siteFooterNote = 'Currently: Between a campfire and a theme file in New York.';
 export const siteEmployer = 'New Media Retailer';
 export const siteEmployerLocation = 'Norwich, NY';
 export const siteEmployerTenure = '2020–Present';

@@ -95,7 +95,7 @@ const learnedItems = [
 	},
 ];
 
-const resultBadges = ['Astro', 'Shared system', 'Accessibility'];
+const closingTags = 'Custom Builds + Shared Architecture + Live Launches';
 
 const featuredLiveSite =
 	liveSites.find((site) => site.slug === 'northington-windows-doors') ?? liveSites[0];
@@ -315,9 +315,7 @@ const workflowMockups = [
 						}
 					</div>
 
-					<ul class="badge-list hero__badges">
-						{resultBadges.map((badge) => <li class="badge">{badge}</li>)}
-					</ul>
+					<p class="closing-tags">{closingTags}</p>
 				</div>
 			</section>
 		</div>

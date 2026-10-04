@@ -9,23 +9,22 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 			<div class="about__content">
 				<div class="heading-block">
 					<p class="text-accent section-label">Beyond the browser</p>
-					<h2 id="about-heading">I started in design. I stayed for the build.</h2>
+					<h2 id="about-heading">Everyone deserves quality, and I want to bring it to them.</h2>
 					<div class="about__body content-copy">
 						<p>
-							I care about the details that make something feel intentional: typography,
-							layout, and how a person actually moves through an interface.
+							I love the little things. Tweaking a margin, getting a color just right,
+							finding imagery that actually belongs. That is the work I want to do.
 						</p>
 						<p>
-							I started in visual design and digital experiences, then followed the work
-							into the code. What began as wanting to understand how my designs were built
-							became Shopify, Liquid, JavaScript, CSS, accessibility, and a shared theme.
-							Today I manage that theme for hundreds of storefronts, so a layout, a fix,
-							or an update can land once and still feel like it belongs to each business.
+							A million-dollar brand and a mom-and-pop shop get the same attention. I come
+							from a small town where marketing is not always a priority, and that sticks
+							with me. I think about the little guys, and the businesses that could really
+							benefit from some love and care.
 						</p>
 						<p>
-							When I'm not working, I'm usually outside: camping, fishing, sitting by a fire,
-							or keeping up with the Lakers. Getting away from a screen is how I come back
-							to the work with a clearer eye.
+							Outside of work, I love the outdoors. Small town, remember? Camping, fishing,
+							target practice, or keeping up with NBA basketball. It is how I unplug, get
+							my hands on something, and come back with a new perspective.
 						</p>
 					</div>
 				</div>
@@ -37,7 +36,7 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 					src={aboutPortrait}
 					alt="Matthew smiling in a cap sitting in a folding chair holding a drink beside a glowing campfire in a green park, creating a relaxed mood."
 					widths={[320, 448, 640]}
-					sizes="(min-width: 64rem) 28rem, min(100vw - 2.5rem, 28rem)"
+					sizes="(min-width: 64rem) 22rem, min(100vw - 2.5rem, 22rem)"
 				/>
 			</div>
 		</div>
@@ -53,8 +52,8 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 
 	@media (min-width: 64rem) {
 		.about__grid {
-			grid-template-columns: 1.35fr 1fr;
-			gap: var(--space-lg);
+			grid-template-columns: minmax(0, 1fr) var(--home-rail);
+			gap: var(--space-xl);
 			align-items: start;
 		}
 	}
@@ -62,12 +61,11 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 	.about__media {
 		display: flex;
 		align-items: flex-start;
-		justify-content: center;
 	}
 
 	.about__portrait {
 		width: 100%;
-		max-width: 28rem;
+		max-width: var(--home-rail);
 		height: auto;
 		aspect-ratio: 4 / 5;
 		object-fit: cover;

@@ -123,7 +123,7 @@ const shippedGroups = [
 	},
 ];
 
-const closingBadges = ['WCAG 2.1', 'Manual Testing', 'Shared theme'];
+const closingTags = 'Manual Testing + Shared Theme + Inherited Fixes';
 ---
 
 <BaseLayout title={pageTitle} {description} accentColor={projectAccents.audits}>
@@ -333,9 +333,7 @@ const closingBadges = ['WCAG 2.1', 'Manual Testing', 'Shared theme'];
 						</div>
 					</div>
 
-					<ul class="badge-list hero__badges">
-						{closingBadges.map((badge) => <li class="badge">{badge}</li>)}
-					</ul>
+					<p class="closing-tags">{closingTags}</p>
 				</div>
 			</section>
 		</div>

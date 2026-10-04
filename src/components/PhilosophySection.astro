@@ -5,7 +5,6 @@ import bondfireThumb from '../assets/projects/case-study-thumbnails/bondfire-des
 import aiThumb from '../assets/projects/case-study-thumbnails/ai-assisted-websites.png';
 import auditsThumb from '../assets/projects/case-study-thumbnails/shopify-accessibility-audits.png';
 import graphicThumb from '../assets/projects/case-study-thumbnails/graphic-print-photography.png';
-import { siteEmployer, siteEmployerLocation, siteEmployerTenure } from '../lib/site.ts';
 
 const projects = [
 	{
@@ -20,7 +19,7 @@ const projects = [
 	{
 		title: 'Bondfire Design Company',
 		tags: 'Brand strategy + Visual identity + UX/UI + Web design',
-		body: "I believe all business owners, big or small, deserve quality, and that is why I started Bondfire Design Company. Regardless of price point, the details aren't ignored, design is backed by passion, and transparency is the foundation for customer service. This is a business, identity, website, and marketing system built to support those who need it.",
+		body: 'I started Bondfire Design Company so owners at any size could get identity, a website, and marketing that still sweat the details. It is my own brand and client work, start to finish.',
 		href: '/projects/bondfire-design-company',
 		image: bondfireThumb,
 		imageAlt:
@@ -29,7 +28,7 @@ const projects = [
 	{
 		title: 'Companion sites',
 		tags: 'Astro + Shared system + Accessibility',
-		body: "Companion sites for local businesses that do not match a templated program. After all, everyone deserves quality. I use one shared Astro system so each store still feels like itself. Design, architecture, and accessibility stay mine.",
+		body: 'Companion sites for local businesses that do not match a templated program. I use one shared Astro system so each store still feels like itself. Design, architecture, and accessibility stay mine.',
 		href: '/projects/companion-sites',
 		image: aiThumb,
 		imageAlt:
@@ -38,7 +37,7 @@ const projects = [
 	{
 		title: 'Shopify accessibility audits',
 		tags: 'WCAG 2.1 + WAVE + Lighthouse + Manual testing',
-		body: 'I make sure every storefront is accessible. Digital shouldn’t be exclusive. Assessments, quality checks, and changes all happen before something ships. When the barrier lives in a shared component, I fix it in the theme so the next site inherits the work.',
+		body: 'I make sure every storefront is accessible before it ships. Assessments, quality checks, and changes happen first. When the barrier lives in a shared component, I fix it in the theme so the next site inherits the work.',
 		href: '/projects/shopify-accessibility-audits',
 		image: auditsThumb,
 		imageAlt:
@@ -58,7 +57,7 @@ const projects = [
 const skillGroups = [
 	{
 		label: 'Front-end development',
-		skills: ['Shopify', 'Liquid', 'JavaScript', 'HTML', 'CSS', 'Git'],
+		skills: ['Liquid', 'JavaScript', 'HTML', 'CSS', 'Git'],
 	},
 	{
 		label: 'Design & UX',
@@ -73,147 +72,172 @@ const skillGroups = [
 		skills: ['Shopify', 'WordPress', 'Webflow', 'HubSpot'],
 	},
 ];
-
-const careerSteps = [
-	{
-		title: 'Digital Marketing Support Specialist',
-		detail: '2020–2021',
-	},
-	{
-		title: 'Web Designer',
-		detail: '2021–2022',
-	},
-	{
-		title: 'Front-end Web Designer & Developer',
-		detail: '2022–Present',
-	},
-];
 ---
 
-<section id="projects" class="philosophy section-block" aria-label="Projects and resume">
+<section id="projects" class="work section-block" aria-labelledby="philosophy-heading">
 	<div class="container">
-		<div class="project-strip-wrap">
-			<nav class="project-strip" aria-label="Selected work previews">
-				{
-					projects.map((item, index) => (
-						<a class="project-strip__link" href={item.href}>
-							<span class="project-strip__frame">
-								<Image
-									class="project-strip__media"
-									src={item.image}
-									alt={item.imageAlt ?? ''}
-									widths={[160, 240, 320, 480, 720]}
-									sizes="(min-width: 64rem) 18vw, (min-width: 48rem) 30vw, 88vw"
-									loading={index === 0 ? 'eager' : 'lazy'}
-									fetchpriority={index === 0 ? 'high' : 'auto'}
-								/>
-								<span class="project-strip__overlay" aria-hidden="true">View Case Study</span>
-							</span>
-							<span class="project-strip__label">{item.title}</span>
-						</a>
-					))
-				}
-			</nav>
-			<p class="project-strip__cue" aria-hidden="true">
-				<span class="project-strip__cue-label">Swipe</span>
-				<span class="project-strip__cue-arrow">→</span>
+		<div class="heading-block work__intro">
+			<p class="text-accent section-label">What I do</p>
+			<h2 id="philosophy-heading">Websites, assets, and experiences.</h2>
+			<p class="philosophy__intro">
+				Day to day I manage one shared Shopify theme. Around that I also take
+				on brand, custom sites, accessibility, and print.
 			</p>
 		</div>
 
-		<div class="content-grid">
-			<section class="content-grid__column" aria-labelledby="philosophy-heading">
-				<div class="heading-block">
-					<p class="text-accent section-label">What I do</p>
-					<h2 id="philosophy-heading">Websites, assets, and experiences.</h2>
-					<p class="philosophy__intro">
-						Day to day I manage one shared Shopify theme for hundreds of retailers. I
-						design and build on it, and I support the stores that run on it.
-					</p>
-				</div>
-
-				<div class="accordion">
+		<div class="work-picker" data-project-card>
+			<div class="work-picker__media">
+				<div class="work-picker__frame">
 					{
 						projects.map((item, index) => (
-							<details
-								class:list={['accordion__item', { 'is-open': index === 0 }]}
-								open={index === 0}
-								data-accordion
-							>
-								<summary class="accordion__summary">
-									<span class="accordion__title">{item.title}</span>
-									<span class="accordion__icon" aria-hidden="true">
-										+
-									</span>
-								</summary>
-								<div class="accordion__content">
-									<div class="accordion__panel">
-										<p class="tag-line accordion__tags">{item.tags}</p>
-										<p class="accordion__body">{item.body}</p>
-										<a
-											class="btn"
-											href={item.href}
-											aria-label={`View case study: ${item.title}`}
-										>
-											View Case Study
-										</a>
-									</div>
-								</div>
-							</details>
+							<Image
+								class:list={['work-picker__image', { 'is-visible': index === 0 }]}
+								src={item.image}
+								alt={item.imageAlt}
+								widths={[320, 480, 720, 960, 1200]}
+								sizes="(min-width: 64rem) 52vw, 100vw"
+								loading={index === 0 ? 'eager' : 'lazy'}
+								fetchpriority={index === 0 ? 'high' : 'auto'}
+								data-project-image
+							/>
 						))
 					}
 				</div>
-			</section>
-
-			<section id="resume" class="content-grid__column" aria-labelledby="resume-heading">
-				<div class="heading-block">
-					<p class="text-accent section-label">Why me</p>
-					<h2 id="resume-heading">Designing from passion, coding from curiosity.</h2>
-					<div class="content-copy">
-						<p>
-							I used to do my best work in design, and I was happy there. Then I
-							realized I didn't like sending my vision off to be finished by someone
-							else. I was too curious. I wanted to own how something looks and
-							understand how it gets built, and the journey grew from there.
-						</p>
-						<p>
-							Now I do my best work sitting with design and development on the same
-							problem. I'll wear whatever hat the work needs, whether that's the
-							layout, the build, or the fix after it ships, because I'd rather stay on
-							it than hand it off. I love to think big picture — it's a puzzle. Creating shared pieces so a
-							layout can work for hundreds of stores, not just one, is the reward.
-						</p>
-						<p>
-							I think I'm picky in a useful way: before something ships I check it,
-							click through it, and look at both the whole page and the small stuff.
-							That's how I like the design to reach people, and how I know it will hold
-							up.
-						</p>
-					</div>
-				</div>
-
-				<div class="career">
-					<div class="career-employer">
-						<p class="career-employer__name">{siteEmployer}</p>
-						<p class="career-employer__detail">
-							{siteEmployerLocation} · {siteEmployerTenure}
-						</p>
-					</div>
-
-					<ol class="career-timeline" aria-label={`Roles at ${siteEmployer}`}>
+				<div class="work-picker__controls">
+					<button
+						type="button"
+						class="work-picker__arrow"
+						data-project-prev
+						aria-label="Previous project"
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path
+								d="M14 6 8 12l6 6"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+						</svg>
+					</button>
+					<div class="work-picker__sheet" role="tablist" aria-label="Projects">
 						{
-							careerSteps.map((step) => (
-								<li class="career-timeline__item">
-									<span class="career-timeline__marker" aria-hidden="true"></span>
-									<span class="career-timeline__copy">
-										<span class="career-timeline__label">{step.title}</span>
-										<span class="career-timeline__detail">{step.detail}</span>
-									</span>
-								</li>
+							projects.map((item, index) => (
+								<button
+									type="button"
+									class="work-picker__thumb"
+									role="tab"
+									id={`project-tab-${index}`}
+									aria-controls="project-panel"
+									aria-label={item.title}
+									aria-selected={index === 0 ? 'true' : 'false'}
+									tabindex={index === 0 ? 0 : -1}
+									data-project-title={item.title}
+									data-project-tags={item.tags}
+									data-project-body={item.body}
+									data-project-href={item.href}
+								>
+									<Image
+										class="work-picker__thumb-image"
+										src={item.image}
+										alt=""
+										widths={[120, 200, 320]}
+										sizes="12vw"
+									/>
+								</button>
 							))
 						}
-					</ol>
+					</div>
+					<button
+						type="button"
+						class="work-picker__arrow"
+						data-project-next
+						aria-label="Next project"
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path
+								d="M10 6l6 6-6 6"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+						</svg>
+					</button>
 				</div>
+			</div>
 
+			<div class="work-picker__copy-wrap">
+				<div class="work-picker__sizer" aria-hidden="true">
+					{
+						projects.map((item) => (
+							<div class="work-picker__sizer-item">
+								<h3 class="work-picker__title">{item.title}</h3>
+								<p class="tag-line work-picker__tags">{item.tags}</p>
+								<p class="work-picker__body">{item.body}</p>
+								<span class="btn">View Case Study</span>
+							</div>
+						))
+					}
+				</div>
+				<div
+					class="work-picker__copy"
+					id="project-panel"
+					role="tabpanel"
+					aria-labelledby="project-tab-0"
+					tabindex="0"
+				>
+					<h3 class="work-picker__title">{projects[0].title}</h3>
+					<p class="tag-line work-picker__tags">{projects[0].tags}</p>
+					<p class="work-picker__body">{projects[0].body}</p>
+					<a
+						class="btn"
+						href={projects[0].href}
+						data-project-cta
+						aria-label={`View case study: ${projects[0].title}`}
+					>
+						View Case Study
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="resume" class="why section-block" aria-labelledby="resume-heading">
+	<div class="container">
+		<div class="heading-block why__intro">
+			<p class="text-accent section-label">Why me</p>
+			<h2 id="resume-heading">Designing from passion, coding from curiosity.</h2>
+		</div>
+
+		<div class="content-grid">
+			<div class="content-copy">
+				<p>
+					I used to do my best work in design, and I was happy there. Then I
+					realized I didn't like sending my vision off to be finished by someone
+					else. I was too curious. I wanted to own how something looks and
+					understand how it gets built, and the journey grew from there.
+				</p>
+				<p>
+					Now I do my best work sitting with design and development on the same
+					problem. I'll wear whatever hat the work needs, whether that's the
+					layout, the build, or the fix after it ships, because I'd rather stay on
+					it than hand it off. I love to think big picture. It's a puzzle. Creating
+					shared pieces so a layout can work across stores, not just one,
+					is the reward.
+				</p>
+				<p>
+					I think I'm picky in a useful way: before something ships I check it,
+					click through it, and look at both the whole page and the small stuff.
+					That's how I like the design to reach people, and how I know it will hold
+					up.
+				</p>
+			</div>
+
+			<div class="why__skills">
 				<div class="skill-groups">
 					{
 						skillGroups.map((group) => (
@@ -226,524 +250,339 @@ const careerSteps = [
 				</div>
 
 				<a class="btn" href="/resume.pdf" download="Matthew-Ward-Resume.pdf">
-					Download Resume
+					Download My Resume
 				</a>
-			</section>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.project-strip-wrap {
-		position: relative;
-		margin-block-end: var(--space-lg);
-	}
-
-	.project-strip {
-		display: flex;
-		gap: var(--space-sm);
-		margin-inline-end: calc(-1 * var(--container-padding));
-		padding-inline-end: var(--container-padding);
-		overflow-x: auto;
-		overscroll-behavior-x: contain;
-		scroll-snap-type: x mandatory;
-		scroll-padding-inline: 0;
-		-webkit-overflow-scrolling: touch;
-		scrollbar-width: none;
-	}
-
-	.project-strip::-webkit-scrollbar {
-		display: none;
-	}
-
-	.project-strip__link {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-xs);
-		flex: 0 0 calc(100% - 1.75rem);
-		min-width: 0;
-		text-decoration: none;
-		color: inherit;
-		scroll-snap-align: start;
-		scroll-snap-stop: always;
-	}
-
-	.project-strip__cue {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		gap: 0.35rem;
-		margin: var(--space-sm) 0 0;
-		padding-inline-end: 0.15rem;
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-body);
-		color: var(--color-text-subtle);
-		transition: opacity 200ms ease;
-	}
-
-	.project-strip__cue.is-hidden {
-		opacity: 0;
-	}
-
-	.project-strip__cue-arrow {
-		display: inline-block;
-		animation: project-strip-cue 1.6s ease-in-out infinite;
-	}
-
-	@keyframes project-strip-cue {
-		0%,
-		100% {
-			transform: translateX(0);
-		}
-		50% {
-			transform: translateX(0.35rem);
-		}
-	}
-
-	.project-strip__link:focus-visible {
-		outline: 3px solid var(--color-focus);
-		outline-offset: 2px;
-		border-radius: var(--radius-md);
-	}
-
-	.project-strip__frame {
-		position: relative;
-		display: block;
-		overflow: hidden;
-		border-radius: var(--radius-md);
-	}
-
-	.project-strip__media {
-		display: block;
-		width: 100%;
-		height: auto;
-		aspect-ratio: 3 / 2;
-		object-fit: cover;
-		object-position: center;
-		background-color: var(--color-surface-muted);
-	}
-
-	.project-strip__overlay {
-		position: absolute;
-		inset: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: var(--space-sm);
-		background-color: color-mix(in srgb, var(--color-text) 55%, transparent);
-		color: var(--color-background);
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-body);
-		text-align: center;
-		opacity: 0;
-		transition: opacity 450ms ease-in-out;
-	}
-
-	.project-strip__link:hover .project-strip__overlay,
-	.project-strip__link:focus-visible .project-strip__overlay {
-		opacity: 1;
-	}
-
-	.project-strip__label {
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-body);
-		line-height: 1.35;
-		text-wrap: balance;
-		color: var(--color-text);
-		transition: color var(--transition-nav);
-	}
-
-	@media (hover: hover) {
-		.project-strip__link:hover .project-strip__label {
-			color: var(--color-project);
-		}
-	}
-
-	@media (min-width: 48rem) {
-		.project-strip {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			margin-inline-end: 0;
-			padding-inline-end: 0;
-			overflow: visible;
-			scroll-snap-type: none;
-		}
-
-		.project-strip__link {
-			flex: initial;
-			scroll-snap-stop: normal;
-		}
-
-		.project-strip__cue {
-			display: none;
-		}
-	}
-
-	@media (min-width: 64rem) {
-		.project-strip {
-			grid-template-columns: repeat(5, minmax(0, 1fr));
-		}
-	}
-
-	/* Accordion */
-
-	.accordion {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-xs);
-	}
-
-	.accordion__item {
-		border-radius: var(--radius-md);
-		border: 1px solid color-mix(in srgb, var(--color-text) 24%, white);
-		background-color: var(--color-background);
-	}
-
-	.accordion__summary:focus-visible {
-		outline: 3px solid var(--color-focus);
-		outline-offset: 2px;
-		border-radius: var(--radius-md);
-	}
-
-	.accordion__summary {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-sm);
-		padding: var(--space-md);
-		cursor: pointer;
-		list-style: none;
-	}
-
-	.accordion__summary::-webkit-details-marker {
-		display: none;
-	}
-
-	.accordion__title {
-		font-weight: var(--font-weight-bold);
-		letter-spacing: var(--letter-spacing-body);
-	}
-
-	.accordion__icon {
-		flex-shrink: 0;
-		font-size: 1.25rem;
-		font-weight: var(--font-weight-regular);
-		line-height: 1;
-		transition: transform 500ms ease-in-out;
-	}
-
-	.accordion__item.is-open .accordion__icon {
-		transform: rotate(45deg);
-	}
-
-	.accordion__content {
+	.work-picker {
 		display: grid;
-		grid-template-rows: 0fr;
-		transition: grid-template-rows var(--transition-accordion);
-	}
-
-	.accordion__item.is-open .accordion__content {
-		grid-template-rows: 1fr;
-	}
-
-	.accordion__panel {
-		overflow: hidden;
-		min-height: 0;
-		padding: 0 var(--space-md) var(--space-md);
-		opacity: 0;
-		transition: opacity var(--transition-accordion);
-	}
-
-	.accordion__item.is-open .accordion__panel {
-		opacity: 1;
-	}
-
-	.accordion__tags {
-		margin: 0 0 var(--space-sm);
-	}
-
-	.accordion__body {
-		margin: 0 0 var(--space-md);
-	}
-
-	/* Career timeline */
-
-	#resume {
-		container-type: inline-size;
-	}
-
-	.career {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-sm);
-	}
-
-	.career-employer {
-		display: flex;
-		flex-direction: column;
-		gap: 0.125rem;
-	}
-
-	.career-employer__name {
-		margin: 0;
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-body);
-		line-height: 1.35;
-		color: var(--color-text);
-	}
-
-	.career-employer__detail {
-		margin: 0;
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-regular);
-		letter-spacing: var(--letter-spacing-body);
-		line-height: 1.35;
-		color: var(--color-text-subtle);
-	}
-
-	.career-timeline {
-		display: flex;
-		flex-direction: column;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.career-timeline__item {
-		position: relative;
-		display: grid;
-		grid-template-columns: 0.5rem minmax(0, 1fr);
-		column-gap: var(--space-sm);
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-lg);
 		align-items: start;
 	}
 
-	.career-timeline__item:not(:last-child) {
-		padding-bottom: var(--space-sm);
+	@media (min-width: 64rem) {
+		.work-picker {
+			grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+			gap: var(--space-xl);
+			align-items: start;
+		}
+
+		.why .content-grid {
+			grid-template-columns: var(--home-rail) minmax(0, 1fr);
+			gap: var(--space-xl);
+		}
+
+		.why__skills {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.why .content-copy {
+			grid-column: 2;
+			grid-row: 1;
+		}
 	}
 
-	.career-timeline__item:not(:last-child)::after {
-		content: '';
-		position: absolute;
-		top: 0.75rem;
-		left: calc(0.25rem - 1px);
-		width: 2px;
-		height: calc(100% - 0.75rem);
-		background-color: var(--color-border);
+	.work__intro {
+		max-width: 72ch;
+		margin-bottom: var(--space-lg);
 	}
 
-	.career-timeline__marker {
-		position: relative;
-		z-index: 1;
-		width: 0.5rem;
-		height: 0.5rem;
-		margin-top: 0.25rem;
-		border-radius: 50%;
-		background-color: var(--color-border);
-	}
-
-	.career-timeline__item:last-child .career-timeline__marker {
-		background-color: var(--color-project);
-	}
-
-	.career-timeline__copy {
+	.work-picker__media {
 		display: flex;
 		flex-direction: column;
-		gap: 0.125rem;
-		min-width: 0;
+		gap: var(--space-sm);
 	}
 
-	.career-timeline__label {
-		min-width: 0;
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-body);
-		line-height: 1.35;
+	.work-picker__frame {
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 2 / 1;
+		background-color: var(--color-surface-muted);
+	}
+
+	.work-picker__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		opacity: 0;
+		transition: opacity 350ms ease;
+	}
+
+	.work-picker__image.is-visible {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.work-picker__image {
+			transition: none;
+		}
+	}
+
+	.work-picker__controls {
+		display: flex;
+		align-items: center;
+		gap: var(--space-xs);
+	}
+
+	.work-picker__title {
+		margin: 0;
+		font-size: var(--font-size-h3);
+		font-weight: var(--font-weight-bold);
+		letter-spacing: var(--letter-spacing-heading);
+		line-height: var(--line-height-heading);
 		text-wrap: balance;
-		color: var(--color-text-subtle);
 	}
 
-	.career-timeline__item:last-child .career-timeline__label {
+	.work-picker__arrow {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 2.25rem;
+		height: 2.25rem;
+		margin: 0;
+		padding: 0;
+		border: none;
+		border-radius: 50%;
+		background: transparent;
+		color: var(--color-text);
+		cursor: pointer;
+	}
+
+	.work-picker__arrow svg {
+		width: 1.125rem;
+		height: 1.125rem;
+	}
+
+	.work-picker__arrow:hover,
+	.work-picker__arrow:focus-visible {
+		background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
 		color: var(--color-project);
 	}
 
-	.career-timeline__detail {
-		font-size: var(--font-size-caption);
-		font-weight: var(--font-weight-regular);
-		letter-spacing: var(--letter-spacing-body);
-		line-height: 1.35;
-		color: var(--color-text-subtle);
+	.work-picker__arrow:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
 	}
 
-	.career-timeline__item:last-child .career-timeline__detail {
-		color: var(--color-text-subtle);
+	.work-picker__sheet {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		flex: 1;
+		gap: 0.5rem;
+		min-width: 0;
 	}
 
-	@container (min-width: 24rem) {
-		.career-employer {
-			align-items: center;
-			text-align: center;
-		}
+	.work-picker__thumb {
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		aspect-ratio: 1;
+		border: none;
+		border-radius: 0;
+		background: var(--color-surface-muted);
+		box-shadow: none;
+		cursor: pointer;
+	}
 
-		.career-timeline {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
+	.work-picker__thumb:hover .work-picker__thumb-image,
+	.work-picker__thumb:focus-visible .work-picker__thumb-image {
+		opacity: 1;
+	}
 
-		.career-timeline__item {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: var(--space-xs);
-			padding-bottom: 0;
-			text-align: center;
-		}
+	.work-picker__thumb:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 3px;
+	}
 
-		.career-timeline__item:not(:last-child)::after {
-			top: 0.25rem;
-			left: calc(50% + 0.5rem);
-			width: calc(100% - 1rem);
-			height: 2px;
-		}
+	.work-picker__thumb-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.62;
+		transition: opacity 200ms ease;
+	}
 
-		.career-timeline__marker {
-			margin-top: 0;
+	.work-picker__thumb[aria-selected='true'] .work-picker__thumb-image {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.work-picker__thumb-image {
+			transition: none;
 		}
 	}
 
-	@media (min-width: 64rem) {
-		.philosophy .content-grid {
-			align-items: stretch;
-		}
+	.work-picker__copy-wrap {
+		display: grid;
+		align-items: start;
+	}
 
-		#resume > .btn {
-			margin-top: auto;
-		}
+	.work-picker__sizer,
+	.work-picker__copy {
+		grid-area: 1 / 1;
+	}
+
+	.work-picker__sizer {
+		display: grid;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	.work-picker__sizer-item {
+		grid-area: 1 / 1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-sm);
+	}
+
+	.work-picker__copy {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-sm);
+	}
+
+	.work-picker__copy:focus {
+		outline: none;
+	}
+
+	.work-picker__copy:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 4px;
+	}
+
+	.work-picker__tags,
+	.work-picker__body {
+		margin: 0;
+	}
+
+	.why__intro {
+		margin-bottom: var(--space-lg);
+	}
+
+	.why__skills {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-md);
 	}
 </style>
 
 <script>
-	function setAccordionExpanded(details, isOpen) {
-		details.classList.toggle('is-open', isOpen);
-	}
+	function setupProjectPicker() {
+		const card = document.querySelector('[data-project-card]');
+		if (!(card instanceof HTMLElement) || card.dataset.pickerInit === 'true') {
+			return;
+		}
 
-	function nextAccordionToken(details) {
-		const token = String(Number(details.dataset.accordionToken || '0') + 1);
-		details.dataset.accordionToken = token;
-		return token;
-	}
+		card.dataset.pickerInit = 'true';
+		const tabs = [...card.querySelectorAll('[role="tab"]')].filter(
+			(tab) => tab instanceof HTMLButtonElement,
+		);
+		const images = [...card.querySelectorAll('[data-project-image]')];
+		const panel = document.getElementById('project-panel');
+		const prev = card.querySelector('[data-project-prev]');
+		const next = card.querySelector('[data-project-next]');
+		const titleEl = card.querySelector('.work-picker__copy .work-picker__title');
+		const tagsEl = card.querySelector('.work-picker__copy .work-picker__tags');
+		const bodyEl = card.querySelector('.work-picker__copy .work-picker__body');
+		const ctaEl = card.querySelector('[data-project-cta]');
 
-	function waitForTransition(element, propertyName) {
-		return new Promise((resolve) => {
-			const timeout = window.setTimeout(resolve, 500);
-
-			element.addEventListener(
-				'transitionend',
-				(event) => {
-					if (event.propertyName !== propertyName) return;
-					window.clearTimeout(timeout);
-					resolve(undefined);
-				},
-				{ once: true },
-			);
-		});
-	}
-
-	async function closeAccordion(details) {
-		const summary = details.querySelector('.accordion__summary');
-		const content = details.querySelector('.accordion__content');
-		if (!(summary instanceof HTMLElement) || !(content instanceof HTMLElement)) return;
-		if (!details.classList.contains('is-open') && !details.open) return;
-
-		const token = nextAccordionToken(details);
-		details.dataset.animating = 'true';
-
-		setAccordionExpanded(details, false);
-		await waitForTransition(content, 'grid-template-rows');
-		if (details.dataset.accordionToken !== token) return;
-
-		details.open = false;
-		details.dataset.animating = 'false';
-	}
-
-	async function openAccordion(details) {
-		const summary = details.querySelector('.accordion__summary');
-		const content = details.querySelector('.accordion__content');
-		if (!(summary instanceof HTMLElement) || !(content instanceof HTMLElement)) return;
-
-		const token = nextAccordionToken(details);
-		details.dataset.animating = 'true';
-
-		details.open = true;
-		await new Promise(requestAnimationFrame);
-		if (details.dataset.accordionToken !== token) return;
-
-		setAccordionExpanded(details, true);
-		await waitForTransition(content, 'grid-template-rows');
-		if (details.dataset.accordionToken !== token) return;
-
-		details.dataset.animating = 'false';
-	}
-
-	function setupAccordions() {
-		document.querySelectorAll('[data-accordion]').forEach((details) => {
-			if (details.dataset.accordionInit === 'true') return;
-			details.dataset.accordionInit = 'true';
-
-			const summary = details.querySelector('.accordion__summary');
-			if (!(summary instanceof HTMLElement)) return;
-
-			summary.addEventListener('click', async (event) => {
-				event.preventDefault();
-				if (details.dataset.animating === 'true') return;
-
-				const group = details.closest('.accordion');
-				const wasOpen = details.classList.contains('is-open');
-				const others = group
-					? [...group.querySelectorAll('[data-accordion]')].filter(
-							(item) => item !== details && (item.classList.contains('is-open') || item.open),
-						)
-					: [];
-
-				if (wasOpen) {
-					await closeAccordion(details);
-					return;
-				}
-
-				await Promise.all([...others.map((item) => closeAccordion(item)), openAccordion(details)]);
-			});
-		});
-	}
-
-	function setupProjectStripCue() {
-		const wrap = document.querySelector('.project-strip-wrap');
-		const strip = wrap?.querySelector('.project-strip');
-		const cue = wrap?.querySelector('.project-strip__cue');
 		if (
-			!(wrap instanceof HTMLElement) ||
-			!(strip instanceof HTMLElement) ||
-			!(cue instanceof HTMLElement) ||
-			strip.dataset.cueInit === 'true'
+			tabs.length === 0 ||
+			!(panel instanceof HTMLElement) ||
+			!(prev instanceof HTMLButtonElement) ||
+			!(next instanceof HTMLButtonElement) ||
+			!(titleEl instanceof HTMLElement) ||
+			!(tagsEl instanceof HTMLElement) ||
+			!(bodyEl instanceof HTMLElement) ||
+			!(ctaEl instanceof HTMLAnchorElement)
 		) {
 			return;
 		}
 
-		strip.dataset.cueInit = 'true';
+		const selectIndex = (index, { focus = false } = {}) => {
+			const tab = tabs[index];
+			if (!(tab instanceof HTMLButtonElement)) return;
 
-		const updateCue = () => {
-			cue.classList.toggle('is-hidden', strip.scrollLeft > 16);
+			tabs.forEach((item, itemIndex) => {
+				const selected = itemIndex === index;
+				item.setAttribute('aria-selected', selected ? 'true' : 'false');
+				item.tabIndex = selected ? 0 : -1;
+			});
+
+			images.forEach((image, imageIndex) => {
+				if (image instanceof HTMLElement) {
+					image.classList.toggle('is-visible', imageIndex === index);
+				}
+			});
+
+			const title = tab.dataset.projectTitle ?? '';
+			titleEl.textContent = title;
+			tagsEl.textContent = tab.dataset.projectTags ?? '';
+			bodyEl.textContent = tab.dataset.projectBody ?? '';
+			ctaEl.href = tab.dataset.projectHref ?? '#';
+			ctaEl.setAttribute('aria-label', `View case study: ${title}`);
+			panel.setAttribute('aria-labelledby', tab.id);
+
+			if (focus) tab.focus();
 		};
 
-		updateCue();
-		strip.addEventListener('scroll', updateCue, { passive: true });
+		const currentIndex = () =>
+			Math.max(
+				0,
+				tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true'),
+			);
+
+		tabs.forEach((tab, index) => {
+			tab.addEventListener('click', () => selectIndex(index));
+		});
+
+		prev.addEventListener('click', () => {
+			selectIndex((currentIndex() - 1 + tabs.length) % tabs.length);
+		});
+
+		next.addEventListener('click', () => {
+			selectIndex((currentIndex() + 1) % tabs.length);
+		});
+
+		card.addEventListener('keydown', (event) => {
+			if (!(event.target instanceof HTMLElement)) return;
+			if (!event.target.closest('.work-picker__controls')) return;
+
+			const index = currentIndex();
+			let nextIndex = index;
+			if (event.key === 'ArrowRight') {
+				nextIndex = (index + 1) % tabs.length;
+			} else if (event.key === 'ArrowLeft') {
+				nextIndex = (index - 1 + tabs.length) % tabs.length;
+			} else if (event.key === 'Home') {
+				nextIndex = 0;
+			} else if (event.key === 'End') {
+				nextIndex = tabs.length - 1;
+			} else {
+				return;
+			}
+
+			event.preventDefault();
+			selectIndex(nextIndex, { focus: true });
+		});
 	}
 
-	setupAccordions();
-	setupProjectStripCue();
-	document.addEventListener('astro:page-load', setupAccordions);
-	document.addEventListener('astro:page-load', setupProjectStripCue);
+	setupProjectPicker();
+	document.addEventListener('astro:page-load', setupProjectPicker);
 </script>
-
