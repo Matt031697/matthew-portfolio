@@ -20,7 +20,6 @@
 	--color-surface-subtle: color-mix(in srgb, var(--color-text) 4%, white);
 	--color-surface-muted: color-mix(in srgb, var(--color-text) 8%, white);
 	--color-focus: var(--color-accent);
-
 	/* Typography */
 	--font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--font-weight-regular: 400;
@@ -284,9 +283,10 @@ blockquote {
 .skill-group__label {
 	margin: 0;
 	font-size: var(--font-size-nav);
-	font-weight: var(--font-weight-bold);
+	font-weight: var(--font-weight-semibold);
 	letter-spacing: var(--letter-spacing-body);
 	line-height: 1.35;
+	color: var(--color-text);
 	text-transform: none;
 }
 
@@ -295,7 +295,7 @@ blockquote {
 	font-size: var(--font-size-nav);
 	font-weight: var(--font-weight-regular);
 	letter-spacing: var(--letter-spacing-body);
-	color: var(--color-text);
+	color: var(--color-text-subtle);
 }
 
 .badge {
@@ -305,12 +305,12 @@ blockquote {
 	padding: var(--badge-padding-block) var(--badge-padding-inline);
 	border: var(--badge-border-width) solid var(--color-project);
 	border-radius: var(--badge-radius);
-	background-color: var(--color-background);
+	background-color: var(--color-project);
 	font-size: var(--badge-font-size);
 	font-weight: var(--font-weight-semibold);
 	line-height: var(--badge-line-height);
 	letter-spacing: var(--letter-spacing-body);
-	color: var(--color-project);
+	color: #fff;
 	text-decoration: none;
 	white-space: nowrap;
 }
@@ -399,8 +399,9 @@ blockquote {
 
 	display: inline-block;
 	width: fit-content;
-	padding: var(--space-sm) var(--space-md);
+	padding: var(--space-sm) var(--space-lg);
 	border: 2px solid var(--btn-fill);
+	border-radius: var(--badge-radius);
 	background-color: var(--btn-fill);
 	color: var(--btn-ink);
 	font-family: inherit;
@@ -470,6 +471,114 @@ blockquote {
 
 .hero__cta {
 	margin-top: var(--space-lg);
+}
+
+/* Homepage rhythm: related things sit close, sections sit far apart */
+
+.page-home {
+	--page-section-gap: clamp(4.5rem, 6vw + 2rem, 8rem);
+	--page-band-pad: clamp(3.5rem, 4vw + 1.5rem, 6rem);
+}
+
+.page-home .hero {
+	padding-block: var(--space-xl) 0;
+}
+
+.page-home .section-group .section-block,
+.page-home .section-group .section-block ~ .section-block {
+	padding-block: var(--page-section-gap) 0;
+}
+
+/* Why me is the one bold moment on the page: a full-width solid band in the
+   brand blue with white text. The sections around it keep the soft page
+   background. */
+
+.page-home .section-group .section-block.work {
+	padding-block-end: var(--page-section-gap);
+}
+
+.page-home .section-group .section-block.why {
+	--color-text: #fff;
+	--color-text-subtle: color-mix(in srgb, #fff 85%, var(--color-project));
+	--color-focus: #fff;
+
+	padding-block: var(--page-band-pad);
+	background-color: var(--color-project);
+	color: #fff;
+}
+
+.page-home .why .section-label {
+	color: var(--color-text-subtle);
+}
+
+/* Resume button: outlined on the blue band, fills white on hover */
+.page-home .why .btn {
+	border-color: #fff;
+	background-color: var(--color-project);
+	color: #fff;
+}
+
+@media (hover: hover) {
+	.page-home .why .btn:hover:not(:disabled) {
+		border-color: #fff;
+		background-color: #fff;
+		color: var(--color-project);
+	}
+}
+
+/* Homepage type scale: large headings run tighter, small labels keep their tracking */
+
+.page-home .hero h1 {
+	max-width: none;
+	font-size: clamp(2.25rem, 3.6vw + 0.75rem, 3.75rem);
+	line-height: 1.02;
+	letter-spacing: -0.03em;
+}
+
+/* Keeps "Front-end" from splitting at its hyphen on narrow screens */
+.hero__nowrap {
+	white-space: nowrap;
+}
+
+.page-home .hero__badges {
+	margin-top: var(--space-lg);
+}
+
+.page-home .section-block h2 {
+	font-size: clamp(1.75rem, 1.6vw + 1rem, 2.5rem);
+	line-height: 1.08;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+/* Homepage scroll reveal: sections ease in as they enter the viewport.
+   CSS only. Browsers without scroll-driven animations, and visitors who
+   prefer reduced motion, simply see the content in place. */
+
+@keyframes section-reveal {
+	from {
+		opacity: 0;
+		transform: translateY(1.5rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+		.page-home .work__intro,
+		.page-home .work-picker,
+		.page-home .why__intro,
+		.page-home .why .content-grid,
+		.page-home .about__grid {
+			animation: section-reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 5% entry 40%;
+		}
+	}
 }
 
 /* Two-column content grid */

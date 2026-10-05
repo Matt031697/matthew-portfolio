@@ -49,6 +49,21 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 										aria-current={pathname === item.href ? 'page' : undefined}
 									>
 										{item.label}
+										<svg
+											class="site-footer__work-arrow"
+											viewBox="0 0 24 24"
+											aria-hidden="true"
+											focusable="false"
+										>
+											<path
+												d="M5 12h14M13 6l6 6-6 6"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											></path>
+										</svg>
 									</a>
 								</li>
 							))
@@ -149,7 +164,9 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 	}
 
 	.site-footer__work-link {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
 		padding-block: var(--space-2xs);
 		font-size: var(--font-size-nav);
 		font-weight: var(--font-weight-regular);
@@ -159,10 +176,28 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 		transition: var(--transition-nav);
 	}
 
+	.site-footer__work-arrow {
+		width: 0.85rem;
+		height: 0.85rem;
+		flex-shrink: 0;
+		transition: transform 200ms ease;
+	}
+
 	.site-footer__work-link:hover,
 	.site-footer__work-link:focus-visible,
 	.site-footer__work-link[aria-current='page'] {
 		color: var(--color-project);
+	}
+
+	.site-footer__work-link:hover .site-footer__work-arrow,
+	.site-footer__work-link:focus-visible .site-footer__work-arrow {
+		transform: translateX(0.25rem);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.site-footer__work-arrow {
+			transition: none;
+		}
 	}
 
 	.site-footer__email {

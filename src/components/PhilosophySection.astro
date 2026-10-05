@@ -5,7 +5,6 @@ import bondfireThumb from '../assets/projects/case-study-thumbnails/bondfire-des
 import aiThumb from '../assets/projects/case-study-thumbnails/ai-assisted-websites.png';
 import auditsThumb from '../assets/projects/case-study-thumbnails/shopify-accessibility-audits.png';
 import graphicThumb from '../assets/projects/case-study-thumbnails/graphic-print-photography.png';
-
 const projects = [
 	{
 		title: 'Shopify theme architecture',
@@ -78,10 +77,12 @@ const skillGroups = [
 	<div class="container">
 		<div class="heading-block work__intro">
 			<p class="text-accent section-label">What I do</p>
-			<h2 id="philosophy-heading">Websites, assets, and experiences.</h2>
+			<h2 id="philosophy-heading">Some days it's one theme. Some days it's everything in-between.</h2>
 			<p class="philosophy__intro">
-				Day to day I manage one shared Shopify theme. Around that I also take
-				on brand, custom sites, accessibility, and print.
+				I typically work in a shared component system that hundreds of stores run
+				on. But the tasks inside it still show up as their own jobs. A specific
+				layout, copy that fits the store, a fix or an upgrade, a page only one
+				store needs. Independent work, same place.
 			</p>
 		</div>
 
@@ -217,36 +218,36 @@ const skillGroups = [
 			<div class="content-copy">
 				<p>
 					I used to do my best work in design, and I was happy there. Then I
-					realized I didn't like sending my vision off to be finished by someone
-					else. I was too curious. I wanted to own how something looks and
-					understand how it gets built, and the journey grew from there.
+					got curious about the other half. I wanted to sit with how something
+					looks and how it gets built, and the journey grew from there.
 				</p>
 				<p>
-					Now I do my best work sitting with design and development on the same
+					Now I do my best work when design and development sit on the same
 					problem. I'll wear whatever hat the work needs, whether that's the
-					layout, the build, or the fix after it ships, because I'd rather stay on
-					it than hand it off. I love to think big picture. It's a puzzle. Creating
-					shared pieces so a layout can work across stores, not just one,
-					is the reward.
+					layout, the build, or the fix after it ships. I love to think big
+					picture. It's a puzzle. Creating shared pieces so a layout can work
+					across stores, not just one, is the reward.
 				</p>
 				<p>
-					I think I'm picky in a useful way: before something ships I check it,
+					I think I'm careful in a useful way: before something ships I check it,
 					click through it, and look at both the whole page and the small stuff.
-					That's how I like the design to reach people, and how I know it will hold
-					up.
+					That's how I know it will hold up for people.
 				</p>
 			</div>
 
 			<div class="why__skills">
-				<div class="skill-groups">
-					{
-						skillGroups.map((group) => (
-							<div class="skill-group">
-								<h3 class="text-accent skill-group__label">{group.label}</h3>
-								<p class="tag-line skill-group__skills">{group.skills.join(' + ')}</p>
-							</div>
-						))
-					}
+				<div class="why__skills-stack">
+					<p class="text-accent section-label why__skills-label">Skills</p>
+					<div class="skill-groups">
+						{
+							skillGroups.map((group) => (
+								<div class="skill-group">
+									<h3 class="skill-group__label">{group.label}</h3>
+									<p class="tag-line skill-group__skills">{group.skills.join(' + ')}</p>
+								</div>
+							))
+						}
+					</div>
 				</div>
 
 				<a class="btn" href="/resume.pdf" download="Matthew-Ward-Resume.pdf">
@@ -267,30 +268,28 @@ const skillGroups = [
 
 	@media (min-width: 64rem) {
 		.work-picker {
-			grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+			grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.8fr);
 			gap: var(--space-xl);
 			align-items: start;
 		}
 
 		.why .content-grid {
-			grid-template-columns: var(--home-rail) minmax(0, 1fr);
+			grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
 			gap: var(--space-xl);
-		}
-
-		.why__skills {
-			grid-column: 1;
-			grid-row: 1;
-		}
-
-		.why .content-copy {
-			grid-column: 2;
-			grid-row: 1;
 		}
 	}
 
+	.why .content-copy {
+		max-width: 65ch;
+	}
+
+	.philosophy__intro {
+		max-width: 62ch;
+	}
+
 	.work__intro {
-		max-width: 72ch;
-		margin-bottom: var(--space-lg);
+		max-width: 56rem;
+		margin-bottom: var(--space-md);
 	}
 
 	.work-picker__media {
@@ -471,7 +470,7 @@ const skillGroups = [
 	}
 
 	.why__intro {
-		margin-bottom: var(--space-lg);
+		margin-bottom: var(--space-md);
 	}
 
 	.why__skills {
@@ -479,6 +478,18 @@ const skillGroups = [
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--space-md);
+	}
+
+	.why__skills-stack {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-xs);
+	}
+
+	.why__skills-label {
+		margin: 0;
+		font-weight: var(--font-weight-bold);
 	}
 </style>
 
