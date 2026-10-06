@@ -424,7 +424,7 @@ const closingTags = 'Graphic Design + Print + Photography';
 										class:list={[
 											'gallery-item__media',
 											'gallery-item__media--logo-tile',
-											client.logoOnWhite && 'gallery-item__media--logo-tile-white',
+											'logoOnWhite' in client && client.logoOnWhite && 'gallery-item__media--logo-tile-white',
 										]}
 										src={client.logo.image}
 										alt={client.logo.alt}

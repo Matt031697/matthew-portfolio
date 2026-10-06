@@ -298,8 +298,8 @@ function sectionIdFromHref(href: string) {
 <script>
 	function setupCurrentNav() {
 		const logo = document.querySelector('[data-home-logo]');
-		const links = [...document.querySelectorAll('[data-nav-section]')].filter(
-			(link) => link instanceof HTMLAnchorElement && link.dataset.navSection,
+		const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-nav-section]')].filter(
+			(link) => link.dataset.navSection,
 		);
 
 		if (!(logo instanceof HTMLElement) || links.length === 0 || logo.dataset.currentInit === 'true') {
@@ -357,13 +357,13 @@ function sectionIdFromHref(href: string) {
 {
 	!backToProjects && (
 		<script>
-			function waitForTransition(element) {
+			function waitForTransition(element: HTMLElement) {
 				return new Promise((resolve) => {
 					const timeout = window.setTimeout(resolve, 500);
 
 					element.addEventListener(
 						'transitionend',
-						(event) => {
+						(event: TransitionEvent) => {
 							if (event.propertyName !== 'transform') return;
 							window.clearTimeout(timeout);
 							resolve(undefined);
@@ -374,7 +374,7 @@ function sectionIdFromHref(href: string) {
 			}
 
 			function setupMobileNav() {
-				const header = document.querySelector('.site-header');
+				const header = document.querySelector<HTMLElement>('.site-header');
 				if (!header || header.dataset.navInit === 'true') return;
 				header.dataset.navInit = 'true';
 
@@ -398,7 +398,7 @@ function sectionIdFromHref(href: string) {
 					logo instanceof HTMLElement ? logo : null,
 				].filter((region) => region instanceof HTMLElement);
 
-				const setPageLocked = (locked) => {
+				const setPageLocked = (locked: boolean) => {
 					document.body.style.overflow = locked ? 'hidden' : '';
 					pageRegions.forEach((region) => {
 						region.inert = locked;

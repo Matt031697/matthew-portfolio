@@ -141,7 +141,7 @@ body::after {
 	pointer-events: none;
 	opacity: 0.14;
 	mix-blend-mode: overlay;
-	background-image: url('/noise.png');
+	background-image: url('/noise.jpg');
 	background-repeat: repeat;
 	background-size: 280px 280px;
 }

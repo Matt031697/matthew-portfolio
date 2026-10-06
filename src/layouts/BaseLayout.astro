@@ -4,10 +4,10 @@ import '@fontsource/montserrat/latin-400-italic.css';
 import '@fontsource/montserrat/latin-600.css';
 import '@fontsource/montserrat/latin-700.css';
 import '../styles/global.css';
+import font400 from '@fontsource/montserrat/files/montserrat-latin-400-normal.woff2?url';
+import font600 from '@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url';
+import font700 from '@fontsource/montserrat/files/montserrat-latin-700-normal.woff2?url';
 import { siteEmail, siteLinkedIn, siteLocation, siteName } from '../lib/site.ts';
-
-const faviconAlt =
-	'Blue geometric M and W letters interlock in a bold, angular logo on a white background, conveying a clean, modern, professional tone.';
 
 const openGraphImageHref = '/matthew-portfolio-open-graph.png';
 const openGraphImageAlt =
@@ -73,6 +73,11 @@ const structuredData = {
 		<meta name="description" content={description} />
 		{noindex && <meta name="robots" content="noindex, follow" />}
 		<link rel="canonical" href={pageUrl} />
+		{
+			[font400, font600, font700].map((href) => (
+				<link rel="preload" as="font" type="font/woff2" href={href} crossorigin />
+			))
+		}
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
@@ -86,9 +91,9 @@ const structuredData = {
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={openGraphImageUrl} />
 		<meta name="twitter:image:alt" content={openGraphImageAlt} />
-		<link rel="icon" href="/favicon.ico" sizes="48x48" title={faviconAlt} />
-		<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" title={faviconAlt} />
-		<link rel="apple-touch-icon" href="/favicon.png" title={faviconAlt} />
+		<link rel="icon" href="/favicon.ico" sizes="48x48" />
+		<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

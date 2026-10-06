@@ -526,7 +526,7 @@ const skillGroups = [
 			return;
 		}
 
-		const selectIndex = (index, { focus = false } = {}) => {
+		const selectIndex = (index: number, { focus = false }: { focus?: boolean } = {}) => {
 			const tab = tabs[index];
 			if (!(tab instanceof HTMLButtonElement)) return;
 
