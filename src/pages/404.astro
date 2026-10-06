@@ -2,7 +2,7 @@
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { projectAccents } from '../lib/site.ts';
+import { projectAccents, siteEmail } from '../lib/site.ts';
 ---
 
 <BaseLayout
@@ -13,19 +13,89 @@ import { projectAccents } from '../lib/site.ts';
 >
 	<Header />
 
-	<main id="main">
+	<main id="main" class="page-home">
 		<div class="container">
-			<section class="hero" aria-labelledby="not-found-heading">
-				<p class="text-accent section-label hero__eyebrow">404</p>
-				<h1 id="not-found-heading">This page isn't here.</h1>
+			<section class="hero not-found" aria-labelledby="not-found-heading">
+				<p class="text-accent section-label hero__eyebrow">Error 404</p>
+
+				<p class="not-found__code" aria-hidden="true">404</p>
+
+				<h1 id="not-found-heading">This page wandered off the trail.</h1>
 				<p class="hero__subheading">
-					The link may be old, or the address might be mistyped. Selected work is on
-					the homepage.
+					Nothing here but embers. The link may be old or mistyped, but the rest of
+					the camp is right where you left it.
 				</p>
+
+				<p class="not-found__path" data-not-found-path hidden>
+					Couldn't find <code></code>
+				</p>
+
 				<a class="btn hero__cta" href="/">Back to homepage</a>
+
+				<p class="not-found__note">
+					Think a link is broken? <a href={`mailto:${siteEmail}`}>Let me know</a> and
+					I'll fix it.
+				</p>
 			</section>
 		</div>
 	</main>
 
 	<Footer />
 </BaseLayout>
+
+<script>
+	// Shows the address that was requested so a mistyped URL is easy to spot
+	const pathLine = document.querySelector<HTMLElement>('[data-not-found-path]');
+	const path = window.location.pathname;
+
+	if (pathLine && path && path !== '/' && !/^\/404(\.html)?$/.test(path)) {
+		const code = pathLine.querySelector('code');
+
+		if (code) {
+			code.textContent = path;
+			pathLine.hidden = false;
+		}
+	}
+</script>
+
+<style>
+	.hero.not-found {
+		padding-block: var(--space-xl) var(--space-2xl);
+	}
+
+	.not-found__code {
+		margin: 0 0 var(--space-md);
+		font-size: clamp(6.5rem, 26vw, 14rem);
+		font-weight: var(--font-weight-bold);
+		line-height: 0.85;
+		letter-spacing: -0.04em;
+		color: var(--color-project);
+		user-select: none;
+	}
+
+	.hero.not-found h1 {
+		max-width: 16ch;
+	}
+
+	.not-found__path {
+		margin: var(--space-md) 0 0;
+		font-size: var(--font-size-caption);
+		color: var(--color-text-subtle);
+		overflow-wrap: anywhere;
+	}
+
+	.not-found__path code {
+		padding: 0.15em 0.45em;
+		border-radius: 0.25rem;
+		background-color: var(--color-surface-muted);
+		color: var(--color-text);
+		font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+		font-size: 0.95em;
+	}
+
+	.not-found__note {
+		margin: var(--space-md) 0 0;
+		font-size: var(--font-size-caption);
+		color: var(--color-text-subtle);
+	}
+</style>
