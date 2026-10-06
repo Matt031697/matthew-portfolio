@@ -401,7 +401,7 @@ blockquote {
 	width: fit-content;
 	padding: var(--space-sm) var(--space-lg);
 	border: 2px solid var(--btn-fill);
-	border-radius: var(--badge-radius);
+	border-radius: 0.25rem;
 	background-color: var(--btn-fill);
 	color: var(--btn-ink);
 	font-family: inherit;
@@ -473,19 +473,19 @@ blockquote {
 	margin-top: var(--space-lg);
 }
 
-/* Homepage rhythm: related things sit close, sections sit far apart */
+/* Homepage and case study rhythm: related things sit close, sections sit far apart */
 
-.page-home {
+:is(.page-home, .page-case-study) {
 	--page-section-gap: clamp(4.5rem, 6vw + 2rem, 8rem);
 	--page-band-pad: clamp(3.5rem, 4vw + 1.5rem, 6rem);
 }
 
-.page-home .hero {
+:is(.page-home, .page-case-study) .hero {
 	padding-block: var(--space-xl) 0;
 }
 
-.page-home .section-group .section-block,
-.page-home .section-group .section-block ~ .section-block {
+:is(.page-home, .page-case-study) .section-group .section-block,
+:is(.page-home, .page-case-study) .section-group .section-block ~ .section-block {
 	padding-block: var(--page-section-gap) 0;
 }
 
@@ -526,9 +526,9 @@ blockquote {
 	}
 }
 
-/* Homepage type scale: large headings run tighter, small labels keep their tracking */
+/* Type scale: large headings run tighter, small labels keep their tracking */
 
-.page-home .hero h1 {
+:is(.page-home, .page-case-study) .hero h1 {
 	max-width: none;
 	font-size: clamp(2.25rem, 3.6vw + 0.75rem, 3.75rem);
 	line-height: 1.02;
@@ -540,11 +540,11 @@ blockquote {
 	white-space: nowrap;
 }
 
-.page-home .hero__badges {
+:is(.page-home, .page-case-study) .hero__badges {
 	margin-top: var(--space-lg);
 }
 
-.page-home .section-block h2 {
+:is(.page-home, .page-case-study) .section-block h2 {
 	font-size: clamp(1.75rem, 1.6vw + 1rem, 2.5rem);
 	line-height: 1.08;
 	letter-spacing: -0.02em;
@@ -578,7 +578,33 @@ blockquote {
 			animation-timeline: view();
 			animation-range: entry 5% entry 40%;
 		}
+
+		/* Case study sections vary a lot in height, so the reveal runs over a
+		   fixed distance instead of a share of the element */
+		.page-case-study .section-block .container > * {
+			animation: section-reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 0% entry 14rem;
+		}
 	}
+}
+
+/* Case study closing section: the one bold moment on each page, a full-width
+   solid band in that page's own theme color with white text. */
+
+.page-case-study .section-group .section-block[aria-labelledby='case-study-closing-heading'] {
+	--color-text: #fff;
+	--color-text-subtle: #fff;
+	--color-focus: #fff;
+
+	margin-top: var(--page-section-gap);
+	padding-block: var(--page-band-pad);
+	background-color: var(--color-project);
+	color: #fff;
+}
+
+.page-case-study [aria-labelledby='case-study-closing-heading'] .closing-tags {
+	color: #fff;
 }
 
 /* Two-column content grid */
@@ -1562,7 +1588,8 @@ p a:focus-visible {
 	margin: 0;
 	padding: var(--space-md);
 	border-radius: var(--radius-md);
-	background-color: var(--color-surface-subtle);
+	border: 1px solid color-mix(in srgb, var(--color-project) 14%, transparent);
+	background-color: #fff;
 }
 
 .shipped-card .section-label {
