@@ -157,7 +157,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: var(--space-xs);
+		gap: 0;
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -167,6 +167,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 		display: inline-flex;
 		align-items: center;
 		gap: 0.4rem;
+		min-height: 2.75rem;
 		padding-block: var(--space-2xs);
 		font-size: var(--font-size-nav);
 		font-weight: var(--font-weight-regular);
@@ -201,6 +202,10 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 	}
 
 	.site-footer__email {
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-end;
+		min-height: 2.75rem;
 		overflow-wrap: anywhere;
 		padding-inline: 0;
 		padding-block: var(--space-2xs);
