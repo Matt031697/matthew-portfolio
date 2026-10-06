@@ -1,0 +1,77 @@
+---
+interface Props {
+	/** Short facts about the project, shown as label and value pairs. */
+	items: ReadonlyArray<{ label: string; value: string }>;
+	/** Accessible name for the group, for example "Project details". */
+	label?: string;
+}
+
+const { items, label = 'Project details' } = Astro.props;
+---
+
+<dl class:list={['project-facts', items.length % 2 === 0 && 'project-facts--even']} aria-label={label}>
+	{
+		items.map((item) => (
+			<div class="project-facts__item">
+				<dt>{item.label}</dt>
+				<dd>{item.value}</dd>
+			</div>
+		))
+	}
+</dl>
+
+<style>
+	.project-facts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-md);
+		margin: var(--space-xl) 0 0;
+	}
+
+	/* White cards that grow to fill each row, so five items sit as 3 + 2 without gaps */
+	.project-facts__item {
+		display: flex;
+		flex: 1 1 15rem;
+		flex-direction: column;
+		gap: var(--space-xs);
+		padding: var(--space-md);
+		border: 1px solid color-mix(in srgb, var(--color-project) 14%, transparent);
+		border-radius: var(--radius-md);
+		background-color: #fff;
+	}
+
+	/* An even number of cards sits in tidy 2 x n (or 4 across) instead of 3 + 1 */
+	@media (min-width: 40rem) {
+		.project-facts--even {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 80rem) {
+		.project-facts--even {
+			grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		}
+	}
+
+	.project-facts dt,
+	.project-facts dd {
+		margin: 0;
+	}
+
+	/* The label is quiet so the value is the first thing you read */
+	.project-facts dt {
+		font-size: var(--font-size-caption);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-text-subtle);
+	}
+
+	.project-facts dd {
+		font-size: var(--font-size-body);
+		font-weight: var(--font-weight-regular);
+		line-height: 1.45;
+		color: var(--color-text);
+	}
+</style>

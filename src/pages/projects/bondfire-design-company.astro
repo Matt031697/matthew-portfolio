@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projectAccents } from '../../lib/site.ts';
 import { slugify } from '../../lib/strings.ts';
@@ -37,6 +38,25 @@ import applicationLanyard from '../../assets/projects/bondfire/application-lanya
 const pageTitle = 'Bondfire Design Company, Matthew';
 const description =
 	'Case study: Bondfire Design Company. Quality for business owners big or small. Identity, website, and marketing system built to support the people who need it.';
+
+const projectFacts = [
+	{
+		label: 'Role',
+		value:
+			'Founder, designer, developer, and photographer; also responsible for contracts, customer service, and administration',
+	},
+	{ label: 'Team', value: 'Sole operator' },
+	{ label: 'Timeline', value: '2024 - Present' },
+	{
+		label: 'Tools',
+		value:
+			'Webflow, Adobe Creative Suite, WordPress, Shopify, Jotform, Canva, Bonsai, digital photography, and more',
+	},
+	{
+		label: 'Context',
+		value: 'Independent business serving small businesses and organizations',
+	},
+];
 
 const processSteps = [
 	{
@@ -185,6 +205,7 @@ const closingTags = 'Brand Identity + Web Design + Accessibility';
 						Visit Website
 					</a>
 				</section>
+				<ProjectFacts items={projectFacts} />
 			</div>
 		</div>
 

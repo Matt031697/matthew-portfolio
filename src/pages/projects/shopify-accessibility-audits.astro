@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { careerHighlights, projectAccents } from '../../lib/site.ts';
 import waveAudit from '../../assets/projects/accessibility/wave-audit.png';
@@ -15,6 +16,28 @@ import accessibleNames from '../../assets/projects/accessibility/accessible-name
 const pageTitle = 'Shopify Accessibility Audits, Matthew';
 const description =
 	'I make sure every Shopify storefront is accessible before it ships. When a barrier lives in a shared component, I fix it in the theme for every site after.';
+
+const projectFacts = [
+	{
+		label: 'Role',
+		value:
+			'Designer and front-end developer; responsible for accessibility audits, fixes, and rechecks before launch',
+	},
+	{
+		label: 'Team',
+		value:
+			'Full ownership of the audits day to day; technical collaboration on higher-level business decisions',
+	},
+	{ label: 'Timeline', value: '2020 - Present' },
+	{
+		label: 'Tools',
+		value: 'WCAG 2.1, WAVE, Lighthouse, manual testing, Shopify, Liquid, Git, and more',
+	},
+	{
+		label: 'Context',
+		value: 'Working within New Media Retailer; one shared theme serving 300+ client storefronts',
+	},
+];
 
 const auditProcess = [
 	{
@@ -156,6 +179,7 @@ const closingTags = 'Manual Testing + Shared Theme + Inherited Fixes';
 						View Live Site
 					</a>
 				</section>
+				<ProjectFacts items={projectFacts} />
 			</div>
 		</div>
 

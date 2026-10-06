@@ -511,18 +511,18 @@ blockquote {
 	color: var(--color-text-subtle);
 }
 
-/* Resume button: outlined on the blue band, fills white on hover */
+/* Resume button: solid white on the blue band, inverts to blue on hover */
 .page-home .why .btn {
 	border-color: #fff;
-	background-color: var(--color-project);
-	color: #fff;
+	background-color: #fff;
+	color: var(--color-project);
 }
 
 @media (hover: hover) {
 	.page-home .why .btn:hover:not(:disabled) {
 		border-color: #fff;
-		background-color: #fff;
-		color: var(--color-project);
+		background-color: var(--color-project);
+		color: #fff;
 	}
 }
 

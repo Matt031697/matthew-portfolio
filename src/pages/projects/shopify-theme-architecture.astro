@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { careerHighlights, projectAccents } from '../../lib/site.ts';
 import { slugify } from '../../lib/strings.ts';
@@ -25,6 +26,29 @@ import ctaBanner from '../../assets/projects/shopify-theme/two-column-cards/cta-
 const pageTitle = 'Shopify theme architecture, Matthew';
 const description =
 	'Case study: one shared Shopify theme for hundreds of storefronts. Layouts, components, updates, and support that each retailer inherits.';
+
+const projectFacts = [
+	{
+		label: 'Role',
+		value:
+			'Designer and front-end developer; responsible for theme management, layout, design, copy, app installs, and updates',
+	},
+	{
+		label: 'Team',
+		value:
+			'Full ownership of the theme day to day; technical collaboration on higher-level business decisions',
+	},
+	{ label: 'Timeline', value: '2020 - Present' },
+	{
+		label: 'Tools',
+		value:
+			'Shopify, Liquid, CSS, JavaScript, Git, Cursor, Canva, Adobe Creative Suite, Jotform, third-party integrations, and more',
+	},
+	{
+		label: 'Context',
+		value: 'Working within New Media Retailer; one shared theme serving 300+ client storefronts',
+	},
+];
 
 const themeColumns = [
 	{
@@ -220,6 +244,7 @@ const closingTags = 'Shopify + Theme Architecture + Accessibility';
 						View Live Site
 					</a>
 				</section>
+				<ProjectFacts items={projectFacts} />
 			</div>
 		</div>
 

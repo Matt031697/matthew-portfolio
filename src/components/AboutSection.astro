@@ -42,8 +42,8 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 					class="about__portrait"
 					src={aboutPortrait}
 					alt="Matthew smiling in a cap sitting in a folding chair holding a drink beside a glowing campfire in a green park, creating a relaxed mood."
-					widths={[320, 448, 640]}
-					sizes="(min-width: 64rem) 22rem, min(100vw - 2.5rem, 22rem)"
+					widths={[320, 448, 640, 832]}
+					sizes="(min-width: 64rem) 26rem, min(100vw - 2.5rem, 26rem)"
 				/>
 			</div>
 		</div>
@@ -52,17 +52,11 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 
 <style>
 	.about__grid {
+		--about-media-width: clamp(18rem, 30vw, 26rem);
+
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--space-lg);
-	}
-
-	@media (min-width: 64rem) {
-		.about__grid {
-			grid-template-columns: minmax(0, 1fr) var(--home-rail);
-			gap: var(--space-xl);
-			align-items: start;
-		}
 	}
 
 	.about__body {
@@ -82,5 +76,27 @@ import aboutPortrait from '../assets/about/mw-portrait.png';
 		object-fit: cover;
 		border-radius: var(--radius-md);
 		background-color: var(--color-surface-muted);
+	}
+
+	@media (min-width: 64rem) {
+		.about__grid {
+			grid-template-columns: minmax(0, 1fr) var(--about-media-width);
+			gap: var(--space-xl);
+			align-items: stretch;
+		}
+
+		/* The photo fills the full height of the copy block, so both sit on the same
+		   top and bottom edges. */
+		.about__media {
+			position: relative;
+		}
+
+		.about__portrait {
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			max-width: none;
+			aspect-ratio: auto;
+		}
 	}
 </style>

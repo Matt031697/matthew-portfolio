@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projectAccents } from '../../lib/site.ts';
 import { slugify } from '../../lib/strings.ts';
@@ -15,6 +16,29 @@ import northingtonDevices from '../../assets/projects/ai-websites/northington-de
 const pageTitle = 'Companion sites, Matthew';
 const description =
 	'Companion sites for local businesses outside a templated program. One shared Astro system, three live stores, and a review loop that keeps each site specific.';
+
+const projectFacts = [
+	{
+		label: 'Role',
+		value:
+			'Designer and front-end developer; responsible for design, architecture, and accessibility',
+	},
+	{
+		label: 'Team',
+		value:
+			'Full ownership of the individual websites day to day; technical collaboration on higher-level decisions',
+	},
+	{ label: 'Timeline', value: '2026 - Present' },
+	{
+		label: 'Tools',
+		value: 'Astro, Git, GitHub, Cursor, Cloudflare Workers, Adobe Creative Suite, Canva',
+	},
+	{
+		label: 'Context',
+		value:
+			'Working within New Media Retailer; companion sites for local businesses outside the templated program',
+	},
+];
 
 const methodTools = [
 	{
@@ -146,6 +170,7 @@ const workflowMockups = [
 						View Live Site
 					</a>
 				</section>
+				<ProjectFacts items={projectFacts} />
 			</div>
 		</div>
 
