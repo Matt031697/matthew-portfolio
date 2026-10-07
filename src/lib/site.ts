@@ -11,8 +11,8 @@ export const siteEmployerTenure = '2020–Present';
 export const careerHighlights = {
 	experience: '6+ Years Experience',
 	experienceCompact: '6+ Years',
-	storefronts: '300+ Storefronts Supported',
-	storefrontsCompact: '300+ Storefronts',
+	storefronts: '500+ Storefronts Supported',
+	storefrontsCompact: '500+ Storefronts',
 	releases: '200+ Theme Updates Shipped',
 	releasesCompact: '200+ Updates',
 } as const;
