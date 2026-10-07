@@ -26,16 +26,18 @@ const projectFacts = [
 	{
 		label: 'Team',
 		value:
-			'Full ownership of the audits day to day; technical collaboration on higher-level business decisions',
+			'Full ownership of the audits day to day. I call for collaboration when I need it.',
 	},
 	{ label: 'Timeline', value: '2020 - Present' },
 	{
 		label: 'Tools',
-		value: 'WCAG 2.1, WAVE, Lighthouse, manual testing, Shopify, Liquid, Git, and more',
+		value:
+			'WCAG 2.2, WAVE, Lighthouse, keyboard testing, manual testing, Shopify, Liquid, Git, Cursor, and more',
 	},
 	{
 		label: 'Context',
-		value: 'Working within New Media Retailer; one shared theme serving 300+ client storefronts',
+		value:
+			'Working within New Media Retailer; the same audit process across the shared theme and companion sites',
 	},
 ];
 
@@ -50,7 +52,7 @@ const auditProcess = [
 	},
 	{
 		label: 'Test by hand',
-		copy: 'I check it on real product, collection, and cart pages. The report is just a starting point.',
+		copy: 'I check it on real product, collection, and cart pages, including keyboard paths. The report is just a starting point.',
 	},
 	{
 		label: 'Fix and recheck',
@@ -164,7 +166,7 @@ const closingTags = 'Manual Testing + Shared Theme + Inherited Fixes';
 						next site inherits the work.
 					</p>
 					<ul class="badge-list hero__badges">
-						<li class="badge">WCAG 2.1</li>
+						<li class="badge">WCAG 2.2</li>
 						<li class="badge">WAVE</li>
 						<li class="badge">Lighthouse</li>
 						<li class="badge">{careerHighlights.storefronts}</li>
@@ -191,11 +193,17 @@ const closingTags = 'Manual Testing + Shared Theme + Inherited Fixes';
 						<div class="content-copy content-copy--narrow">
 							<p>
 								One audit is never the same as the next. Mixed code, different components,
-								branding assets, colors, apps, content, the list goes on. That’s what
-								keeps the work interesting, and that’s why I keep my eyes open: find what
-								blocks people, fix it, and ship it. If a barrier becomes consistent, the
-								update goes in the{' '}
+								branding assets, colors, apps, content, the list goes on. The theme is
+								robust, so what typically fails is design: contrast and color choices that
+								do not hold up. Those usually clean up by changing branding colors, not by
+								rewriting the component. If a barrier becomes consistent, the update goes
+								in the{' '}
 								<a href="/projects/shopify-theme-architecture">shared theme</a>.
+							</p>
+							<p>
+								When the issue is a third-party app or embed, I cannot always fix it
+								myself. My job is to communicate that clearly, talk through the
+								trade-offs, and let the customer decide how they want to move forward.
 							</p>
 						</div>
 					</div>
@@ -303,8 +311,9 @@ const closingTags = 'Manual Testing + Shared Theme + Inherited Fixes';
 						<p class="text-accent section-label">What I use</p>
 						<h2 id="audit-tools-heading">The scan, then the storefront</h2>
 						<p class="section-intro">
-							Northington Windows &amp; Doors is a recent live site I ran through the same
-							checks. The tools point me at issues. I still decide what actually ships.
+							The process is the same on every site we ship, Shopify or companion.
+							Northington Windows &amp; Doors is a recent live example. The tools point
+							me at issues. I still decide what actually ships.
 						</p>
 					</div>
 
