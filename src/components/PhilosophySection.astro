@@ -303,6 +303,7 @@ const skillGroups = [
 		overflow: hidden;
 		aspect-ratio: 2 / 1;
 		background-color: var(--color-surface-muted);
+		touch-action: pan-y;
 	}
 
 	.work-picker__image {
@@ -379,6 +380,35 @@ const skillGroups = [
 		flex: 1;
 		gap: 0.5rem;
 		min-width: 0;
+	}
+
+	/* Small screens: thumbnails become a horizontally swipeable strip */
+	@media (max-width: 40rem) {
+		.work-picker__sheet {
+			position: relative;
+			display: flex;
+			padding: 0.25rem;
+			overflow-x: auto;
+			overscroll-behavior-x: contain;
+			scroll-snap-type: x mandatory;
+			scroll-padding-inline: 0.25rem;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+		}
+
+		.work-picker__sheet::-webkit-scrollbar {
+			display: none;
+		}
+
+		.work-picker__sheet .work-picker__thumb {
+			flex: 0 0 4.5rem;
+			width: 4.5rem;
+			scroll-snap-align: start;
+		}
+
+		.work-picker__sheet .work-picker__thumb:focus-visible {
+			outline-offset: 2px;
+		}
 	}
 
 	.work-picker__thumb {
@@ -550,7 +580,17 @@ const skillGroups = [
 			ctaEl.setAttribute('aria-label', `View case study: ${title}`);
 			panel.setAttribute('aria-labelledby', tab.id);
 
-			if (focus) tab.focus();
+			// Keep the selected thumbnail visible when the strip is scrollable (small screens)
+			const sheet = tab.parentElement;
+			if (sheet && sheet.scrollWidth > sheet.clientWidth) {
+				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				sheet.scrollTo({
+					left: tab.offsetLeft - (sheet.clientWidth - tab.offsetWidth) / 2,
+					behavior: reduceMotion ? 'auto' : 'smooth',
+				});
+			}
+
+			if (focus) tab.focus({ preventScroll: true });
 		};
 
 		const currentIndex = () =>
@@ -570,6 +610,42 @@ const skillGroups = [
 		next.addEventListener('click', () => {
 			selectIndex((currentIndex() + 1) % tabs.length);
 		});
+
+		// Swipe the large image left/right to change project (touch and pen)
+		const frame = card.querySelector('.work-picker__frame');
+		if (frame instanceof HTMLElement) {
+			const SWIPE_DISTANCE = 40;
+			let startX = 0;
+			let startY = 0;
+			let pointerId: number | null = null;
+
+			frame.addEventListener('pointerdown', (event) => {
+				if (event.pointerType === 'mouse' || !event.isPrimary) return;
+				pointerId = event.pointerId;
+				startX = event.clientX;
+				startY = event.clientY;
+			});
+
+			frame.addEventListener('pointerup', (event) => {
+				if (event.pointerId !== pointerId) return;
+				pointerId = null;
+
+				const deltaX = event.clientX - startX;
+				const deltaY = event.clientY - startY;
+				if (Math.abs(deltaX) < SWIPE_DISTANCE || Math.abs(deltaX) < Math.abs(deltaY) * 1.5) {
+					return;
+				}
+
+				const direction = deltaX < 0 ? 1 : -1;
+				selectIndex((currentIndex() + direction + tabs.length) % tabs.length);
+			});
+
+			const resetSwipe = () => {
+				pointerId = null;
+			};
+			frame.addEventListener('pointercancel', resetSwipe);
+			frame.addEventListener('pointerleave', resetSwipe);
+		}
 
 		card.addEventListener('keydown', (event) => {
 			if (!(event.target instanceof HTMLElement)) return;
