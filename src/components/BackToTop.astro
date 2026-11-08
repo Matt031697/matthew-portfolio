@@ -1,0 +1,134 @@
+<button type="button" class="back-to-top" aria-label="Back to top" data-back-to-top>
+	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+		<path
+			d="M12 19V5M6 11l6-6 6 6"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.5"
+			stroke-linecap="round"
+			stroke-linejoin="round"></path>
+	</svg>
+</button>
+
+<style is:global>
+	/* The page body takes focus after "Back to top"; it shouldn't draw an outline */
+	body:focus {
+		outline: none;
+	}
+</style>
+
+<style>
+	/* Same language as .btn: solid ink fill, 2px border, small radius, and the
+	   fill inverts on hover. Round arrow stroke matches the project picker and
+	   footer arrows. */
+	.back-to-top {
+		--btn-fill: var(--color-text);
+		--btn-ink: var(--color-background);
+
+		position: fixed;
+		inset-block-end: calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));
+		inset-inline-end: calc(var(--space-sm) + env(safe-area-inset-right, 0px));
+		z-index: 40;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin: 0;
+		padding: 0;
+		border: 2px solid var(--btn-fill);
+		border-radius: 0.25rem;
+		background-color: var(--btn-fill);
+		color: var(--btn-ink);
+		cursor: pointer;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(0.5rem);
+		transition:
+			opacity 200ms ease,
+			transform 200ms ease,
+			visibility 0s linear 200ms,
+			background-color var(--transition-btn),
+			border-color var(--transition-btn),
+			color var(--transition-btn);
+	}
+
+	.back-to-top.is-visible {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+
+	.back-to-top svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	@media (hover: hover) {
+		.back-to-top:hover {
+			background-color: var(--btn-ink);
+			color: var(--btn-fill);
+		}
+	}
+
+	.back-to-top:focus-visible {
+		outline: 3px solid var(--color-focus);
+		outline-offset: 2px;
+	}
+
+	@media (min-width: 64rem) {
+		.back-to-top {
+			inset-block-end: var(--space-md);
+			inset-inline-end: var(--space-md);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.back-to-top {
+			transform: none;
+			transition:
+				opacity 0s,
+				visibility 0s;
+		}
+	}
+
+	@media print {
+		.back-to-top {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const button = document.querySelector('[data-back-to-top]');
+
+	if (button instanceof HTMLButtonElement) {
+		let ticking = false;
+
+		const update = () => {
+			ticking = false;
+			button.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+		};
+
+		window.addEventListener(
+			'scroll',
+			() => {
+				if (ticking) return;
+				ticking = true;
+				window.requestAnimationFrame(update);
+			},
+			{ passive: true },
+		);
+
+		button.addEventListener('click', () => {
+			window.scrollTo({ top: 0 });
+
+			// Start keyboard navigation from the top of the page again
+			document.body.tabIndex = -1;
+			document.body.focus({ preventScroll: true });
+		});
+
+		update();
+	}
+</script>
