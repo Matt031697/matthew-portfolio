@@ -2,20 +2,10 @@
 import AboutSection from '../components/AboutSection.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import HeroStats from '../components/HeroStats.astro';
 import PhilosophySection from '../components/PhilosophySection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { careerHighlights, projectAccents } from '../lib/site.ts';
-
-// Desktop shows each highlight as one pill. Smaller screens split it into a
-// large number and a label (e.g. "500+" / "Storefronts Supported").
-const heroStats = [
-	{ full: careerHighlights.experience, compact: careerHighlights.experienceCompact },
-	{ full: careerHighlights.storefronts, compact: careerHighlights.storefrontsCompact },
-	{ full: careerHighlights.releases, compact: careerHighlights.releasesCompact },
-].map(({ full, compact }) => {
-	const [value, ...rest] = full.split(' ');
-	return { full, compact, value, label: rest.join(' ') };
-});
+import { careerStats, projectAccents } from '../lib/site.ts';
 ---
 
 <BaseLayout
@@ -37,20 +27,7 @@ const heroStats = [
 					up after launch. That's the work I'm interested in, because who doesn't
 					love making an idea come to life?
 				</p>
-				<ul class="badge-list hero__badges">
-					{
-						heroStats.map((stat) => (
-							<li class="badge">
-								<span class="badge__full">{stat.full}</span>
-								<span class="badge__compact">{stat.compact}</span>
-								<span class="badge__stat">
-									<span class="badge__value">{stat.value}</span>
-									<span class="badge__label">{stat.label}</span>
-								</span>
-							</li>
-						))
-					}
-				</ul>
+				<HeroStats items={careerStats} />
 			</section>
 		</div>
 

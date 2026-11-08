@@ -17,6 +17,12 @@ export const careerHighlights = {
 	releasesCompact: '200+ Updates',
 } as const;
 
+export const careerStats = [
+	{ full: careerHighlights.experience, compact: careerHighlights.experienceCompact },
+	{ full: careerHighlights.storefronts, compact: careerHighlights.storefrontsCompact },
+	{ full: careerHighlights.releases, compact: careerHighlights.releasesCompact },
+];
+
 export const navItems = [
 	{ label: 'Projects', href: '/#projects' },
 	{ label: 'About', href: '/#about' },

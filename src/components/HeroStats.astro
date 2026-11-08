@@ -1,0 +1,30 @@
+---
+// Hero stat badges. Desktop shows each highlight as one pill. Smaller screens
+// split it into a large number over a label (e.g. "500+" / "Storefronts Supported").
+// Styles live in global.css under .hero__badges--stats.
+interface Props {
+	items: { full: string; compact: string }[];
+}
+
+const { items } = Astro.props;
+
+const stats = items.map(({ full, compact }) => {
+	const [value, ...rest] = full.split(' ');
+	return { full, compact, value, label: rest.join(' ') };
+});
+---
+
+<ul class="badge-list hero__badges hero__badges--stats">
+	{
+		stats.map((stat) => (
+			<li class="badge">
+				<span class="badge__full">{stat.full}</span>
+				<span class="badge__compact">{stat.compact}</span>
+				<span class="badge__stat">
+					<span class="badge__value">{stat.value}</span>
+					<span class="badge__label">{stat.label}</span>
+				</span>
+			</li>
+		))
+	}
+</ul>

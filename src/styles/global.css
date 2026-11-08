@@ -544,16 +544,16 @@ blockquote {
 	margin-top: var(--space-lg);
 }
 
-/* Homepage hero badges on smaller screens: an editorial stat row. No boxes,
+/* Stat badges (HeroStats component) on smaller screens: an editorial stat row. No boxes,
    pills or dividers. Three equal columns, each a large brand-blue number over
    a short label. On very narrow phones, where the labels would wrap awkwardly,
    it falls back to stacked rows (see the max-width: 23.43rem block). */
-.page-home .hero__badges .badge__stat {
+.hero__badges--stats .badge__stat {
 	display: none;
 }
 
 @media (max-width: 63.99rem) {
-	.page-home .hero__badges {
+	.hero__badges.hero__badges--stats {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		align-items: start;
@@ -561,7 +561,7 @@ blockquote {
 		max-width: 36rem;
 	}
 
-	.page-home .hero__badges .badge {
+	.hero__badges--stats .badge {
 		display: block;
 		width: 100%;
 		padding: 0;
@@ -571,19 +571,19 @@ blockquote {
 		color: var(--color-text);
 	}
 
-	.page-home .hero__badges .badge__full,
-	.page-home .hero__badges .badge__compact {
+	.hero__badges--stats .badge__full,
+	.hero__badges--stats .badge__compact {
 		display: none;
 	}
 
-	.page-home .hero__badges .badge__stat {
+	.hero__badges--stats .badge__stat {
 		display: flex;
 		flex-direction: column;
 		gap: 0.375rem;
 	}
 
 	/* Same size and tracking as the section headings (e.g. "What I do") */
-	.page-home .hero__badges .badge__value {
+	.hero__badges--stats .badge__value {
 		font-size: clamp(1.75rem, 1.6vw + 1rem, 2.5rem);
 		font-weight: var(--font-weight-bold);
 		line-height: 1.08;
@@ -591,7 +591,7 @@ blockquote {
 		color: var(--color-project);
 	}
 
-	.page-home .hero__badges .badge__label {
+	.hero__badges--stats .badge__label {
 		font-size: clamp(0.75rem, 3.2vw, 1rem);
 		font-weight: var(--font-weight-regular);
 		line-height: 1.3;
@@ -603,7 +603,7 @@ blockquote {
 /* Very narrow phones: three columns would make the labels wrap awkwardly, so
    stack them as rows with the label beside the number on one line. */
 @media (max-width: 23.43rem) {
-	.page-home .hero__badges {
+	.hero__badges.hero__badges--stats {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -611,16 +611,39 @@ blockquote {
 		max-width: 28rem;
 	}
 
-	.page-home .hero__badges .badge__stat {
+	.hero__badges--stats .badge__stat {
 		display: grid;
 		grid-template-columns: 4.5rem minmax(0, 1fr);
 		align-items: baseline;
 		column-gap: 0.5rem;
 	}
 
-	.page-home .hero__badges .badge__label {
+	.hero__badges--stats .badge__label {
 		font-size: 0.8125rem;
 		white-space: nowrap;
+	}
+}
+
+/* Keyword badges (case study heroes) on smaller screens: a stacked list of
+   bold brand-colored text, one keyword per line. No pills or boxes. */
+@media (max-width: 63.99rem) {
+	.hero__badges:not(.hero__badges--stats) {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.hero__badges:not(.hero__badges--stats) .badge {
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		font-size: clamp(1.125rem, 5vw, 1.5rem);
+		font-weight: var(--font-weight-bold);
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+		color: var(--color-project);
+		white-space: normal;
 	}
 }
 

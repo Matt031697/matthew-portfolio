@@ -2,9 +2,10 @@
 import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import HeroStats from '../../components/HeroStats.astro';
 import ProjectFacts from '../../components/ProjectFacts.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { careerHighlights, projectAccents } from '../../lib/site.ts';
+import { careerStats, projectAccents } from '../../lib/site.ts';
 import { slugify } from '../../lib/strings.ts';
 import responsiveByDefault from '../../assets/projects/shopify-theme/three-column-cards/responsive-by-default.png';
 import flexiblePresentation from '../../assets/projects/shopify-theme/three-column-cards/flexible-presentation.png';
@@ -220,20 +221,7 @@ const closingTags = 'Shopify + Theme Architecture + Accessibility';
 						When something needs investigating or a custom solution, I assess it and
 						implement it under my roof, and that work goes back into the theme.
 					</p>
-					<ul class="badge-list hero__badges">
-						<li class="badge">
-							<span class="badge__full">{careerHighlights.experience}</span>
-							<span class="badge__compact">{careerHighlights.experienceCompact}</span>
-						</li>
-						<li class="badge">
-							<span class="badge__full">{careerHighlights.storefronts}</span>
-							<span class="badge__compact">{careerHighlights.storefrontsCompact}</span>
-						</li>
-						<li class="badge">
-							<span class="badge__full">{careerHighlights.releases}</span>
-							<span class="badge__compact">{careerHighlights.releasesCompact}</span>
-						</li>
-					</ul>
+					<HeroStats items={careerStats} />
 					<a
 						class="btn hero__cta"
 						href="https://monsterpetsonline.com/"
