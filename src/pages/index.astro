@@ -5,6 +5,17 @@ import Header from '../components/Header.astro';
 import PhilosophySection from '../components/PhilosophySection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { careerHighlights, projectAccents } from '../lib/site.ts';
+
+// Desktop shows each highlight as one pill. Smaller screens split it into a
+// large number and a label (e.g. "500+" / "Storefronts Supported").
+const heroStats = [
+	{ full: careerHighlights.experience, compact: careerHighlights.experienceCompact },
+	{ full: careerHighlights.storefronts, compact: careerHighlights.storefrontsCompact },
+	{ full: careerHighlights.releases, compact: careerHighlights.releasesCompact },
+].map(({ full, compact }) => {
+	const [value, ...rest] = full.split(' ');
+	return { full, compact, value, label: rest.join(' ') };
+});
 ---
 
 <BaseLayout
@@ -27,18 +38,18 @@ import { careerHighlights, projectAccents } from '../lib/site.ts';
 					love making an idea come to life?
 				</p>
 				<ul class="badge-list hero__badges">
-					<li class="badge">
-						<span class="badge__full">{careerHighlights.experience}</span>
-						<span class="badge__compact">{careerHighlights.experienceCompact}</span>
-					</li>
-					<li class="badge">
-						<span class="badge__full">{careerHighlights.storefronts}</span>
-						<span class="badge__compact">{careerHighlights.storefrontsCompact}</span>
-					</li>
-					<li class="badge">
-						<span class="badge__full">{careerHighlights.releases}</span>
-						<span class="badge__compact">{careerHighlights.releasesCompact}</span>
-					</li>
+					{
+						heroStats.map((stat) => (
+							<li class="badge">
+								<span class="badge__full">{stat.full}</span>
+								<span class="badge__compact">{stat.compact}</span>
+								<span class="badge__stat">
+									<span class="badge__value">{stat.value}</span>
+									<span class="badge__label">{stat.label}</span>
+								</span>
+							</li>
+						))
+					}
 				</ul>
 			</section>
 		</div>
